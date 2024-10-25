@@ -31,7 +31,7 @@ To run this project, ensure you have a text editor like Visual Studio Code and a
 
 ### Clone the Repository
 ```bash
-git clone https://github.com/your-username/TechBlog.git
+git clone https://github.com/mayen007/TechBlog.git
 cd TechBlog
 ```
 
