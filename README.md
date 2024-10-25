@@ -10,8 +10,6 @@ Check out the live site here: [TechBlog on GitHub Pages](https://mayen007.github
 ## Table of Contents
 - [Features](#features)
 - [Installation](#installation)
-- [Usage](#usage)
-- [Folder Structure](#folder-structure)
 - [Contributing](#contributing)
 - [License](#license)
 
