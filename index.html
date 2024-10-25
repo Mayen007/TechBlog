@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechBlog</title>
+  <link rel="stylesheet" href="./static/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="shortcut icon" href="./static/img/TechBlog_logo.png" type="image/x-icon">
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">TechBlog</div>
+      <div class="hamburger" onclick="toggleMenu()">
+        &#9776;
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./src/about.html">About</a></li>
+        <li><a href="./src/blogs.html">Blog</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="./src/contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="home" class="hero">
+      <div class="overlay"></div> <!-- Overlay for gradient -->
+      <div class="hero-content">
+        <h1>Welcome to <span>TechBlog</span></h1>
+        <p>Stay updated with the latest tech trends and tutorials.</p>
+        <a href="#blog" class="cta-btn">Read the Blog</a>
+      </div>
+    </section>
+
+    <!-- Featured Articles -->
+    <section id="blog" class="featured-articles">
+      <h2>Featured Articles</h2>
+      <div class="article-grid">
+        <article class="article-card">
+          <img src="./static/img/web-dev.jpg" alt="Article 1" loading="lazy">
+          <h3>Latest in Web Development</h3>
+          <p>A deep dive into the modern web development landscape.</p>
+          <a href="#" class="read-more">Read More</a>
+        </article>
+        <article class="article-card">
+          <img src="./static/img/ai-ml.jpg" alt="Article 2" loading="lazy">
+          <h3>AI and Machine Learning</h3>
+          <p>Exploring the potential of AI in everyday applications.</p>
+          <a href="#" class="read-more">Read More</a>
+        </article>
+        <article class="article-card">
+          <img src="./static/img/tech-gadget.jpg" alt="Article 3" loading="lazy">
+          <h3>Tech Gadgets of 2024</h3>
+          <p>Reviewing the hottest gadgets on the market this year.</p>
+          <a href="#" class="read-more">Read More</a>
+        </article>
+        <article class="article-card">
+          <img src="./static/img/cybersecurity.jpg" alt="Cybersecurity Trends 2024" loading="lazy">
+          <h3>Cybersecurity Trends for 2024</h3>
+          <p>Discover the top cybersecurity challenges and trends shaping the tech world in 2024.</p>
+          <a href="#" class="read-more">Read More</a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Popular Categories -->
+    <section id="categories" class="categories-section">
+      <h2>Popular Categories</h2>
+      <div class="categories-grid">
+        <div class="category-card">
+          <i class="fas fa-code"></i> <!-- Icon for Web Development -->
+          <h3>Web Development</h3>
+        </div>
+        <div class="category-card">
+          <i class="fas fa-robot"></i> <!-- Icon for AI & Machine Learning -->
+          <h3>AI & Machine Learning</h3>
+        </div>
+        <div class="category-card">
+          <i class="fas fa-star"></i> <!-- Icon for Tech Reviews -->
+          <h3>Tech Reviews</h3>
+        </div>
+        <!-- New Category -->
+        <div class="category-card">
+          <i class="fas fa-shield-alt"></i> <!-- Icon for Cybersecurity -->
+          <h3>Cybersecurity</h3>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Enhanced Subscribe Section -->
+    <section id="subscribe" class="subscribe-section">
+      <div class="subscribe-content">
+        <h2 class="section-title">Join Our Tech Community</h2>
+        <p>Subscribe to our newsletter and never miss an update on the latest tech trends.</p>
+        <form class="subscribe-form">
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+          <button type="submit" class="subscribe-btn">Subscribe</button>
+        </form>
+        <p id="subscribe-message" class="subscribe-message"></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="social-links">
+      <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+    </div>
+    <p>&copy; 2024 TechBlog. All rights reserved.</p>
+  </footer>
+
+  <script src="./static/script.js"></script>
+</body>
+
+</html>
