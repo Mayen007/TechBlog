@@ -172,19 +172,22 @@
         font-size: 2.4rem;
       }
     }
+
+    iframe {
+      border: 0;
+    }
   </style>
 </head>
 
 <body>
   <header>
     <nav class="navbar">
-      <div class="logo">TechBlog</div>
+      <a href="../index.html" class="logo">TechBlog</a>
       <div class="hamburger" onclick="toggleMenu()">
-        &#9776;
+        <i class="fa-solid fa-bars"></i>
       </div>
 
       <ul class="nav-links">
-        <li><a href="../index.html">Home</a></li>
         <li><a href="./about.html">About</a></li>
         <li><a href="./blogs.html">Blog</a></li>
         <li><a href="#categories">Categories</a></li>
@@ -227,21 +230,21 @@
           <p><i class="fas fa-envelope"></i> info@techblog.com</p>
           <p><i class="fas fa-phone"></i> +123 456 7890</p>
           <div class="social-icons">
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Optional Google Map -->
+    <!-- Google Map -->
     <section class="map-section">
       <h2>Our Location</h2>
       <div class="map-container">
         <!-- Embed Google Map -->
-        <iframe src="https://www.google.com/maps/embed?..." width="100%" height="400" frameborder="0" style="border:0;"
-          allowfullscreen="false"></iframe>
+        <iframe src="https://www.google.com/maps/embed?..." width="100%" height="400" frameborder="0" allowfullscreen=""
+          title="Our Location"></iframe>
       </div>
     </section>
   </main>

@@ -7,15 +7,6 @@
   --button-color: #ffffff;
 }
 
-/* Dark Mode Variables */
-:root.dark {
-  --background-color: #121212;
-  --text-color: #f1f1f1;
-  --link-color: #ff9800;
-  --button-bg: #ff9800;
-  --button-color: #ffffff;
-}
-
 /* Apply Variables to Elements */
 body {
   background-color: var(--background-color);
@@ -29,14 +20,6 @@ a {
   text-decoration: none;
 }
 
-/* Toggle Button Styling */
-.theme-toggle {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 20px;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -46,7 +29,7 @@ a {
 /* Navigation Bar */
 .navbar {
   background-color: #1f1f2e;
-  padding: 20px 40px;
+  padding: 12px 13px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -59,11 +42,7 @@ a {
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #fff;
-}
-
-.logo span {
-  color: #ff6600;
+  color: var(--background-color);
 }
 
 .nav-links {
@@ -83,30 +62,12 @@ a {
   display: block;
   width: 100%;
   margin: 0 10px;
-  /* Add margin for spacing between elements */
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+footer .social-links a:hover,
+.read-more:hover {
   background-color: #ff6600;
-}
-
-/* Responsive: Hide Navigation Links for Mobile */
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    background-color: #333;
-    width: 200px;
-    padding: 20px;
-    border-radius: 8px;
-  }
-
-  .nav-links.show {
-    display: flex;
-  }
 }
 
 /* Hamburger Icon */
@@ -115,12 +76,6 @@ a {
   font-size: 2rem;
   color: #fff;
   cursor: pointer;
-}
-
-@media (max-width: 768px) {
-  .hamburger {
-    display: block;
-  }
 }
 
 /* Hero Section */
@@ -182,39 +137,8 @@ a {
 }
 
 .cta-btn:hover {
-  background-color: #e65c00;
+  background-color: var(--button-bg);
   transform: scale(1.05);
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 3rem;
-  }
-
-  .hero p {
-    font-size: 1.2rem;
-  }
-
-  .cta-btn {
-    padding: 12px 25px;
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero h1 {
-    font-size: 2.5rem;
-  }
-
-  .hero p {
-    font-size: 1rem;
-  }
-
-  .cta-btn {
-    padding: 10px 20px;
-    font-size: 0.9rem;
-  }
 }
 
 /* Section Titles */
@@ -228,11 +152,11 @@ a {
 /* Featured Articles */
 .featured-articles {
   padding: 80px 40px;
-  background-color: #fff;
+  background-color: var(--background-color);
 }
 
 .article-card {
-  background-color: #fff;
+  background-color: var(--background-color);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
@@ -270,14 +194,10 @@ a {
   padding: 10px;
   background-color: #1f1f2e;
   text-align: center;
-  color: white;
+  color: var(--button-color);
   text-transform: uppercase;
   font-weight: 600;
   transition: background-color 0.3s;
-}
-
-.read-more:hover {
-  background-color: #ff6600;
 }
 
 /* Popular Categories */
@@ -305,17 +225,16 @@ a {
 }
 
 .category-card:hover {
-  background-color: #ff6600;
+  background-color: var(--button-bg);
   transform: translateY(-5px);
 }
 
 /* Enhanced Subscribe Section */
 .subscribe-section {
   padding: 80px 20px;
-  background: linear-gradient(135deg, #ff6600, #ffcc00);
-  /* Vibrant gradient */
+  background: linear-gradient(135deg, var(--button-bg), #ffcc00);
   text-align: center;
-  color: white;
+  color: var(--background-color);
   position: relative;
 }
 
@@ -329,7 +248,7 @@ a {
   background-image: url('../static/img/subscribe-bg.jpg');
   background-size: cover;
   background-position: center;
-  opacity: 0.3;
+  opacity: 0.1;
   z-index: 0;
 }
 
@@ -340,7 +259,7 @@ a {
 
 .subscribe-section h2 {
   font-size: 3rem;
-  color: #fff;
+  color: var(--button-color);
   margin-bottom: 20px;
 }
 
@@ -357,9 +276,10 @@ a {
 }
 
 .subscribe-form input[type="email"] {
-  padding: 15px;
-  width: 250px;
-  border-radius: 10px;
+  padding: 12px;
+  width: 200px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
   border: none;
   font-size: 1rem;
   transition: box-shadow 0.3s ease-in-out;
@@ -373,9 +293,10 @@ a {
 .subscribe-btn {
   padding: 15px 35px;
   background-color: #ff6600;
-  color: #fff;
+  color: var(--background-color);
   font-size: 1.1rem;
-  border-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
   border: none;
   cursor: pointer;
   font-weight: 700;
@@ -384,7 +305,7 @@ a {
 
 .subscribe-btn:hover {
   background-color: #ffcc00;
-  color: #fff;
+  color: var(--background-color);
   transform: scale(1.1);
 }
 
@@ -396,11 +317,10 @@ a {
   visibility: hidden;
 }
 
-
 /* Footer */
 footer {
   background-color: #1f1f2e;
-  color: #fff;
+  color: var(--button-color);
   text-align: center;
   padding: 40px;
 }
@@ -419,10 +339,6 @@ footer .social-links a {
   border-radius: 10px;
   background-color: #333;
   transition: background-color 0.3s;
-}
-
-footer .social-links a:hover {
-  background-color: #ff6600;
 }
 
 /* About Section Styling */
@@ -449,7 +365,7 @@ footer .social-links a:hover {
 
 /* Value Item */
 .value-item {
-  background-color: #fff;
+  background-color: var(--background-color);
   border-radius: 15px;
   padding: 20px;
   min-width: 270px;
@@ -465,7 +381,7 @@ footer .social-links a:hover {
 
 .value-item i {
   font-size: 2rem;
-  color: #ff6600;
+  color: var(--link-color);
   margin-bottom: 15px;
 }
 
@@ -509,18 +425,13 @@ footer .social-links a:hover {
 }
 
 .mission-cta {
-  background: #ff6347;
+  background: var(--button-bg);
   padding: 12px 24px;
-  color: #fff;
+  color: var(--background-color);
   text-transform: uppercase;
   font-weight: bold;
   border-radius: 4px;
   transition: background 0.3s ease;
-}
-
-.mission-cta:hover {
-  background-color: #cc5200;
-  /* Darker shade on hover */
 }
 
 /* General Section Styling */
@@ -549,7 +460,7 @@ footer .social-links a:hover {
 /* Team Card Layout */
 .team-card {
   display: flex;
-  background-color: #fff;
+  background-color: var(--background-color);
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -617,25 +528,6 @@ footer .social-links a:hover {
 .social-link:hover {
   color: #333;
 }
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .team-card {
-    flex-direction: column;
-    /* Stacks vertically on smaller screens */
-    text-align: center;
-  }
-
-  .team-card-left {
-    padding-right: 0;
-    margin-bottom: 20px;
-  }
-
-  .team-info {
-    text-align: center;
-  }
-}
-
 
 /* Journey Section */
 .about-journey {
@@ -770,34 +662,6 @@ footer .social-links a:hover {
   line-height: 1.6;
 }
 
-/* Mobile and Tablet View */
-@media (max-width: 768px) {
-  .timeline::before {
-    left: 20px;
-  }
-
-  .timeline-event {
-    width: 100%;
-    justify-content: flex-start;
-    padding-left: 50px;
-    flex-direction: column;
-  }
-
-  .timeline-event.right {
-    justify-content: left;
-    left: 20px;
-  }
-
-  .timeline-icon {
-    left: 0;
-  }
-
-  .timeline-content {
-    margin-top: 20px;
-    padding-left: 70px;
-  }
-}
-
 /* Scroll Animations */
 .timeline-event {
   opacity: 0;
@@ -869,21 +733,6 @@ footer .social-links a:hover {
   line-height: 1.6;
 }
 
-/* Responsive Design */
-@media (max-width: 600px) {
-  .achievement-card {
-    padding: 15px;
-  }
-
-  .achievement-content h3 {
-    font-size: 1.4rem;
-  }
-
-  .achievement-content p {
-    font-size: 0.9rem;
-  }
-}
-
 /* Initial hidden state for scroll animations */
 .achievement-card {
   opacity: 0;
@@ -895,4 +744,79 @@ footer .social-links a:hover {
 .achievement-card.in-view {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Responsive: Hide Navigation Links for Mobile */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: #333;
+    width: 200px;
+    padding: 20px;
+    border-radius: 8px;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .timeline::before {
+    left: 20px;
+  }
+
+  .timeline-event {
+    width: 100%;
+    justify-content: flex-start;
+    padding-left: 50px;
+    flex-direction: column;
+  }
+
+  .timeline-event.right {
+    justify-content: left;
+    left: 20px;
+  }
+
+  .timeline-icon {
+    left: 0;
+  }
+
+  .timeline-content {
+    margin-top: 20px;
+    padding-left: 70px;
+  }
+
+  .team-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .team-card-left {
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .team-info {
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  .hero p {
+    font-size: 1.2rem;
+  }
+
+  .cta-btn {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+
+  .hamburger {
+    display: block;
+  }
 }
