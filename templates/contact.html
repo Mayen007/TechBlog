@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}TechBlog - Contact{% endblock %}
+
+{% block content %}
+<!-- Contact Page -->
+<section class="contact-hero">
+  <h1>Contact Us</h1>
+  <p>We'd love to hear from you! Whether it's a question, feedback, or just a hello, feel free to reach out.</p>
+</section>
+
+<section class="contact-section">
+  <div class="contact-container">
+    <!-- Contact Form -->
+    <div class="contact-form">
+      <h2>Send Us a Message</h2>
+      <form>
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Your Email</label>
+          <input type="email" id="email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Your Message</label>
+          <textarea id="message" placeholder="Write your message" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="contact-info">
+      <h2>Get in Touch</h2>
+      <p><i class="fas fa-envelope"></i> info@techblog.com</p>
+      <p><i class="fas fa-phone"></i> +123 456 7890</p>
+      <div class="social-icons">
+        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Google Map -->
+<section class="map-section">
+  <h2>Our Location</h2>
+  <div class="map-container">
+    <!-- Embed Google Map -->
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63821.19007307667!2d36.814740079101554!3d-1.2789404999999932!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f16b4d057054f%3A0xc99646f4266c5959!2sCity%20Tech%20Technologies!5e0!3m2!1sen!2ske!4v1736538115767!5m2!1sen!2ske"
+      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</section>
+{% endblock %}

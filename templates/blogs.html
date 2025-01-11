@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}TechBlog - Blogs{% endblock %}
+
+{% block content %}
+<section class="blog-header">
+  <h1>TechBlog Articles</h1>
+  <p>Stay updated with the latest in tech news, reviews, and innovations.</p>
+</section>
+<section class="featured-post">
+  <article class="post-card featured">
+    <img src="{{url_for('static', filename='img/featured.jpg')}}" alt="Featured Post Image">
+    <div class="post-content">
+      <h2><a href="./featured.html">Featured Post Title</a></h2>
+      <p class="post-excerpt">A detailed look into the future of tech innovation and groundbreaking advancements...
+      </p>
+      <div class="post-meta">
+        <span>October 10, 2024</span>
+        <span>Category: <a href="#">Innovation</a></span>
+      </div>
+    </div>
+  </article>
+</section>
+<!-- Blog Posts Section -->
+<section class="blog-posts">
+  <div class="container">
+    <div class="blog-filter">
+      <ul>
+        <li><a href="#" data-category="all">All</a></li>
+        <li><a href="#" data-category="technology">Technology</a></li>
+        <li><a href="#" data-category="ai">Artificial Intelligence</a></li>
+        <li><a href="#" data-category="5g">5G Technology</a></li>
+        <li><a href="#" data-category="gadgets">Gadgets</a></li>
+      </ul>
+    </div>
+    <div class="post-grid">
+      <!-- Individual Post 1 -->
+      <article class="post-card">
+        <img src="{{url_for('static', filename='img/web-dev.jpg')}}" alt="Post 1 Image" loading="lazy">
+        <div class="post-content">
+          <h2><a href="./post1.html">Post Title 1</a></h2>
+          <p class="post-excerpt">This is a short preview of the blog post content, giving readers a quick
+            overview...</p>
+          <div class="post-meta">
+            <span>October 21, 2024</span>
+            <span>Category: <a href="#">Technology</a></span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Individual Post 2 -->
+      <article class="post-card">
+        <img src="{{url_for('static', filename='img/gadgets.jpg')}}" alt="Post 2 Image" loading="lazy">
+        <div class="post-content">
+          <h2><a href="{{ url_for('blog2') }}">Tech and Gadgets: Key Updates in 2025</a></h2>
+          <p class="post-excerpt">Another exciting article covering key updates in the world of tech and gadgets...
+          </p>
+          <div class="post-meta">
+            <span>October 15, 2024</span>
+            <span>Category: <a href="#">Gadgets</a></span>
+          </div>
+        </div>
+      </article>
+      <!-- Individual Post 3 -->
+      <article class="post-card">
+        <img src="{{url_for('static', filename='img/ai-ml.jpg')}}" alt="Post 3 Image" loading="lazy">
+        <div class="post-content">
+          <h2><a href="{{ url_for('blog1') }}">The Future Of AI</a></h2>
+          <p class="post-excerpt">Exploring the rise of AI and its impact on the future of technology and society as
+            a whole...</p>
+          <div class="post-meta">
+            <span>September 30, 2024</span>
+            <span>Category: <a href="#">Artificial Intelligence</a></span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Individual Post 4 -->
+      <article class="post-card">
+        <img src="{{url_for('static', filename='img/5g.jpg')}}" alt="Post 4 Image" loading="lazy">
+        <div class="post-content">
+          <h2><a href="{{ url_for('blog4') }}">5G Technology</a></h2>
+          <p class="post-excerpt">Breaking down the latest innovations in 5G technology and how it's transforming
+            communication...</p>
+          <div class="post-meta">
+            <span>August 18, 2024</span>
+            <span>Category: <a href="#">5G Technology</a></span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+<!-- Pagination Section -->
+<section class="pagination">
+  <ul>
+    <li><a href="#">&#171; Previous</a></li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">Next &#187;</a></li>
+  </ul>
+</section>
+{% endblock %}
+{% block extra_js %}
+<script src="../static/js/script.js">
+  document.querySelector('.blog-filter').addEventListener('click', function () {
+    this.classList.toggle('active');
+  });
+</script>
+{% endblock %}

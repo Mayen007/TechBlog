@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}TechBlog - Home{% endblock %}
+
+{% block content %}
+<section id="home" class="hero">
+  <div class="hero-content">
+    <h1>Welcome to <span>TechBlog</span></h1>
+    <p class="description">Stay updated with the latest tech trends and tutorials.</p>
+    <a href="#blog" class="cta-btn">Read the Blog</a>
+  </div>
+</section>
+<section class="header-down-arrow">
+  <img src="{{ url_for('static', filename='img/downarrow.png') }}" alt="down arrow" title="Pull Up" width="50">
+
+</section>
+
+<!-- Featured Articles -->
+<section id="blog" class="featured-articles">
+  <h2>Featured Articles</h2>
+  <div class="article-grid">
+    <article class="article-card">
+      <img src="{{url_for('static', filename='img/web-dev.jpg')}}" alt="Article 1" loading="lazy">
+      <h3>Latest in Web Development</h3>
+      <p>A deep dive into the modern web development landscape.</p>
+      <a href="#" class="read-more">Read More</a>
+    </article>
+    <article class="article-card">
+      <img src="{{url_for('static', filename='img/ai-ml.jpg')}}" alt="Article 2" loading="lazy">
+      <h3>AI and Machine Learning</h3>
+      <p>Exploring the potential of AI in everyday applications.</p>
+      <a href="#" class="read-more">Read More</a>
+    </article>
+    <article class="article-card">
+      <img src="{{url_for('static', filename='img/tech-gadget.jpg')}}" alt="Article 3" loading="lazy">
+      <h3>Tech Gadgets of 2024</h3>
+      <p>Reviewing the hottest gadgets on the market this year.</p>
+      <a href="#" class="read-more">Read More</a>
+    </article>
+    <article class="article-card">
+      <img src="{{ url_for('static', filename='img/cybersecurity.jpg') }}" alt="Cybersecurity Trends 2024"
+        loading="lazy">
+
+      <h3>Cybersecurity Trends for 2024</h3>
+      <p>Discover the top cybersecurity challenges and trends shaping the tech world in 2024.</p>
+      <a href="#" class="read-more">Read More</a>
+    </article>
+
+  </div>
+</section>
+
+<!-- Popular Categories -->
+<section id="categories" class="categories-section">
+  <h2>Popular Categories</h2>
+  <div class="categories-grid">
+    <div class="category-card">
+      <i class="fas fa-code"></i> <!-- Icon for Web Development -->
+      <h3>Web Development</h3>
+    </div>
+    <div class="category-card">
+      <i class="fas fa-robot"></i> <!-- Icon for AI & Machine Learning -->
+      <h3>AI & Machine Learning</h3>
+    </div>
+    <div class="category-card">
+      <i class="fas fa-star"></i> <!-- Icon for Tech Reviews -->
+      <h3>Tech Reviews</h3>
+    </div>
+    <!-- New Category -->
+    <div class="category-card">
+      <i class="fas fa-shield-alt"></i> <!-- Icon for Cybersecurity -->
+      <h3>Cybersecurity</h3>
+    </div>
+  </div>
+</section>
+
+
+<!-- Enhanced Subscribe Section -->
+<section id="subscribe" class="subscribe-section">
+  <div class="subscribe-content">
+    <h2 class="section-title">Join Our Tech Community</h2>
+    <p>Subscribe to our newsletter and never miss an update on the latest tech trends.</p>
+    <form class="subscribe-form" id="subscribe-form">
+      <input type="email" id="email" name="email" class="email-input" placeholder="Enter your email" required
+        aria-label="Email Address" />
+      <button type="submit" class="subscribe-btn">Subscribe</button>
+    </form>
+  </div>
+</section>
+</main>
+
+<!-- Subscription confirmation modal -->
+<div id="subscription-confirmation" class="modal">
+  <div class="modal-content">
+    <img src="{{url_for('static', filename='img/TechBlog_logo.png')}}" alt="" class="brand-logo">
+    <span class="close">&times;</span>
+    <h2>Thank you for subscribing!</h2>
+    <p>You will now receive the latest updates on tech trends in your inbox.</p>
+  </div>
+</div>
+{% endblock %}
+
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
