@@ -108,27 +108,30 @@ function toggleMenu() {
   navLinks.classList.toggle('show');
 }
 
-const timelineEvents = document.querySelectorAll('.timeline-event');
+// JavaScript for scroll-activated animation for the Journey Section
 
-// Function to handle adding the 'in-view' class
-const handleIntersection = (entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in-view'); // Add class when in view
-    } else {
-      entry.target.classList.remove('in-view'); // Remove class when out of view
-    }
+document.addEventListener('DOMContentLoaded', () => {
+  const timelineEvents = document.querySelectorAll('.timeline-event');
+
+  // Callback function for the Intersection Observer
+  const revealTimelineEvent = (entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active'); // Add animation class
+        observer.unobserve(entry.target); // Stop observing once activated
+      }
+    });
+  };
+
+  // Create an Intersection Observer instance
+  const observer = new IntersectionObserver(revealTimelineEvent, {
+    threshold: 0.5, // Trigger when 50% of the element is visible
   });
-};
 
-// Create an intersection observer for timeline events
-const observer = new IntersectionObserver(handleIntersection, {
-  threshold: 0.5 // Trigger when 10% of the element is in view
-});
-
-// Observe each timeline event
-timelineEvents.forEach(event => {
-  observer.observe(event);
+  // Observe each timeline event
+  timelineEvents.forEach(event => {
+    observer.observe(event);
+  });
 });
 
 // Create a separate Intersection Observer for achievement cards

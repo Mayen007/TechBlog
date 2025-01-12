@@ -33,7 +33,7 @@
     </article>
     <article class="article-card">
       <img src="{{url_for('static', filename='img/tech-gadget.jpg')}}" alt="Article 3" loading="lazy">
-      <h3>Tech Gadgets of 2024</h3>
+      <h3>Tech Gadgets of {{ year }}</h3>
       <p>Reviewing the hottest gadgets on the market this year.</p>
       <a href="#" class="read-more">Read More</a>
     </article>
@@ -41,11 +41,10 @@
       <img src="{{ url_for('static', filename='img/cybersecurity.jpg') }}" alt="Cybersecurity Trends 2024"
         loading="lazy">
 
-      <h3>Cybersecurity Trends for 2024</h3>
+      <h3>Cybersecurity Trends for {{ year }}</h3>
       <p>Discover the top cybersecurity challenges and trends shaping the tech world in 2024.</p>
       <a href="#" class="read-more">Read More</a>
     </article>
-
   </div>
 </section>
 
