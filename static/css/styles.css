@@ -545,7 +545,7 @@ footer .social-links a {
 
 .mission-section {
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('../img/mission-bg.jpg') no-repeat center center/cover;
-  padding: 60px 20px;
+  padding: 3rem 0.7rem;
   color: var(--button-color);
   text-align: center;
   display: flex;
@@ -554,29 +554,24 @@ footer .social-links a {
   justify-content: center;
 }
 
-.mission-content {
-  max-width: 800px;
-  padding: 30px;
-  border-radius: 8px;
-}
 
 .mission-content h2 {
-  margin-bottom: 20px;
+  margin-bottom: 1.2rem;
   font-weight: bold;
 }
 
 .mission-statement {
   font-size: 1rem;
-  margin-top: 1rem;
   margin-bottom: 2rem;
   color: var(--background-color);
+  line-height: 1.4;
   opacity: 0.8;
 }
 
 .mission-cta {
   background: var(--button-bg);
-  padding: 12px 24px;
-  font-size: 0.95rem;
+  padding: 0.8rem 1.2rem;
+  font-size: 0.75rem;
   color: var(--background-color);
   text-transform: uppercase;
   font-weight: bold;
@@ -586,9 +581,11 @@ footer .social-links a {
 
 /* General Section Styling */
 .team-section {
-  padding: 60px 20px;
+  padding: 1.2rem 1rem;
   background-color: var(--background-color);
   text-align: center;
+  max-width: 800px;
+  margin: auto;
 }
 
 .team-section h2 {
@@ -600,14 +597,11 @@ footer .social-links a {
   letter-spacing: 1.5px;
 }
 
-/* Team Grid Layout */
 .team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
-/* Team Card Layout */
 .team-card {
   display: flex;
   background-color: var(--background-color);
@@ -616,6 +610,8 @@ footer .social-links a {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
   align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .team-card:hover {
@@ -630,15 +626,15 @@ footer .social-links a {
 
 .team-image img {
   width: 100%;
-  height: auto;
+  height: 300px;
   object-fit: cover;
 }
 
 /* Right Column - Info */
 .team-card-right {
-  flex: 2;
+  flex: 1;
   text-align: left;
-  padding: 20px;
+  padding-right: 1rem;
 }
 
 .team-info h3 {
@@ -665,7 +661,8 @@ footer .social-links a {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
+  margin-bottom: 1.3rem;
+  gap: 1rem;
 }
 
 .social-link {
@@ -706,7 +703,6 @@ footer .social-links a {
 }
 
 
-/* Timeline Wrapper */
 .timeline {
   position: relative;
   max-width: 1000px;
@@ -729,13 +725,13 @@ footer .social-links a {
 /* Timeline Event Styling */
 .timeline-event {
   display: flex;
+  align-items: center;
   position: relative;
   width: 50%;
   padding: 20px;
   margin-bottom: 50px;
 }
 
-/* Alternate Left and Right for Desktop */
 .timeline-event.left {
   justify-content: flex-end;
   left: 0;
@@ -746,7 +742,6 @@ footer .social-links a {
   left: 50%;
 }
 
-/* Timeline Icon */
 .timeline-icon {
   background-color: var(--button-bg);
   color: var(--button-color);
@@ -769,7 +764,6 @@ footer .social-links a {
   left: -25px;
 }
 
-/* Timeline Content Box */
 .timeline-content {
   background-color: var(--background-color);
   padding: 20px;
@@ -794,7 +788,6 @@ footer .social-links a {
 
 /* Scroll Animations */
 .timeline-event {
-  /* opacity: 0; */
   transform: translateY(30px);
   transition: all 0.6s ease;
 }
@@ -802,18 +795,16 @@ footer .social-links a {
 .timeline-event.in-view {
   opacity: 1;
   transform: translateY(0);
-  /* Slide into view */
 }
 
-/* Achievements & Partnerships Section */
 .achievements-partnerships {
-  padding: 50px 20px;
+  padding: 2rem 1.5rem;
   background-color: var(--background-color);
   text-align: center;
 }
 
 .achievements-partnerships h2 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: var(--charcoal-grey);
   margin-bottom: 2rem;
   font-weight: bold;
@@ -823,7 +814,8 @@ footer .social-links a {
 .about-values,
 .article-grid,
 .post-grid,
-.categories-grid {
+.categories-grid,
+.team-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
   place-items: center;
@@ -877,7 +869,6 @@ footer .social-links a {
   transform: translateY(0);
 }
 
-/* Responsive: Hide Navigation Links for Mobile */
 @media (max-width: 768px) {
   .hero {
     height: 60vh;
@@ -912,7 +903,7 @@ footer .social-links a {
 
   .timeline-event.right {
     justify-content: left;
-    left: 2px;
+    left: 20px;
   }
 
   .timeline-icon {
@@ -921,7 +912,6 @@ footer .social-links a {
 
   .timeline-content {
     margin-top: 20px;
-    /* padding-left: 70px; */
   }
 
   .team-card {
@@ -1195,35 +1185,21 @@ li strong {
 
 .contact-hero h1 {
   font-size: 3.2rem;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
+}
+
+.contact-hero p {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  opacity: 0.8;
 }
 
 /* Contact Section */
 .contact-section {
   padding: 60px 20px;
-  background: linear-gradient(135deg, var(--charcoal-grey), var(--background-color));
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.contact-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.contact-header h2 {
-  font-size: 2.8rem;
-  color: var(--charcoal-grey);
-  font-weight: bold;
-}
-
-.contact-header p {
-  font-size: 1.2rem;
-  color: var(--grey);
-  margin-top: 10px;
-  max-width: 600px;
-  margin: 0 auto;
 }
 
 /* Glassmorphism Effect for Form and Contact Info */
@@ -1265,14 +1241,15 @@ li strong {
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
 }
 
 .form-group label {
   font-size: 1rem;
   color: var(--charcoal-grey);
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 0.7rem;
+  text-align: left;
 }
 
 .form-group input,
@@ -1295,19 +1272,13 @@ li strong {
 }
 
 .submit-btn {
-  background: linear-gradient(135deg, #ff6347, #ff4500);
-  color: white;
-  padding: 14px 24px;
-  font-size: 1rem;
+  background-color: var(--button-bg);
+  color: var(--background-color);
+  padding: 0.9rem 2rem;
+  font-size: 0.9rem;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.submit-btn:hover {
-  background: linear-gradient(135deg, #ff4500, #e03417);
-  transform: scale(1.05);
 }
 
 .contact-info p {
@@ -1392,8 +1363,10 @@ h2 {
 /* Comments Section */
 .comments-section {
   margin-top: 1rem;
-  padding: 20px;
+  padding: 0.4rem 1rem;
   border-radius: 8px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .comments-section h2 {
@@ -1416,13 +1389,13 @@ h2 {
 }
 
 .submit-comment-btn {
-  padding: 10px 20px;
+  padding: 0.8rem 1.2rem;
   background-color: var(--button-bg);
   color: var(--button-color);
-  border: none;
+  border: 1px solid var(--button-bg);
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.4s ease;
 }
 
 .submit-comment-btn:hover {

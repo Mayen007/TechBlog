@@ -50,16 +50,5 @@
   </div>
 </article>
 
-<section id="comments" class="comments-section">
-  <h2>Leave a Comment</h2>
-  <form id="comment-form">
-    <input type="text" id="username" class="comment-input" placeholder="Your name" required>
-    <textarea id="comment" class="comment-input" placeholder="Write your comment here..." required></textarea>
-    <button type="submit" class="submit-comment-btn">Post Comment</button>
-  </form>
-
-  <div id="comment-list" class="comment-list">
-    <!-- Comments will appear here -->
-  </div>
-</section>
+{% include "comments.html" %}
 {% endblock %}

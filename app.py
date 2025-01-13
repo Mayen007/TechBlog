@@ -28,6 +28,23 @@ def contact():
     return render_template('contact.html', year=current_year)
 
 
+# @app.route('/blog1')
+# def blog1():
+#     current_year = datetime.now().year
+#     return render_template('post1.html', year=current_year)
+
+
+# @app.route('/blog2')
+# def blog2():
+#     current_year = datetime.now().year
+#     return render_template('post2.html', year=current_year)
+
+
+# @app.route('/blog4')
+# def blog4():
+#     current_year = datetime.now().year
+#     return render_template('post4.html', year=current_year)
+
 @app.route('/blog/<int:post_id>')
 def blog(post_id):
     current_year = datetime.now().year
