@@ -11,8 +11,8 @@
   <article class="post-card featured">
     <img src="{{url_for('static', filename='img/featured.jpg')}}" alt="Featured Post Image">
     <div class="post-content">
-      <h2><a href="./featured.html">Featured Post Title</a></h2>
-      <p class="post-excerpt">A detailed look into the future of tech innovation and groundbreaking advancements...
+      <h2><a href="{{ url_for('blog', post_id=5) }}">The Rise of Quantum Computing</a></h2>
+      <p class="post-excerpt">Quantum computing is set to revolutionize technology by solving problems at an unimaginable scale. From enhancing cryptography to accelerating drug discovery, this emerging field holds immense potential to transform industries and reshape our future.
       </p>
       <div class="post-meta">
         <span>October 10, 2024</span>
@@ -26,7 +26,7 @@
   <div class="container">
     <div class="blog-filter">
       <ul>
-        <li><a href="#" data-category="all">All</a></li>
+        <li><a href="#" data-category="all" class="active">All</a></li>
         <li><a href="#" data-category="technology">Technology</a></li>
         <li><a href="#" data-category="ai">Artificial Intelligence</a></li>
         <li><a href="#" data-category="5g">5G Technology</a></li>
@@ -35,12 +35,12 @@
     </div>
     <div class="post-grid">
       <!-- Individual Post 1 -->
-      <article class="post-card">
+      <article class="post-card" data-category="technology">
         <img src="{{url_for('static', filename='img/web-dev.jpg')}}" alt="Post 1 Image" loading="lazy">
         <div class="post-content">
-          <h2><a href="./post1.html">Post Title 1</a></h2>
-          <p class="post-excerpt">This is a short preview of the blog post content, giving readers a quick
-            overview...</p>
+          <h2><a href="{{ url_for('blog', post_id=3) }}">Web Development Trends</a></h2>
+          <p class="post-excerpt">This is a short preview of the blog post content, giving readers a quick overview...
+          </p>
           <div class="post-meta">
             <span>October 21, 2024</span>
             <span>Category: <a href="#">Technology</a></span>
@@ -49,25 +49,24 @@
       </article>
 
       <!-- Individual Post 2 -->
-      <article class="post-card">
+      <article class="post-card" data-category="gadgets">
         <img src="{{url_for('static', filename='img/gadgets.jpg')}}" alt="Post 2 Image" loading="lazy">
         <div class="post-content">
-          <h2><a href="{{ url_for('blog2') }}">Tech and Gadgets: Key Updates in 2025</a></h2>
-          <p class="post-excerpt">Another exciting article covering key updates in the world of tech and gadgets...
-          </p>
+          <h2><a href="{{ url_for('blog', post_id=2) }}">Tech and Gadgets: Key Updates in 2025</a></h2>
+          <p class="post-excerpt">Another exciting article covering key updates in the world of tech and gadgets...</p>
           <div class="post-meta">
             <span>October 15, 2024</span>
             <span>Category: <a href="#">Gadgets</a></span>
           </div>
         </div>
       </article>
+
       <!-- Individual Post 3 -->
-      <article class="post-card">
+      <article class="post-card" data-category="ai">
         <img src="{{url_for('static', filename='img/ai-ml.jpg')}}" alt="Post 3 Image" loading="lazy">
         <div class="post-content">
-          <h2><a href="{{ url_for('blog1') }}">The Future Of AI</a></h2>
-          <p class="post-excerpt">Exploring the rise of AI and its impact on the future of technology and society as
-            a whole...</p>
+          <h2><a href="{{ url_for('blog', post_id=1) }}">The Future of Artificial Intelligence</a></h2>
+          <p class="post-excerpt">Exploring the rise of AI and its impact on the future of technology and society...</p>
           <div class="post-meta">
             <span>September 30, 2024</span>
             <span>Category: <a href="#">Artificial Intelligence</a></span>
@@ -76,10 +75,10 @@
       </article>
 
       <!-- Individual Post 4 -->
-      <article class="post-card">
+      <article class="post-card" data-category="5g">
         <img src="{{url_for('static', filename='img/5g.jpg')}}" alt="Post 4 Image" loading="lazy">
         <div class="post-content">
-          <h2><a href="{{ url_for('blog4') }}">5G Technology</a></h2>
+          <h2><a href="{{ url_for('blog', post_id=4) }}">5G Technology Features and Impact</a></h2>
           <p class="post-excerpt">Breaking down the latest innovations in 5G technology and how it's transforming
             communication...</p>
           <div class="post-meta">
@@ -88,9 +87,7 @@
           </div>
         </div>
       </article>
-
     </div>
-  </div>
 </section>
 <!-- Pagination Section -->
 <section class="pagination">
@@ -102,11 +99,4 @@
     <li><a href="#">Next &#187;</a></li>
   </ul>
 </section>
-{% endblock %}
-{% block extra_js %}
-<script src="../static/js/script.js">
-  document.querySelector('.blog-filter').addEventListener('click', function () {
-    this.classList.toggle('active');
-  });
-</script>
 {% endblock %}

@@ -60,9 +60,36 @@ function toggleMenu() {
   navLinks.classList.toggle('show');
 }
 
-document.querySelector('.blog-filter').addEventListener('click', function () {
-  this.classList.toggle('active');
+const filterLinks = document.querySelectorAll(".blog-filter a");
+const postCards = document.querySelectorAll(".post-card");
+
+filterLinks.forEach(link => {
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    // Remove the active class from all filter links
+    filterLinks.forEach(link => link.classList.remove("active"));
+
+    // Add active class to the clicked link
+    this.classList.add("active");
+
+    // Get the selected category
+    const selectedCategory = this.getAttribute("data-category");
+
+    // Filter the posts
+    postCards.forEach(card => {
+      const cardCategory = card.getAttribute("data-category");
+
+      if (selectedCategory === "all" || cardCategory === selectedCategory) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  });
 });
+
+
 
 // Elements
 const commentForm = document.getElementById('comment-form');

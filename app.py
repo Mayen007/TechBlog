@@ -28,22 +28,13 @@ def contact():
     return render_template('contact.html', year=current_year)
 
 
-@app.route('/blog1')
-def blog1():
+@app.route('/blog/<int:post_id>')
+def blog(post_id):
     current_year = datetime.now().year
-    return render_template('post1.html', year=current_year)
-
-
-@app.route('/blog2')
-def blog2():
-    current_year = datetime.now().year
-    return render_template('post2.html', year=current_year)
-
-
-@app.route('/blog4')
-def blog4():
-    current_year = datetime.now().year
-    return render_template('post4.html', year=current_year)
+    try:
+        return render_template(f'post{post_id}.html', year=current_year)
+    except:
+        return "Post not found", 404
 
 
 if __name__ == '__main__':
