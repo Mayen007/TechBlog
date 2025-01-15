@@ -584,7 +584,7 @@ footer .social-links a {
   padding: 1.2rem 1rem;
   background-color: var(--background-color);
   text-align: center;
-  max-width: 800px;
+  max-width: 900px;
   margin: auto;
 }
 
@@ -621,6 +621,7 @@ footer .social-links a {
 
 /* Left Column - Image */
 .team-card-left {
+  align-items: stretch;
   flex: 1;
 }
 
@@ -677,7 +678,7 @@ footer .social-links a {
 
 /* Journey Section */
 .about-journey {
-  padding: 2rem 0;
+  padding: 2rem 1rem;
   background-color: var(--background-color);
 }
 
@@ -709,17 +710,16 @@ footer .social-links a {
   margin: 0 auto;
 }
 
-/* Vertical Timeline Line */
 .timeline::before {
   content: '';
   position: absolute;
   top: 0;
   bottom: 0;
   left: 50%;
-  width: 2px;
+  width: 3px;
   background-color: var(--button-bg);
   transform: translateX(-50%);
-  z-index: 1;
+  /* z-index: 1; */
 }
 
 /* Timeline Event Styling */
@@ -753,7 +753,7 @@ footer .social-links a {
   justify-content: center;
   position: absolute;
   top: 0;
-  z-index: 2;
+  z-index: 1;
 }
 
 .timeline-event.left .timeline-icon {
@@ -891,7 +891,7 @@ footer .social-links a {
   }
 
   .timeline::before {
-    left: 20px;
+    left: 2%;
   }
 
   .timeline-event {
@@ -908,6 +908,7 @@ footer .social-links a {
 
   .timeline-icon {
     left: 5px;
+    z-index: 1;
   }
 
   .timeline-content {
