@@ -345,7 +345,7 @@ a {
   display: inline-flex;
   justify-content: center;
   width: 100%;
-  /* max-width: 500px; */
+  max-width: 500px;
 }
 
 .subscribe-form input[type="email"] {
@@ -959,23 +959,29 @@ footer .social-links a {
   margin-top: 50px;
 }
 
-/* .blog-filter ul li {
-  margin: 0 10px;
-} */
 
-.blog-filter ul li a {
+.blog-filter .filter-item {
   text-decoration: none;
   color: var(--charcoal-grey);
   padding: 10px 20px;
   background-color: var(--background-color);
   border-radius: 5px;
   transition: background-color 0.3s;
+  border: none;
+  cursor: pointer;
 }
 
-.blog-filter ul li a:hover {
+li .filter-item:hover {
   background-color: var(--button-bg);
   color: var(--background-color);
 }
+
+.filter-item.active {
+  color: var(--background-color);
+  background-color: var(--button-bg);
+  /* Example color */
+}
+
 
 /* Responsive Filters */
 @media (max-width: 768px) {
@@ -1037,20 +1043,16 @@ footer .social-links a {
   color: var(--grey);
 }
 
-/* Blog Posts Section */
 .blog-posts .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 30px 20px;
 }
 
-/* Post Card Styling */
 .post-card {
-  /* display: none; */
   background-color: var(--background-color);
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  /* overflow: hidden; */
   transition: transform 0.3s ease;
 }
 
@@ -1113,9 +1115,9 @@ li strong {
 }
 
 /* Hover Effect */
-.post-card:hover {
+/* .post-card:hover {
   transform: translateY(-10px);
-}
+} */
 
 /* Pagination Styling */
 .pagination {
@@ -1407,7 +1409,7 @@ h2 {
 
 /* Comment List */
 .comment-list {
-  margin-top: 30px;
+  margin-top: 1.5rem;
 }
 
 .comment-item {
@@ -1421,6 +1423,7 @@ h2 {
 .comment-item .username {
   font-weight: bold;
   color: var(--button-bg);
+  margin-bottom: 0.5rem;
 }
 
 .comment-item .timestamp {

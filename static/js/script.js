@@ -1,108 +1,125 @@
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    document.querySelector(this.getAttribute('href')).scrollIntoView({
-      behavior: 'smooth'
+// document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+//   anchor.addEventListener('click', function (e) {
+//     const targetId = this.getAttribute('href');
+//     if (targetId === "#") {
+//       return;
+//     }
+
+//     e.preventDefault();
+//     const targetElement = document.querySelector(targetId);
+
+//     if (targetElement) {
+//       targetElement.scrollIntoView({
+//         behavior: 'smooth',
+//       });
+//     }
+//   });
+// });
+
+// Elements
+const filterItems = document.querySelectorAll(".filter-item");
+const postCards = document.querySelectorAll(".post-card");
+
+filterItems.forEach((filter) => {
+  filter.addEventListener("click", (e) => {
+    // Remove 'active' class from all filter buttons
+    filterItems.forEach((item) => item.classList.remove("active"));
+
+    // Add 'active' class to the clicked filter button
+    e.target.classList.add("active");
+
+    // Get the selected category
+    const selectedCategory = e.target.getAttribute("data-category");
+
+    // Show/hide posts based on the selected category
+    postCards.forEach((post) => {
+      const postCategory = post.getAttribute("data-category");
+
+      if (selectedCategory === "all" || postCategory === selectedCategory) {
+        post.style.display = "block";
+      } else {
+        post.style.display = "none";
+      }
     });
   });
 });
 
 // Elements
 const modal = document.getElementById('subscription-confirmation');
-const closeButton = modal.querySelector('.close');
+const closeButton = modal ? modal.querySelector('.close') : null;
 const subscribeForm = document.getElementById('subscribe-form');
 const emailInput = document.getElementById('email');
 
 // Function to Open Modal
-function openModal() {
-  modal.style.display = 'flex';
-}
+const openModal = () => {
+  if (modal) {
+    modal.style.display = 'flex';
+  } else {
+    console.error("Modal element with ID 'subscription-confirmation' not found.");
+  }
+};
 
 // Function to Close Modal
-function closeModal() {
-  modal.style.display = 'none';
-}
+const closeModal = () => {
+  if (modal) {
+    modal.style.display = 'none';
+  }
+};
 
 // Function to Validate Email
-function validateEmail(email) {
+const validateEmail = (email) => {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email regex
   return emailPattern.test(email);
-}
+};
 
 // Event Listener for Form Submission
-subscribeForm.addEventListener('submit', (event) => {
-  event.preventDefault(); // Prevent default form submission
+if (subscribeForm && emailInput) {
+  subscribeForm.addEventListener('submit', (event) => {
+    event.preventDefault(); // Prevent default form submission
 
-  const email = emailInput.value.trim();
+    const email = emailInput.value.trim();
 
-  if (validateEmail(email)) {
-    openModal(); // Open modal if email is valid
-    emailInput.value = ''; // Clear the input field
-  } else {
-    alert('Please enter a valid email address.');
-    emailInput.focus(); // Focus the input field for correction
-  }
-});
-
-// Event Listener for Closing Modal
-closeButton.addEventListener('click', closeModal);
-
-// Close Modal on Clicking Outside the Content
-window.addEventListener('click', (event) => {
-  if (event.target === modal) {
-    closeModal();
-  }
-});
-
-
-function toggleMenu() {
-  const navLinks = document.querySelector('.nav-links');
-  navLinks.classList.toggle('show');
+    if (validateEmail(email)) {
+      openModal(); // Open modal if email is valid
+      emailInput.value = ''; // Clear the input field
+    } else {
+      alert('Please enter a valid email address.');
+      emailInput.focus(); // Focus the input field for correction
+    }
+  });
+} else {
+  console.error("Subscription form or email input not found.");
 }
 
-const filterLinks = document.querySelectorAll(".blog-filter a");
-const postCards = document.querySelectorAll(".post-card");
+// Event Listener for Closing Modal
+if (closeButton) {
+  closeButton.addEventListener('click', closeModal);
+} else {
+  console.error("Close button not found in the modal.");
+}
 
-filterLinks.forEach(link => {
-  link.addEventListener("click", function (e) {
-    e.preventDefault();
-
-    // Remove the active class from all filter links
-    filterLinks.forEach(link => link.classList.remove("active"));
-
-    // Add active class to the clicked link
-    this.classList.add("active");
-
-    // Get the selected category
-    const selectedCategory = this.getAttribute("data-category");
-
-    // Filter the posts
-    postCards.forEach(card => {
-      const cardCategory = card.getAttribute("data-category");
-
-      if (selectedCategory === "all" || cardCategory === selectedCategory) {
-        card.style.display = "block";
-      } else {
-        card.style.display = "none";
-      }
-    });
+// Close Modal on Clicking Outside the Content
+if (modal) {
+  window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+      closeModal();
+    }
   });
-});
+}
 
 
 
-// Elements
+// Comment Logic
 const commentForm = document.getElementById('comment-form');
 const usernameInput = document.getElementById('username');
 const commentInput = document.getElementById('comment');
 const commentList = document.getElementById('comment-list');
 
-// Function to Create Comment Element
 function createComment(username, comment) {
   const commentItem = document.createElement('div');
   commentItem.classList.add('comment-item');
 
-  const timestamp = new Date().toLocaleString(); // Get current timestamp
+  const timestamp = new Date().toLocaleString();
 
   commentItem.innerHTML = `
     <p class="username">${username}</p>
@@ -113,61 +130,25 @@ function createComment(username, comment) {
   return commentItem;
 }
 
-// Event Listener for Comment Submission
 commentForm.addEventListener('submit', (event) => {
-  event.preventDefault(); // Prevent default form submission
+  event.preventDefault();
 
   const username = usernameInput.value.trim();
   const comment = commentInput.value.trim();
 
-  // Validate inputs
   if (username && comment) {
     const newComment = createComment(username, comment);
-    commentList.appendChild(newComment); // Add comment to the list
-    usernameInput.value = ''; // Clear username input
-    commentInput.value = ''; // Clear comment input
+    commentList.appendChild(newComment);
+    usernameInput.value = '';
+    commentInput.value = '';
   } else {
     alert('Please fill in both fields.');
   }
 });
+
+// Toggle Menu
 function toggleMenu() {
   const navLinks = document.querySelector('.nav-links');
   navLinks.classList.toggle('show');
 }
 
-// JavaScript for scroll-activated animation for the Journey Section
-
-document.addEventListener('DOMContentLoaded', () => {
-  const timelineEvents = document.querySelectorAll('.timeline-event');
-
-  // Callback function for the Intersection Observer
-  const revealTimelineEvent = (entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active'); // Add animation class
-        observer.unobserve(entry.target); // Stop observing once activated
-      }
-    });
-  };
-
-  // Create an Intersection Observer instance
-  const observer = new IntersectionObserver(revealTimelineEvent, {
-    threshold: 0.5, // Trigger when 50% of the element is visible
-  });
-
-  // Observe each timeline event
-  timelineEvents.forEach(event => {
-    observer.observe(event);
-  });
-});
-
-// Create a separate Intersection Observer for achievement cards
-const achievementObserver = new IntersectionObserver(handleIntersection, {
-  threshold: 0.5 // Trigger when 10% of the element is in view
-});
-
-// Observe each achievement card
-const achievementCards = document.querySelectorAll('.achievement-card');
-achievementCards.forEach(card => {
-  achievementObserver.observe(card);
-});

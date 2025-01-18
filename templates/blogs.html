@@ -12,7 +12,9 @@
     <img src="{{url_for('static', filename='img/featured.jpg')}}" alt="Featured Post Image">
     <div class="post-content">
       <h2><a href="{{ url_for('blog', post_id=5) }}">The Rise of Quantum Computing</a></h2>
-      <p class="post-excerpt">Quantum computing is set to revolutionize technology by solving problems at an unimaginable scale. From enhancing cryptography to accelerating drug discovery, this emerging field holds immense potential to transform industries and reshape our future.
+      <p class="post-excerpt">Quantum computing is set to revolutionize technology by solving problems at an
+        unimaginable scale. From enhancing cryptography to accelerating drug discovery, this emerging field holds
+        immense potential to transform industries and reshape our future.
       </p>
       <div class="post-meta">
         <span>October 10, 2024</span>
@@ -26,11 +28,11 @@
   <div class="container">
     <div class="blog-filter">
       <ul>
-        <li><a href="#" data-category="all" class="active">All</a></li>
-        <li><a href="#" data-category="technology">Technology</a></li>
-        <li><a href="#" data-category="ai">Artificial Intelligence</a></li>
-        <li><a href="#" data-category="5g">5G Technology</a></li>
-        <li><a href="#" data-category="gadgets">Gadgets</a></li>
+        <li><button type="button" data-category="all" class="active filter-item">All</button></li>
+        <li><button type="button" data-category="technology" class="filter-item">Technology</button></li>
+        <li><button type="button" data-category="ai" class="filter-item">Artificial Intelligence</button></li>
+        <li><button type="button" data-category="5g" class="filter-item">5G Technology</button></li>
+        <li><button type="button" data-category="gadgets" class="filter-item">Gadgets</button></li>
       </ul>
     </div>
     <div class="post-grid">
@@ -88,6 +90,7 @@
         </div>
       </article>
     </div>
+  </div>
 </section>
 <!-- Pagination Section -->
 <section class="pagination">

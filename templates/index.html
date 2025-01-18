@@ -23,19 +23,19 @@
       <img src="{{url_for('static', filename='img/web-dev.jpg')}}" alt="Article 1" loading="lazy">
       <h3>Latest in Web Development</h3>
       <p>A deep dive into the modern web development landscape.</p>
-      <a href="#" class="read-more">Read More</a>
+      <a href="{{ url_for('blog', post_id=3) }}" class="read-more">Read More</a>
     </article>
     <article class="article-card">
       <img src="{{url_for('static', filename='img/ai-ml.jpg')}}" alt="Article 2" loading="lazy">
       <h3>AI and Machine Learning</h3>
       <p>Exploring the potential of AI in everyday applications.</p>
-      <a href="#" class="read-more">Read More</a>
+      <a href="{{ url_for('blog', post_id=1) }}" class="read-more">Read More</a>
     </article>
     <article class="article-card">
       <img src="{{url_for('static', filename='img/tech-gadget.jpg')}}" alt="Article 3" loading="lazy">
       <h3>Tech Gadgets of {{ year }}</h3>
       <p>Reviewing the hottest gadgets on the market this year.</p>
-      <a href="#" class="read-more">Read More</a>
+      <a href="{{ url_for('blog', post_id=2) }}" class="read-more">Read More</a>
     </article>
     <article class="article-card">
       <img src="{{ url_for('static', filename='img/cybersecurity.jpg') }}" alt="Cybersecurity Trends 2024"
@@ -53,27 +53,24 @@
   <h2>Popular Categories</h2>
   <div class="categories-grid">
     <div class="category-card">
-      <i class="fas fa-code"></i> <!-- Icon for Web Development -->
+      <i class="fas fa-code"></i> 
       <h3>Web Development</h3>
     </div>
     <div class="category-card">
-      <i class="fas fa-robot"></i> <!-- Icon for AI & Machine Learning -->
+      <i class="fas fa-robot"></i> 
       <h3>AI & Machine Learning</h3>
     </div>
     <div class="category-card">
-      <i class="fas fa-star"></i> <!-- Icon for Tech Reviews -->
+      <i class="fas fa-star"></i> 
       <h3>Tech Reviews</h3>
     </div>
-    <!-- New Category -->
     <div class="category-card">
-      <i class="fas fa-shield-alt"></i> <!-- Icon for Cybersecurity -->
+      <i class="fas fa-shield-alt"></i> 
       <h3>Cybersecurity</h3>
     </div>
   </div>
 </section>
 
-
-<!-- Enhanced Subscribe Section -->
 <section id="subscribe" class="subscribe-section">
   <div class="subscribe-content">
     <h2 class="section-title">Join Our Tech Community</h2>
