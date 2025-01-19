@@ -1,58 +1,59 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request, redirect
+from extensions import db
+from flask_migrate import Migrate
+from models import Post, Comment
 from datetime import datetime
 
-app = Flask(__name__)
+
+def create_app():
+    app = Flask(__name__)
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///comments.db'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+    db.init_app(app)
+    migrate = Migrate(app, db)
+
+    @app.context_processor
+    def inject_year():
+        return {'year': datetime.utcnow().year}
+
+    @app.route('/about')
+    def about():
+        return render_template('about.html')
+
+    @app.route('/contact')
+    def contact():
+        return render_template('contact.html')
+
+    @app.route("/")
+    def home():
+        return render_template("index.html")
+
+    @app.route("/blogs")
+    def blogs():
+        posts = Post.query.all()
+        return render_template("blogs.html", posts=posts)
+
+    @app.route("/post/<int:post_id>")
+    def post(post_id):
+        post = Post.query.get_or_404(post_id)
+        comments = Comment.query.filter_by(post_id=post.id).all()
+        return render_template("post.html", post=post, comments=comments)
+
+    
+    @app.route('/add_comment/<int:post_id>', methods=['POST'])
+    def add_comment(post_id):
+        username = request.form['username']
+        content = request.form['content']
+        comment = Comment(username=username, content=content, post_id=post_id, date_posted=datetime.utcnow())
+        db.session.add(comment)
+        db.session.commit()
+        return redirect(url_for('post', post_id=post_id))
 
 
-@app.route('/')
-def index():
-    current_year = datetime.now().year
-    return render_template('index.html', year=current_year)
+    return app
 
 
-@app.route('/about')
-def about():
-    current_year = datetime.now().year
-    return render_template('about.html', year=current_year)
-
-
-@app.route('/blogs')
-def blogs():
-    current_year = datetime.now().year
-    return render_template('blogs.html', year=current_year)
-
-
-@app.route('/contact')
-def contact():
-    current_year = datetime.now().year
-    return render_template('contact.html', year=current_year)
-
-
-# @app.route('/blog1')
-# def blog1():
-#     current_year = datetime.now().year
-#     return render_template('post1.html', year=current_year)
-
-
-# @app.route('/blog2')
-# def blog2():
-#     current_year = datetime.now().year
-#     return render_template('post2.html', year=current_year)
-
-
-# @app.route('/blog4')
-# def blog4():
-#     current_year = datetime.now().year
-#     return render_template('post4.html', year=current_year)
-
-@app.route('/blog/<int:post_id>')
-def blog(post_id):
-    current_year = datetime.now().year
-    try:
-        return render_template(f'post{post_id}.html', year=current_year)
-    except:
-        return "Post not found", 404
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
+    app = create_app()
     app.run(debug=True)

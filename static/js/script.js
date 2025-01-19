@@ -110,41 +110,41 @@ if (modal) {
 
 
 // Comment Logic
-const commentForm = document.getElementById('comment-form');
-const usernameInput = document.getElementById('username');
-const commentInput = document.getElementById('comment');
-const commentList = document.getElementById('comment-list');
+// const commentForm = document.getElementById('comment-form');
+// const usernameInput = document.getElementById('username');
+// const commentInput = document.getElementById('comment');
+// const commentList = document.getElementById('comment-list');
 
-function createComment(username, comment) {
-  const commentItem = document.createElement('div');
-  commentItem.classList.add('comment-item');
+// function createComment(username, comment) {
+//   const commentItem = document.createElement('div');
+//   commentItem.classList.add('comment-item');
 
-  const timestamp = new Date().toLocaleString();
+//   const timestamp = new Date().toLocaleString();
 
-  commentItem.innerHTML = `
-    <p class="username">${username}</p>
-    <p class="timestamp">${timestamp}</p>
-    <p class="comment-text">${comment}</p>
-  `;
+//   commentItem.innerHTML = `
+//     <p class="username">${username}</p>
+//     <p class="timestamp">${timestamp}</p>
+//     <p class="comment-text">${comment}</p>
+//   `;
 
-  return commentItem;
-}
+//   return commentItem;
+// }
 
-commentForm.addEventListener('submit', (event) => {
-  event.preventDefault();
+// commentForm.addEventListener('submit', (event) => {
+//   event.preventDefault();
 
-  const username = usernameInput.value.trim();
-  const comment = commentInput.value.trim();
+//   const username = usernameInput.value.trim();
+//   const comment = commentInput.value.trim();
 
-  if (username && comment) {
-    const newComment = createComment(username, comment);
-    commentList.appendChild(newComment);
-    usernameInput.value = '';
-    commentInput.value = '';
-  } else {
-    alert('Please fill in both fields.');
-  }
-});
+//   if (username && comment) {
+//     const newComment = createComment(username, comment);
+//     commentList.appendChild(newComment);
+//     usernameInput.value = '';
+//     commentInput.value = '';
+//   } else {
+//     alert('Please fill in both fields.');
+//   }
+// });
 
 // Toggle Menu
 function toggleMenu() {
@@ -152,3 +152,27 @@ function toggleMenu() {
   navLinks.classList.toggle('show');
 }
 
+const commentForm = document.getElementById("comment-form");
+
+commentForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const username = document.querySelector("[name='username']").value;
+  const content = document.querySelector("[name='content']").value;
+
+  const commentList = document.getElementById("comment-list");
+
+  // Create new comment element
+  const newComment = document.createElement("div");
+  newComment.classList.add("comment");
+  newComment.innerHTML = `
+        <p>${content}</p>
+        <p><strong>Posted on:</strong> ${new Date().toLocaleDateString()}</p>
+      `;
+
+  // Append the new comment to the list
+  commentList.prepend(newComment);
+
+  // Optionally clear the form inputs
+  commentForm.reset();
+});

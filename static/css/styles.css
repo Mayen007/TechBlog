@@ -432,7 +432,6 @@ a {
   color: var(--charcoal-grey);
 }
 
-/* Modal Typography */
 .modal-content h2 {
   font-size: 1.7rem;
   margin-bottom: 1rem;
@@ -1022,7 +1021,6 @@ li .filter-item:hover {
   }
 }
 
-/* Blog Header */
 .blog-header {
   margin-top: 1rem;
   text-align: center;
@@ -1060,6 +1058,7 @@ li .filter-item:hover {
   width: 100%;
   height: 200px;
   object-fit: cover;
+  border-radius: inherit;
 }
 
 .post-card .post-content {
@@ -1069,6 +1068,7 @@ li .filter-item:hover {
 .post-content h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
+  width: 100%;
 }
 
 .post-card h2 a {
@@ -1100,11 +1100,12 @@ li .filter-item:hover {
 }
 
 .features {
-  list-style: none;
+  list-style: disc;
   margin-bottom: 2rem;
 }
 
-.features li {
+.features li,
+.features-ol li {
   color: var(--grey);
   margin-bottom: 1rem;
   line-height: 1.4;
@@ -1243,7 +1244,8 @@ li strong {
   font-weight: bold;
 }
 
-.form-group {
+.form-group,
+.features-ol {
   margin-bottom: 2rem;
 }
 
@@ -1351,14 +1353,12 @@ iframe {
 .post-image {
   width: 100%;
   height: auto;
-  margin: 20px 0;
   border-radius: 8px;
 }
 
 
 h2 {
   font-size: 1.8rem;
-  /* color: var(--grey); */
   margin-top: 1rem;
   margin-bottom: 1rem;
 }

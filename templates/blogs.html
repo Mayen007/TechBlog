@@ -7,22 +7,7 @@
   <h1>TechBlog Articles</h1>
   <p>Stay updated with the latest in tech news, reviews, and innovations.</p>
 </section>
-<section class="featured-post">
-  <article class="post-card featured">
-    <img src="{{url_for('static', filename='img/featured.jpg')}}" alt="Featured Post Image">
-    <div class="post-content">
-      <h2><a href="{{ url_for('blog', post_id=5) }}">The Rise of Quantum Computing</a></h2>
-      <p class="post-excerpt">Quantum computing is set to revolutionize technology by solving problems at an
-        unimaginable scale. From enhancing cryptography to accelerating drug discovery, this emerging field holds
-        immense potential to transform industries and reshape our future.
-      </p>
-      <div class="post-meta">
-        <span>October 10, 2024</span>
-        <span>Category: <a href="#">Innovation</a></span>
-      </div>
-    </div>
-  </article>
-</section>
+
 <!-- Blog Posts Section -->
 <section class="blog-posts">
   <div class="container">
@@ -36,70 +21,23 @@
       </ul>
     </div>
     <div class="post-grid">
-      <!-- Individual Post 1 -->
-      <article class="post-card" data-category="technology">
-        <img src="{{url_for('static', filename='img/web-dev.jpg')}}" alt="Post 1 Image" loading="lazy">
+      {% for post in posts %}
+      <article class="post-card" data-category="{{ post.category }}">
+        {% if post.image_url %}
+        <img src="{{ post.image_url }}" alt="{{ post.title }}">
+        {% endif %}
         <div class="post-content">
-          <h2><a href="{{ url_for('blog', post_id=3) }}">Web Development Trends</a></h2>
-          <p class="post-excerpt">This is a short preview of the blog post content, giving readers a quick overview...
-          </p>
-          <div class="post-meta">
-            <span>October 21, 2024</span>
-            <span>Category: <a href="#">Technology</a></span>
-          </div>
-        </div>
-      </article>
+          <h2><a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h2>
+          <p class="post-excerpt">{{ post.excerpt }}</p>
 
-      <!-- Individual Post 2 -->
-      <article class="post-card" data-category="gadgets">
-        <img src="{{url_for('static', filename='img/gadgets.jpg')}}" alt="Post 2 Image" loading="lazy">
-        <div class="post-content">
-          <h2><a href="{{ url_for('blog', post_id=2) }}">Tech and Gadgets: Key Updates in 2025</a></h2>
-          <p class="post-excerpt">Another exciting article covering key updates in the world of tech and gadgets...</p>
           <div class="post-meta">
-            <span>October 15, 2024</span>
-            <span>Category: <a href="#">Gadgets</a></span>
+            <span>{{ post.date_posted.strftime('%B %d, %Y') }}</span>
+            <span>Category: <a href="#">{{ post.category }}</a></span>
           </div>
         </div>
       </article>
-
-      <!-- Individual Post 3 -->
-      <article class="post-card" data-category="ai">
-        <img src="{{url_for('static', filename='img/ai-ml.jpg')}}" alt="Post 3 Image" loading="lazy">
-        <div class="post-content">
-          <h2><a href="{{ url_for('blog', post_id=1) }}">The Future of Artificial Intelligence</a></h2>
-          <p class="post-excerpt">Exploring the rise of AI and its impact on the future of technology and society...</p>
-          <div class="post-meta">
-            <span>September 30, 2024</span>
-            <span>Category: <a href="#">Artificial Intelligence</a></span>
-          </div>
-        </div>
-      </article>
-
-      <!-- Individual Post 4 -->
-      <article class="post-card" data-category="5g">
-        <img src="{{url_for('static', filename='img/5g.jpg')}}" alt="Post 4 Image" loading="lazy">
-        <div class="post-content">
-          <h2><a href="{{ url_for('blog', post_id=4) }}">5G Technology Features and Impact</a></h2>
-          <p class="post-excerpt">Breaking down the latest innovations in 5G technology and how it's transforming
-            communication...</p>
-          <div class="post-meta">
-            <span>August 18, 2024</span>
-            <span>Category: <a href="#">5G Technology</a></span>
-          </div>
-        </div>
-      </article>
+      {% endfor %}
     </div>
   </div>
-</section>
-<!-- Pagination Section -->
-<section class="pagination">
-  <ul>
-    <li><a href="#">&#171; Previous</a></li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">Next &#187;</a></li>
-  </ul>
 </section>
 {% endblock %}

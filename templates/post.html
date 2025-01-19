@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<article class="blog-post">
+  <h1>{{ post.title }}</h1>
+  <p class="post-meta">
+    <span>Category: {{ post.category }} |</span>
+    <span>Posted on: {{ post.date_posted.strftime('%B %d, %Y') }}</span>
+  </p>
+  {% if post.image_url %}
+  <img src="{{ post.image_url }}" alt="{{ post.title }}" class="post-image">
+  {% endif %}
+
+  <div class="post-content">
+    {{ post.content|safe }}
+  </div>
+</article>
+<section id="comments" class="comments-section">
+  <h2>Leave a Comment</h2>
+  <form id="comment-form" method="POST" action="/add_comment/{{ post.id }}">
+    <input type="text" name="username" class="comment-input" placeholder="Your name" required>
+    <textarea name="content" class="comment-input" placeholder="Write your comment here..." required></textarea>
+    <button type="submit" class="submit-comment-btn">Post Comment</button>
+  </form>
+
+  <div id="comment-list" class="comment-list">
+    {% for comment in comments %}
+    <div class="comment">
+      <p>{{ comment.content }}</p>
+      <p><strong>Posted on:</strong> {{ comment.date_posted.strftime('%B %d, %Y') }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

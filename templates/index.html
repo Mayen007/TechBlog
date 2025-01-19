@@ -12,7 +12,6 @@
 </section>
 <section class="header-down-arrow">
   <img src="{{ url_for('static', filename='img/downarrow.png') }}" alt="down arrow" title="Pull Up" width="50">
-
 </section>
 
 <!-- Featured Articles -->
@@ -23,19 +22,19 @@
       <img src="{{url_for('static', filename='img/web-dev.jpg')}}" alt="Article 1" loading="lazy">
       <h3>Latest in Web Development</h3>
       <p>A deep dive into the modern web development landscape.</p>
-      <a href="{{ url_for('blog', post_id=3) }}" class="read-more">Read More</a>
+      <a href="{{ url_for('post', post_id=2) }}" class="read-more">Read More</a>
     </article>
     <article class="article-card">
       <img src="{{url_for('static', filename='img/ai-ml.jpg')}}" alt="Article 2" loading="lazy">
       <h3>AI and Machine Learning</h3>
       <p>Exploring the potential of AI in everyday applications.</p>
-      <a href="{{ url_for('blog', post_id=1) }}" class="read-more">Read More</a>
+      <a href="{{ url_for('post', post_id=1) }}" class="read-more">Read More</a>
     </article>
     <article class="article-card">
       <img src="{{url_for('static', filename='img/tech-gadget.jpg')}}" alt="Article 3" loading="lazy">
       <h3>Tech Gadgets of {{ year }}</h3>
       <p>Reviewing the hottest gadgets on the market this year.</p>
-      <a href="{{ url_for('blog', post_id=2) }}" class="read-more">Read More</a>
+      <a href="{{ url_for('post', post_id=3) }}" class="read-more">Read More</a>
     </article>
     <article class="article-card">
       <img src="{{ url_for('static', filename='img/cybersecurity.jpg') }}" alt="Cybersecurity Trends 2024"
@@ -43,7 +42,7 @@
 
       <h3>Cybersecurity Trends for {{ year }}</h3>
       <p>Discover the top cybersecurity challenges and trends shaping the tech world in 2024.</p>
-      <a href="#" class="read-more">Read More</a>
+      <a href="{{ url_for('post', post_id=5) }}" class="read-more">Read More</a>
     </article>
   </div>
 </section>
