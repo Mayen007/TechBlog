@@ -1,0 +1,27 @@
+<section class="featured-post">
+  <article class="post-card featured">
+    <img src="{{url_for('static', filename='img/featured.jpg')}}" alt="Featured Post Image">
+    <div class="post-content">
+      <h2><a href="{{ url_for('post', post_id=5) }}">The Rise of Quantum Computing</a></h2>
+      <p class="post-excerpt">Quantum computing is set to revolutionize technology by solving problems at an
+        unimaginable scale. From enhancing cryptography to accelerating drug discovery, this emerging field holds
+        immense potential to transform industries and reshape our future.
+      </p>
+      <div class="post-meta">
+        <span>October 10, 2024</span>
+        <span>Category: <a href="#">Innovation</a></span>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- Pagination Section -->
+<section class="pagination">
+  <ul>
+    <li><a href="#">&#171; Previous</a></li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">Next &#187;</a></li>
+  </ul>
+</section>

@@ -22,16 +22,12 @@ const postCards = document.querySelectorAll(".post-card");
 
 filterItems.forEach((filter) => {
   filter.addEventListener("click", (e) => {
-    // Remove 'active' class from all filter buttons
     filterItems.forEach((item) => item.classList.remove("active"));
 
-    // Add 'active' class to the clicked filter button
     e.target.classList.add("active");
 
-    // Get the selected category
     const selectedCategory = e.target.getAttribute("data-category");
 
-    // Show/hide posts based on the selected category
     postCards.forEach((post) => {
       const postCategory = post.getAttribute("data-category");
 
@@ -157,8 +153,13 @@ const commentForm = document.getElementById("comment-form");
 commentForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  const username = document.querySelector("[name='username']").value;
-  const content = document.querySelector("[name='content']").value;
+  const username = document.querySelector("[name='username']").value.trim();
+  const content = document.querySelector("[name='content']").value.trim();
+
+  if (!username || !content) {
+    alert("Please fill out both fields.");
+    return;
+  }
 
   const commentList = document.getElementById("comment-list");
 
@@ -166,9 +167,19 @@ commentForm.addEventListener("submit", function (event) {
   const newComment = document.createElement("div");
   newComment.classList.add("comment");
   newComment.innerHTML = `
-        <p>${content}</p>
-        <p><strong>Posted on:</strong> ${new Date().toLocaleDateString()}</p>
-      `;
+      <div class="comment-header">
+        <div class="avatar">${username[0].toUpperCase()}</div>
+        <h3>${username}</h3>
+      </div>
+      <p class="comment-content">${content}</p>
+      <p class="comment-date">${new Date().toLocaleString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  })}</p>
+    `;
 
   // Append the new comment to the list
   commentList.prepend(newComment);

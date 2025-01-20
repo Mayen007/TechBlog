@@ -1,4 +1,5 @@
 from flask import Flask, render_template, url_for, request, redirect
+import random
 from extensions import db
 from flask_migrate import Migrate
 from models import Post, Comment
@@ -32,7 +33,8 @@ def create_app():
     @app.route("/blogs")
     def blogs():
         posts = Post.query.all()
-        return render_template("blogs.html", posts=posts)
+        featured_post = random.choice(posts)
+        return render_template("blogs.html", posts=posts, featured_post=featured_post)
 
     @app.route("/post/<int:post_id>")
     def post(post_id):
@@ -40,16 +42,27 @@ def create_app():
         comments = Comment.query.filter_by(post_id=post.id).all()
         return render_template("post.html", post=post, comments=comments)
 
-    
+
     @app.route('/add_comment/<int:post_id>', methods=['POST'])
     def add_comment(post_id):
-        username = request.form['username']
-        content = request.form['content']
-        comment = Comment(username=username, content=content, post_id=post_id, date_posted=datetime.utcnow())
+        # Correctly fetch the form data using parentheses
+        username = request.form.get('username')
+        content = request.form.get('content')
+    
+        # Create a new comment object
+        comment = Comment(
+        username=username,
+        content=content,
+        post_id=post_id,
+        date_posted=datetime.utcnow()
+    )
+    
+         # Add the comment to the database
         db.session.add(comment)
         db.session.commit()
+    
+        # Redirect to the post page
         return redirect(url_for('post', post_id=post_id))
-
 
     return app
 

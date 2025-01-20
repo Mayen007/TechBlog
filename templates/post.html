@@ -9,9 +9,11 @@
     <span>Category: {{ post.category }} |</span>
     <span>Posted on: {{ post.date_posted.strftime('%B %d, %Y') }}</span>
   </p>
-  {% if post.image_url %}
-  <img src="{{ post.image_url }}" alt="{{ post.title }}" class="post-image">
-  {% endif %}
+  <!-- {% if post.image_url %}
+  <img src="{{ post.image_url }}" alt="Image for {{ post.title }}" class="post-image">
+  {% endif %} -->
+  <img src="{{ post.image_url }}" alt="Image for {{ post.title }}" class="post-image">
+
 
   <div class="post-content">
     {{ post.content|safe }}
@@ -26,12 +28,21 @@
   </form>
 
   <div id="comment-list" class="comment-list">
+    {% if comments %}
     {% for comment in comments %}
     <div class="comment">
-      <p>{{ comment.content }}</p>
-      <p><strong>Posted on:</strong> {{ comment.date_posted.strftime('%B %d, %Y') }}</p>
+      <div class="comment-header">
+        <div class="avatar">{{ comment.username[0] | upper }}</div>
+        <h3>{{ comment.username }}</h3>
+      </div>
+      <p class="comment-content">{{ comment.body }}</p>
+      <p class="comment-date">Posted on: {{ comment.date_posted.strftime('%B %d, %Y at %I:%M %p') }}</p>
     </div>
     {% endfor %}
+    {% else %}
+    <p class="no-comments">Be the first to comment!</p>
+    {% endif %}
   </div>
 </section>
+
 {% endblock %}
