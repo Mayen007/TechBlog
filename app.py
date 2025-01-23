@@ -47,12 +47,12 @@ def create_app():
     def add_comment(post_id):
         # Correctly fetch the form data using parentheses
         username = request.form.get('username')
-        content = request.form.get('content')
+        body = request.form.get('content')
     
         # Create a new comment object
         comment = Comment(
         username=username,
-        content=content,
+        body=body,
         post_id=post_id,
         date_posted=datetime.utcnow()
     )

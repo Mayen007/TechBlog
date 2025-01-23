@@ -1,6 +1,7 @@
 from datetime import datetime
 from extensions import db
 
+
 class Post(db.Model):
     __tablename__ = 'posts'
     id = db.Column(db.Integer, primary_key=True)
@@ -10,7 +11,8 @@ class Post(db.Model):
     category = db.Column(db.String(50))
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
     comments = db.relationship('Comment', backref='post', lazy=True)
-    image_url = db.Column(db.String(200), nullable=True) 
+    image_url = db.Column(db.String(200), nullable=True)
+
 
 class Comment(db.Model):
     __tablename__ = 'comments'

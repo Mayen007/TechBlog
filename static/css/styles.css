@@ -1,9 +1,10 @@
 :root {
   --background-color: hsl(0, 0%, 100%);
   --text-color: hsl(0, 0%, 20%);
+  --logo-color: hsl(0, 0%, 100%);
   --link-color: hsl(24, 100%, 50%);
   --button-bg: hsl(24, 100%, 50%);
-  --button-color: #ffffff;
+  --button-color: hsl(0, 0%, 100%);
   --grey: hsl(231, 7%, 60%);
   --charcoal-grey: hsl(235, 18%, 26%);
   --dark-slate-grey: hsl(234, 29%, 20%);
@@ -16,9 +17,36 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-a {
+body.dark {
+  --background-color: hsl(234, 29%, 20%);
+  --text-color: hsl(0, 0%, 100%);
+  --logo-color: hsl(0, 0%, 100%);
+  --link-color: hsl(24, 100%, 70%);
+  --button-bg: hsl(24, 100%, 40%);
+  --button-color: #ffffff;
+  --grey: hsl(234, 15%, 40%);
+  --charcoal-grey: hsl(234, 20%, 18%);
+  --dark-slate-grey: hsl(234, 29%, 20%);
+}
+
+.theme-toggle {
+  border: none;
+  background: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle i {
+  font-size: 1.2rem;
+  color: var(--logo-color);
+  transition: color 0.3s ease;
+}
+
+.theme-toggle i:hover {
   color: var(--link-color);
-  text-decoration: none;
 }
 
 * {
@@ -42,13 +70,14 @@ a {
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
-  color: var(--background-color);
+  color: var(--logo-color);
+  text-decoration: none;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 30px;
+  gap: 1.5rem;
   margin: 0;
   padding: 0;
 }
@@ -56,12 +85,12 @@ a {
 .nav-links a {
   color: var(--button-color);
   font-weight: 500;
-  padding: 8px 15px;
-  border-radius: 4px;
+  /* padding: 8px 15px; */
   transition: all 0.3s ease-in-out;
   display: block;
   width: 100%;
-  margin: 0 10px;
+  text-align: center;
+  text-decoration: none;
 }
 
 .nav-links a:hover {
@@ -178,6 +207,7 @@ a {
   font-size: 4rem;
   margin-bottom: 20px;
   line-height: 1.2;
+  color: var(--logo-color);
 }
 
 .hero h1 span {
@@ -186,13 +216,13 @@ a {
 
 .description {
   font-size: 1.3rem;
-  margin-bottom: 30px;
+  margin-bottom: 1.5rem;
   color: var(--grey);
 }
 
 .cta-btn {
   display: inline-block;
-  padding: 15px 30px;
+  padding: 10px 20px;
   font-size: 1.2rem;
   text-decoration: none;
   border-radius: 5px;
@@ -216,17 +246,6 @@ a {
 .featured-articles {
   padding: 1rem 1.5rem;
   background-color: var(--background-color);
-}
-
-.article-card {
-  background-color: var(--background-color);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
-  min-height: 180px;
-  display: flex;
-  flex-direction: column;
 }
 
 .article-card:hover {
@@ -261,10 +280,12 @@ a {
   text-transform: uppercase;
   font-weight: 600;
   transition: background-color 0.3s;
+  text-decoration: none;
 }
 
 .read-more:hover {
   background-color: var(--text-color);
+  color: var(--background-color);
 }
 
 .categories-section {
@@ -493,15 +514,8 @@ footer .social-links a {
   color: var(--grey);
   line-height: 1.6;
 }
-
-.value-item {
-  background-color: var(--background-color);
-  border-radius: 15px;
-  padding: 20px;
-  min-width: 270px;
-  max-height: 200px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.value-item{
+  padding: 1rem;
 }
 
 .value-item:hover {
@@ -529,7 +543,7 @@ footer .social-links a {
 
 .mission-section {
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('../img/mission-bg.jpg') no-repeat center center/cover;
-  padding: 3rem 0.7rem;
+  padding: 4rem 0.7rem;
   color: var(--button-color);
   text-align: center;
   display: flex;
@@ -547,7 +561,7 @@ footer .social-links a {
 .mission-statement {
   font-size: 1rem;
   margin-bottom: 2rem;
-  color: var(--background-color);
+  color: var(--text-color);
   line-height: 1.4;
   opacity: 0.8;
 }
@@ -561,6 +575,7 @@ footer .social-links a {
   font-weight: bold;
   border-radius: 4px;
   transition: background-color 0.3s ease;
+  text-decoration: none;
 }
 
 .team-section {
@@ -772,14 +787,15 @@ footer .social-links a {
 }
 
 .achievements-partnerships {
-  padding: 2rem 1.5rem;
+  padding: 0 1.5rem;
   background-color: var(--background-color);
   text-align: center;
+  margin: 2rem;
 }
 
 .achievements-partnerships h2 {
   font-size: 2rem;
-  color: var(--charcoal-grey);
+  color: var(--text-color);
   margin-bottom: 2rem;
   font-weight: bold;
 }
@@ -808,7 +824,7 @@ footer .social-links a {
 }
 
 .achievement-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(1px);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
@@ -820,7 +836,7 @@ footer .social-links a {
 
 .achievement-content h3 {
   font-size: 1.6rem;
-  color: var(--dark-slate-grey);
+  color: var(--text-color);
   margin-bottom: 10px;
 }
 
@@ -866,7 +882,7 @@ footer .social-links a {
 
 .blog-filter .filter-item {
   text-decoration: none;
-  color: var(--charcoal-grey);
+  color: var(--text-color);
   padding: 10px 15px;
   border: 1px solid var(--grey);
   background-color: var(--background-color);
@@ -898,7 +914,7 @@ footer .social-links a {
 .blog-header h1 {
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--charcoal-grey);
+  color: var(--text-color);
   margin-bottom: 20px;
   margin-top: 30px;
 }
@@ -915,11 +931,20 @@ footer .social-links a {
   margin-bottom: 1rem;
 }
 
-.post-card {
+.post-card,
+.article-card,
+.achievement-card,
+.value-item {
   background-color: var(--background-color);
-  border-radius: 10px;
+  border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.post-card {
   padding-bottom: 20px;
 }
 
@@ -932,6 +957,7 @@ footer .social-links a {
 
 .post-card .post-content {
   padding: 0 20px;
+  flex-grow: 1;
 }
 
 .post-content h2 {
@@ -942,7 +968,7 @@ footer .social-links a {
 
 .post-card h2 a {
   text-decoration: none;
-  color: var(--charcoal-grey);
+  color: var(--text-color);
 }
 
 .post-card h2 a:hover {
@@ -981,7 +1007,7 @@ footer .social-links a {
 }
 
 li strong {
-  color: var(--charcoal-grey);
+  color: var(--text-color);
 }
 
 .pagination {
@@ -1296,7 +1322,7 @@ iframe {
 
 .blog-post h1 {
   font-size: 2.5rem;
-  color: var(--charcoal-grey);
+  color: var(--text-color);
   margin-top: 4rem;
   margin-bottom: 1rem;
 }
@@ -1311,6 +1337,7 @@ iframe {
   width: 100%;
   height: auto;
   border-radius: 8px;
+  margin-bottom: 1rem;
 }
 
 h2 {
@@ -1391,14 +1418,14 @@ h2 {
   font-size: 1.2rem;
   font-weight: bold;
   color: var(--background-color);
-  background-color: var(--dark-slate-grey);
+  background-color: var(--text-color);
   border-radius: 50%;
 }
 
 .comment-content {
   margin: 0.7rem 0;
   font-size: 1rem;
-  color: var(--charcoal-grey);
+  color: var(--text-color);
 }
 
 .comment-date {

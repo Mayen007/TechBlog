@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="category-posts-section">
+  <h2>Posts in {{ category_name }} Category</h2>
+
+  {% if posts %}
+  <div class="posts-grid">
+    {% for post in posts %}
+    <div class="post-card">
+      {% if post.image_url %}
+      <img src="{{ post.image_url }}" alt="{{ post.title }}">
+      {% endif %}
+      <div class="post-content">
+        <h3><a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h3>
+        <p class="post-excerpt">{{ post.excerpt }}</p>
+        <div class="post-meta">
+          <span>{{ post.date_posted.strftime('%B %d, %Y') }}</span>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p>No posts available in this category yet. Check back later!</p>
+  {% endif %}
+</section>
+{% endblock %}

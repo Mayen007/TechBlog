@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="categories-section">
+  <h2>Explore Our Categories</h2>
+  <div class="categories-grid">
+    {% for category in categories %}
+    <div class="category-card">
+      <i class="fas fa-folder"></i> <!-- You can customize the icon for each category -->
+      <h3>{{ category.name }}</h3>
+      <a href="{{ url_for('category_posts', category_name=category.name) }}" class="view-posts-btn">View Posts</a>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
