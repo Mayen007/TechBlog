@@ -1,6 +1,6 @@
 from app import create_app
 from extensions import db
-from models import Post, Comment
+from models import Post, Comment, Event
 from datetime import datetime
 
 
@@ -27,7 +27,7 @@ def populate_database():
 
         <h2>The Ethical Implications of AI</h2>
         <p>As AI becomes more powerful, ethical concerns arise. Issues like bias in algorithms, data privacy, and the accountability of AI systems will need to be addressed. We must ensure that AI is developed and used responsibly to avoid unintended consequences.</p>
-    """,
+        """,
             category="Artificial Intelligence",
             date_posted=datetime.utcnow(),
             image_url="./static/img/ai-ml.jpg"
@@ -221,6 +221,20 @@ def populate_database():
         db.session.add_all([post1, post2, post3, post4, post5, post6])
         db.session.commit()
 
+
+        event1 = Event(
+        title='Tech Innovations Conference 2025',
+        description='Join us for a day of groundbreaking tech talks and workshops.',
+        location='San Francisco, CA',
+        event_date=datetime(2025, 3, 15),
+        image_url='events/tech_innovations.jpg',
+        link='https://techconference2025.com',
+        is_featured=True
+        )
+
+        db.session.add(event1)
+        db.session.commit()
+
         comment1 = Comment(
             username="Alice", body="Great article!", post_id=post1.id)
         comment2 = Comment(
@@ -228,7 +242,7 @@ def populate_database():
         db.session.add_all([comment1, comment2])
         db.session.commit()
 
-        print("Database populated successfully!")
+    print("Database populated successfully!")
 
 
 if __name__ == "__main__":

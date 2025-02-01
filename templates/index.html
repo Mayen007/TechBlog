@@ -48,7 +48,7 @@
 </section>
 
 <!-- Popular Categories -->
-<section id="categories" class="categories-section">
+<!-- <section id="categories" class="categories-section">
   <h2>Popular Categories</h2>
   <div class="categories-grid">
     <div class="category-card">
@@ -68,7 +68,20 @@
       <h3>Cybersecurity</h3>
     </div>
   </div>
+</section> -->
+<!-- Event Hub Teaser Section -->
+<section class="event-teaser">
+  <div class="teaser-content">
+    <h2>Discover Tech Events</h2>
+    <p>Stay ahead with the latest tech conferences, meetups, and webinars. Explore events tailored for tech enthusiasts!
+    </p>
+    <a href="{{ url_for('events') }}" class="btn">Explore Events</a>
+  </div>
+  <div class="teaser-image">
+    <img src="{{url_for('static', filename='img/events.jpg')}}" alt="Upcoming tech events" />
+  </div>
 </section>
+
 
 <section id="subscribe" class="subscribe-section">
   <div class="subscribe-content">

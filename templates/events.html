@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Event Hub - TechBlog{% endblock %}
+
+{% block content %}
+<section class="container">
+  <!-- Featured Events Section -->
+  <section class="featured-events">
+    <h2>Featured Events</h2>
+    <div class="events-carousel">
+      {% for event in featured_events %}
+      <div class="event">
+        <img src="{{ url_for('static', filename=event.image_url) }}" alt="{{ event.title }}" class="event-image">
+        <div class="event-info">
+          <h3>{{ event.title }}</h3>
+          <p>Date: {{ event.date_posted.strftime('%B %d, %Y') }}</p>
+          <p>Location: {{ event.location }}</p>
+          <a href="{{ event.link }}" class="read-more">Learn More</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- Upcoming Events Calendar Section -->
+  <section class="events-calendar">
+    <h2>Upcoming Events Calendar</h2>
+    <!-- Placeholder for calendar widget integration (e.g., FullCalendar) -->
+    <p>Interactive calendar coming soon!</p>
+  </section>
+
+  <!-- All Events List Section -->
+  <section class="events-list">
+    <h2>All Upcoming Events</h2>
+    {% if events %}
+    {% for event in events %}
+    <div class="event-item">
+      <h4>{{ event.title }}</h4>
+      <p>Date: {{ event.date_posted.strftime('%B %d, %Y') }} | Location: {{ event.location }}</p>
+      <p>{{ event.description }}</p>
+      <a href="{{ event.link }}" class="btn">Register</a>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>No events available at this time. Check back later!</p>
+    {% endif %}
+  </section>
+</section>
+{% endblock %}

@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for, request, redirect
 import random
 from extensions import db
 from flask_migrate import Migrate
-from models import Post, Comment
+from models import Post, Comment, Event
 from datetime import datetime
 
 
@@ -26,9 +26,18 @@ def create_app():
     def contact():
         return render_template('contact.html')
 
-    @app.route("/")
+    @app.route('/')
     def home():
-        return render_template("index.html")
+        teaser_events = Event.query.filter_by(is_featured=True).order_by(
+            Event.event_date.asc()).limit(2).all()
+        return render_template('index.html', teaser_events=teaser_events)
+
+    @app.route('/events')
+    def events():
+        featured_events = Event.query.filter_by(is_featured=True).order_by(
+            Event.event_date.asc()).limit(3).all()
+        events = Event.query.order_by(Event.event_date.asc()).all()
+        return render_template('events.html', featured_events=featured_events, events=events)
 
     @app.route("/blogs")
     def blogs():
@@ -42,25 +51,21 @@ def create_app():
         comments = Comment.query.filter_by(post_id=post.id).all()
         return render_template("post.html", post=post, comments=comments)
 
-
     @app.route('/add_comment/<int:post_id>', methods=['POST'])
     def add_comment(post_id):
-        # Correctly fetch the form data using parentheses
         username = request.form.get('username')
         body = request.form.get('content')
-    
-        # Create a new comment object
+
         comment = Comment(
-        username=username,
-        body=body,
-        post_id=post_id,
-        date_posted=datetime.utcnow()
-    )
-    
-         # Add the comment to the database
+            username=username,
+            body=body,
+            post_id=post_id,
+            date_posted=datetime.utcnow()
+        )
+
         db.session.add(comment)
         db.session.commit()
-    
+
         # Redirect to the post page
         return redirect(url_for('post', post_id=post_id))
 

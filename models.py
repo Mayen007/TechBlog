@@ -18,6 +18,23 @@ class Comment(db.Model):
     __tablename__ = 'comments'
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.Text, nullable=False)
-    username = db.Column(db.String(100), nullable=False)  # Add this field
+    username = db.Column(db.String(100), nullable=False)
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), nullable=False)
+
+
+class Event(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    location = db.Column(db.String(100), nullable=False)
+    date_posted = db.Column(db.DateTime, nullable=False,
+                            default=datetime.utcnow)
+    event_date = db.Column(db.DateTime, nullable=False)
+    image_url = db.Column(db.String(120), nullable=False,
+                          default='default_event.jpg')
+    link = db.Column(db.String(200), nullable=False)
+    is_featured = db.Column(db.Boolean, default=False)
+
+    def __repr__(self):
+        return f"Event('{self.title}', '{self.event_date}', '{self.location}')"
