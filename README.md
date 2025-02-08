@@ -4,7 +4,7 @@ TechBlog is a modern, sleek tech-focused website designed to keep users updated 
 
 ## Live Demo
 
-Check out the live site here: [TechBlog on GitHub Pages](https://mayen007.github.io/TechBlog/)
+Check out the live site here: [TechBlog on Render](https://tech-blog-t04y.onrender.com/post/4)
 
 ## Table of Contents
 
