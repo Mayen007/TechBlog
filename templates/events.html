@@ -3,9 +3,8 @@
 {% block title %}Event Hub - TechBlog{% endblock %}
 
 {% block content %}
-<section class="container">
-  <!-- Featured Events Section -->
-  <section class="featured-events">
+<section class="events-container">
+  <!-- <section class="featured-events">
     <h2>Featured Events</h2>
     <div class="events-carousel">
       {% for event in featured_events %}
@@ -20,30 +19,77 @@
       </div>
       {% endfor %}
     </div>
+  </section> -->
+  <!-- Updated Featured Events Section -->
+  <section class="featured-events">
+    <h2>Featured Events</h2>
+    <div class="carousel-container">
+      <div class="events-carousel">
+        {% for event in featured_events %}
+        <div class="event-slide">
+          <div class="image-container">
+            <img src="{{ url_for('static', filename=event.image_url) }}" alt="{{ event.title }}" class="event-image">
+          </div>
+          <div class="event-content">
+            <h3>{{ event.title }}</h3>
+            <div class="event-meta">
+              <p class="event-date">
+                <i class="fas fa-calendar-alt"></i>
+                {{ event.date_posted.strftime('%B %d, %Y') }}
+              </p>
+              <p class="event-location">
+                <i class="fas fa-map-marker-alt"></i>
+                {{ event.location }}
+              </p>
+            </div>
+            <a href="{{ event.link }}" class="cta-button">Learn More</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Carousel Controls -->
+      <button class="carousel-control prev" aria-label="Previous slide">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="carousel-control next" aria-label="Next slide">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+
+      <!-- Pagination Dots -->
+      <div class="pagination-dots">
+        {% for event in featured_events %}
+        <button class="dot{% if loop.first %} active{% endif %}" aria-label="Go to slide {{ loop.index }}"></button>
+        {% endfor %}
+      </div>
+    </div>
   </section>
 
   <!-- Upcoming Events Calendar Section -->
   <section class="events-calendar">
     <h2>Upcoming Events Calendar</h2>
-    <!-- Placeholder for calendar widget integration (e.g., FullCalendar) -->
-    <p>Interactive calendar coming soon!</p>
+    <div id="calendar"></div>
   </section>
+
 
   <!-- All Events List Section -->
   <section class="events-list">
     <h2>All Upcoming Events</h2>
-    {% if events %}
-    {% for event in events %}
-    <div class="event-item">
-      <h4>{{ event.title }}</h4>
-      <p>Date: {{ event.date_posted.strftime('%B %d, %Y') }} | Location: {{ event.location }}</p>
-      <p>{{ event.description }}</p>
-      <a href="{{ event.link }}" class="btn">Register</a>
+    <div class="event-grid">
+      {% if events %}
+      {% for event in events %}
+      <div class="event-item">
+        <h4>{{ event.title }}</h4>
+        <p>Date: {{ event.date_posted.strftime('%B %d, %Y') }} | Location: {{ event.location }}</p>
+        <p>{{ event.description }}</p>
+        <a href="{{ event.link }}" class="read-more">Register</a>
+      </div>
+      {% endfor %}
+      {% else %}
+      <p>No events available at this time. Check back later!</p>
+      {% endif %}
     </div>
-    {% endfor %}
-    {% else %}
-    <p>No events available at this time. Check back later!</p>
-    {% endif %}
   </section>
+
 </section>
 {% endblock %}

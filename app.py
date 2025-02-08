@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, redirect
+from flask import Flask, render_template, url_for, request, redirect, jsonify
 import random
 from extensions import db
 from flask_migrate import Migrate
@@ -25,6 +25,19 @@ def create_app():
     @app.route('/contact')
     def contact():
         return render_template('contact.html')
+
+    @app.route('/api/events')
+    def get_events():
+        events = Event.query.all()
+        events_data = [
+            {
+                "title": event.title,
+                "start": event.event_date.strftime('%Y-%m-%d'),
+                "url": event.link
+            }
+            for event in events
+        ]
+        return jsonify(events_data)
 
     @app.route('/')
     def home():
@@ -70,6 +83,7 @@ def create_app():
         return redirect(url_for('post', post_id=post_id))
 
     return app
+
 
 app = create_app()
 if __name__ == "__main__":

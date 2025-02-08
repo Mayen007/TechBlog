@@ -21,7 +21,7 @@ def populate_database():
         <img src="../static/img/future_of_ai.jpg" alt="AI Image" class="post-image">
         <h2>Advancements in AI Technology</h2>
         <p>AI has evolved from simple algorithms to highly advanced neural networks that can perform tasks like image recognition, natural language processing, and even decision-making. In the near future, we can expect AI to become even more integrated into our lives with advancements in deep learning and reinforcement learning.</p>
-        
+
         <h2>The Impact on Jobs and Industries</h2>
         <p>AI is expected to revolutionize various industries, including healthcare, transportation, and manufacturing. While some jobs may be automated, new roles will also emerge, particularly in AI-related fields like data science, machine learning engineering, and AI ethics.</p>
 
@@ -183,7 +183,7 @@ def populate_database():
             excerpt="Discover how quantum computing is set to transform technology, from encryption to machine learning, and the challenges that lie ahead.",
             content="""
         <img src="../static/img/quantum-computing.jpg" alt="Quantum Computing" class="post-image">
-        
+
         <h2>What is Quantum Computing?</h2>
         <p>Quantum computing is revolutionizing the field of computing, offering unprecedented processing power by exploiting the strange principles of quantum mechanics. Unlike traditional computers that process information in binary (0s and 1s), quantum computers leverage quantum bits, or <strong>qubits</strong>, which can exist in multiple states simultaneously, thanks to superposition. This allows quantum computers to handle vastly more data in parallel.</p>
 
@@ -221,18 +221,88 @@ def populate_database():
         db.session.add_all([post1, post2, post3, post4, post5, post6])
         db.session.commit()
 
-
         event1 = Event(
-        title='Tech Innovations Conference 2025',
-        description='Join us for a day of groundbreaking tech talks and workshops.',
-        location='San Francisco, CA',
-        event_date=datetime(2025, 3, 15),
-        image_url='events/tech_innovations.jpg',
-        link='https://techconference2025.com',
-        is_featured=True
+            title='Tech Innovations Conference 2025',
+            description='Join us for a day of groundbreaking tech talks and workshops.',
+            location='San Francisco, CA',
+            event_date=datetime(2025, 3, 15),
+            image_url='img/tech_innovations.jpg',
+            link='https://techconference2025.com',
+            is_featured=True
         )
 
-        db.session.add(event1)
+        event2 = Event(
+            title='AI & Machine Learning Summit',
+            description='Explore the latest in artificial intelligence and machine learning.',
+            location='New York, NY',
+            event_date=datetime(2025, 4, 10),
+            image_url='img/ai_ml_summit.jpg',
+            link='https://aimlsummit.com',
+            is_featured=True
+        )
+
+        event3 = Event(
+            title='Cybersecurity World Forum',
+            description='A deep dive into the latest cybersecurity trends and best practices.',
+            location='London, UK',
+            event_date=datetime(2025, 6, 20),
+            image_url='events/cybersecurity_forum.jpg',
+            link='https://cybersecurityforum.com',
+            is_featured=False
+        )
+
+        event4 = Event(
+            title='Web DevCon 2025',
+            description='Everything about web development, from front-end to back-end and beyond.',
+            location='Berlin, Germany',
+            event_date=datetime(2025, 7, 5),
+            image_url='img/web_devcon.jpg',
+            link='https://webdevcon.com',
+            is_featured=True
+        )
+
+        event5 = Event(
+            title='Cloud Computing Expo',
+            description='Discover how cloud technology is transforming industries worldwide.',
+            location='Singapore',
+            event_date=datetime(2025, 9, 12),
+            image_url='events/cloud_expo.jpg',
+            link='https://cloudexpo.com',
+            is_featured=False
+        )
+
+        event6 = Event(
+            title='Blockchain & Crypto Summit',
+            description='Explore the future of blockchain technology and digital assets.',
+            location='Dubai, UAE',
+            event_date=datetime(2025, 10, 18),
+            image_url='events/blockchain_summit.jpg',
+            link='https://blockchainsummit.com',
+            is_featured=True
+        )
+
+        event7 = Event(
+            title='Robotics and Automation Expo',
+            description='Showcasing cutting-edge robotics and automation advancements.',
+            location='Tokyo, Japan',
+            event_date=datetime(2025, 11, 8),
+            image_url='events/robotics_expo.jpg',
+            link='https://roboticsexpo.com',
+            is_featured=False
+        )
+
+        event8 = Event(
+            title='Tech Startups Pitch Night',
+            description='Where the hottest startups present their innovations to investors.',
+            location='Silicon Valley, CA',
+            event_date=datetime(2025, 12, 2),
+            image_url='events/startup_pitch.jpg',
+            link='https://startuppitchnight.com',
+            is_featured=True
+        )
+        events = [event1, event2, event3, event4,
+                  event5, event6, event7, event8]
+        db.session.add_all(events)
         db.session.commit()
 
         comment1 = Comment(

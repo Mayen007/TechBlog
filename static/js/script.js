@@ -1,22 +1,14 @@
-// document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-//   anchor.addEventListener('click', function (e) {
-//     const targetId = this.getAttribute('href');
-//     if (targetId === "#") {
-//       return;
-//     }
+var calendarEl = document.getElementById('calendar');
+if (calendarEl) {
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    events: '/api/events'
+  });
+  calendar.render();
+} else {
+  console.error("Calendar element not found!");
+}
 
-//     e.preventDefault();
-//     const targetElement = document.querySelector(targetId);
-
-//     if (targetElement) {
-//       targetElement.scrollIntoView({
-//         behavior: 'smooth',
-//       });
-//     }
-//   });
-// });
-
-// Elements
 const filterItems = document.querySelectorAll(".filter-item");
 const postCards = document.querySelectorAll(".post-card");
 
@@ -38,6 +30,67 @@ filterItems.forEach((filter) => {
       }
     });
   });
+});
+
+// Carousel Functionality
+document.addEventListener('DOMContentLoaded', () => {
+  const carousel = document.querySelector('.events-carousel');
+  const slides = document.querySelectorAll('.event-slide');
+  const dots = document.querySelectorAll('.dot');
+  const prevButton = document.querySelector('.carousel-control.prev');
+  const nextButton = document.querySelector('.carousel-control.next');
+  let currentIndex = 0;
+  let autoPlayInterval;
+
+  function updateCarousel() {
+    carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[currentIndex].classList.add('active');
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateCarousel();
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateCarousel();
+  }
+
+  function startAutoPlay() {
+    autoPlayInterval = setInterval(nextSlide, 5000);
+  }
+
+  function stopAutoPlay() {
+    clearInterval(autoPlayInterval);
+  }
+
+  // Event Listeners
+  nextButton.addEventListener('click', () => {
+    stopAutoPlay();
+    nextSlide();
+  });
+
+  prevButton.addEventListener('click', () => {
+    stopAutoPlay();
+    prevSlide();
+  });
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      stopAutoPlay();
+      currentIndex = index;
+      updateCarousel();
+    });
+  });
+
+  // Pause on hover
+  carousel.addEventListener('mouseenter', stopAutoPlay);
+  carousel.addEventListener('mouseleave', startAutoPlay);
+
+  // Initialize autoplay
+  startAutoPlay();
 });
 
 // Elements
@@ -64,11 +117,10 @@ const closeModal = () => {
 
 // Function to Validate Email
 const validateEmail = (email) => {
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email regex
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailPattern.test(email);
 };
 
-// Event Listener for Form Submission
 if (subscribeForm && emailInput) {
   subscribeForm.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -107,44 +159,6 @@ function toggleMenu() {
   navLinks.classList.toggle('show');
 }
 
-// const commentForm = document.getElementById("comment-form");
-
-// commentForm.addEventListener("submit", function (event) {
-//   event.preventDefault();
-
-//   const username = document.querySelector("[name='username']").value.trim();
-//   const content = document.querySelector("[name='content']").value.trim();
-
-//   if (!username || !content) {
-//     alert("Please fill out both fields.");
-//     return;
-//   }
-
-//   const commentList = document.getElementById("comment-list");
-
-//   const newComment = document.createElement("div");
-//   newComment.classList.add("comment");
-//   newComment.innerHTML = `
-//       <div class="comment-header">
-//         <div class="avatar">${username[0].toUpperCase()}</div>
-//         <h3>${username}</h3>
-//       </div>
-//       <p class="comment-content">${content}</p>
-//       <p class="comment-date">${new Date().toLocaleString("en-US", {
-//     month: "long",
-//     day: "numeric",
-//     year: "numeric",
-//     hour: "2-digit",
-//     minute: "2-digit",
-//   })}</p>
-//     `;
-//   commentList.prepend(newComment);
-
-//   commentForm.reset();
-// });
-
-// Function to toggle theme
-
 const themeToggleButton = document.querySelector('.theme-toggle');
 const themeIcon = document.getElementById('theme-icon');
 const savedTheme = localStorage.getItem('theme');
@@ -152,8 +166,8 @@ const savedTheme = localStorage.getItem('theme');
 // Apply saved theme on page load
 if (savedTheme === 'dark') {
   document.body.classList.add('dark');
-  themeIcon.className = 'fa-solid fa-sun'; // Update to sun for dark mode
-  themeToggleButton.classList.add('dark'); // Change button style
+  themeIcon.className = 'fa-solid fa-sun';
+  themeToggleButton.classList.add('dark');
 }
 
 // Attach event listener to the button
