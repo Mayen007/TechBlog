@@ -3,9 +3,15 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
-<!-- Hero Section with post image as background -->
-<section class="post-hero"
-  style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('{{ post.image_url }}');">
+
+<section class="post-hero">
+  <div class="post-hero-image">
+    <img
+      src="{{ url_for('static', filename=post.image_url) if post.image_url else url_for('static', filename='img/default-post-bg.jpg') }}"
+      alt="{{ post.title }}">
+    <div class="overlay"></div>
+  </div>
+
   <div class="hero-content">
     <span class="post-category">{{ post.category }}</span>
     <h1>{{ post.title }}</h1>
@@ -49,16 +55,35 @@
       <a href="#">Innovation</a>
     </div>
 
-    <!-- Post navigation -->
+    <!-- Post Navigation -->
     <div class="post-navigation">
-      <a href="#" class="prev-post">
-        <span><i class="fas fa-arrow-left"></i> Previous Post</span>
-        <h4>Getting Started with JavaScript</h4>
-      </a>
-      <a href="#" class="next-post">
-        <span>Next Post <i class="fas fa-arrow-right"></i></span>
-        <h4>Future of Cloud Computing</h4>
-      </a>
+      <div class="prev-post">
+        {% if prev_post %}
+        <a href="{{ url_for('post', post_id=prev_post.id) }}">
+          <i class="fas fa-arrow-left"></i>
+          <h4>{{ prev_post.title }}</h4>
+        </a>
+        {% else %}
+        <span class="disabled">
+          <i class="fas fa-arrow-left"></i>
+          <h4>No Previous Post</h4>
+        </span>
+        {% endif %}
+      </div>
+
+      <div class="next-post">
+        {% if next_post %}
+        <a href="{{ url_for('post', post_id=next_post.id) }}">
+          <h4>{{ next_post.title }}</h4>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+        {% else %}
+        <span class="disabled">
+          <h4>No Next Post</h4>
+          <i class="fas fa-arrow-right"></i>
+        </span>
+        {% endif %}
+      </div>
     </div>
   </article>
 
@@ -87,21 +112,21 @@
         <div class="related-post">
           <img src="{{ url_for('static', filename='img/ai-ml.jpg') }}" alt="AI and Machine Learning">
           <div>
-            <h4><a href="#">The Future of AI in 2025</a></h4>
+            <h4><a href="{{ url_for('post', post_id=posts[post.id - 1].id) }}">{{ posts[post.id - 1].title }}</a></h4>
             <span>May 15, {{ year }}</span>
           </div>
         </div>
         <div class="related-post">
           <img src="{{ url_for('static', filename='img/web-dev.jpg') }}" alt="Web Development">
           <div>
-            <h4><a href="#">Modern CSS Frameworks</a></h4>
+            <h4><a href="{{ url_for('post', post_id=posts[post.id - 1].id) }}">{{ posts[post.id - 1].title }}</a></h4>
             <span>April 28, {{ year }}</span>
           </div>
         </div>
         <div class="related-post">
           <img src="{{ url_for('static', filename='img/cybersecurity.jpg') }}" alt="Cybersecurity">
           <div>
-            <h4><a href="#">Cybersecurity Best Practices</a></h4>
+            <h4><a href="{{ url_for('post', post_id=posts[post.id - 1].id) }}">{{ posts[post.id - 1].title }}</a></h4>
             <span>April 10, {{ year }}</span>
           </div>
         </div>

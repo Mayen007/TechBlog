@@ -62,7 +62,15 @@ def create_app():
     def post(post_id):
         post = Post.query.get_or_404(post_id)
         comments = Comment.query.filter_by(post_id=post.id).all()
-        return render_template("post.html", post=post, comments=comments)
+
+        # Get previous and next posts for navigation
+        prev_post = Post.query.filter(
+            Post.id < post_id).order_by(Post.id.desc()).first()
+        next_post = Post.query.filter(
+            Post.id > post_id).order_by(Post.id.asc()).first()
+
+        return render_template("post.html", post=post, comments=comments,
+                               prev_post=prev_post, next_post=next_post, posts=Post.query.all())
 
     @app.route('/add_comment/<int:post_id>', methods=['POST'])
     def add_comment(post_id):

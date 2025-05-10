@@ -368,6 +368,7 @@ img {
   position: relative;
   z-index: 1;
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 var(--space-md);
   text-align: center;
@@ -2112,11 +2113,12 @@ footer {
   flex: 1;
   position: relative;
   max-width: 50%;
+  height: 100%;
 }
 
 .featured-post-image img {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -2433,6 +2435,31 @@ footer {
   margin-top: 60px;
   text-align: center;
   color: var(--text-light);
+}
+
+.post-hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.post-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.post-hero-image .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
 }
 
 .post-hero .hero-content {
