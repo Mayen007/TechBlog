@@ -3,47 +3,96 @@
 {% block title %}TechBlog - Blogs{% endblock %}
 
 {% block content %}
-<section class="blog-header">
-  <h1>TechBlog Articles</h1>
-  <p>Stay updated with the latest in tech news, reviews, and innovations.</p>
-</section>
-<article class="featured-post">
-  <h2>Featured Post</h2>
-  <img src="{{ featured_post.image_url }}" alt="Featured Post" class="featured-image">
-  <div class="featured-content">
-    <h2 class="featured-title">{{ featured_post.title }}</h2>
-    <p class="featured-excerpt">{{ featured_post.excerpt }}</p>
-    <a href="{{ url_for('post', post_id=featured_post.id) }}" class="read-more">Read More</a>
+<!-- Hero Section -->
+<section class="blog-hero">
+  <div class="hero-background">
+    <div class="hero-shape shape-1"></div>
+    <div class="hero-shape shape-2"></div>
+    <div class="hero-shape shape-3"></div>
   </div>
-</article>
+  <div class="hero-content">
+    <h1>Tech <span>Insights</span></h1>
+    <p class="description">Cutting-edge articles on innovation, development, and digital transformation</p>
+  </div>
+</section>
 
-<!-- Blog Posts Section -->
-<section class="blog-posts">
-  <div class="container">
-    <div class="blog-filter">
-      <ul>
-        <li><button type="button" data-category="all" class="active filter-item">All</button></li>
-        <li><button type="button" data-category="Technology" class="filter-item">Technology</button></li>
-        <li><button type="button" data-category="Artificial Intelligence" class="filter-item">Artificial
-            Intelligence</button></li>
-        <li><button type="button" data-category="Web Development" class="filter-item">Web Development</button></li>
-        <li><button type="button" data-category="Tech and Gadgets" class="filter-item">Gadgets</button></li>
-        <li><button type="button" data-category="Cybersecurity" class="filter-item">Cybersecurity</button></li>
-      </ul>
+<!-- Featured Post Section -->
+<section class="featured-post-section">
+  <div class="section-header">
+    <h2>Featured <span>Article</span></h2>
+    <p class="section-subtitle">Our top pick this week</p>
+  </div>
+
+  <div class="featured-post-container">
+    <article class="featured-post-card">
+      <div class="featured-post-image">
+        <img src="{{ featured_post.image_url }}" alt="{{ featured_post.title }}">
+        <div class="featured-post-tag">Featured</div>
+      </div>
+      <div class="featured-post-content">
+        <span class="featured-post-category">{{ featured_post.category }}</span>
+        <h3>{{ featured_post.title }}</h3>
+        <p>{{ featured_post.excerpt }}</p>
+        <div class="featured-post-meta">
+          <span class="post-date">{{ featured_post.date_posted.strftime('%B %d, %Y') }}</span>
+          <span class="post-read-time">6 min read</span>
+        </div>
+        <a href="{{ url_for('post', post_id=featured_post.id) }}" class="read-more">Read Full Article <i
+            class="fas fa-arrow-right"></i></a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Blog Filter Section -->
+<section class="blog-filter-section">
+  <div class="filter-container">
+    <div class="filter-title">
+      <h3>Filter by Category</h3>
     </div>
-    <div class="post-grid">
-      {% for post in posts %}
-      <article class="post-card" data-category="{{ post.category }}">
-        {% if post.image_url %}
-        <img src="{{ post.image_url }}" alt="{{ post.title }}">
-        {% endif %}
-        <div class="post-content">
-          <h2><a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h2>
-          <p class="post-excerpt">{{ post.excerpt }}</p>
+    <div class="filter-options">
+      <button type="button" data-category="all" class="filter-item active">
+        <i class="fas fa-th-large"></i> All
+      </button>
+      <button type="button" data-category="Technology" class="filter-item">
+        <i class="fas fa-laptop-code"></i> Technology
+      </button>
+      <button type="button" data-category="Artificial Intelligence" class="filter-item">
+        <i class="fas fa-robot"></i> AI
+      </button>
+      <button type="button" data-category="Web Development" class="filter-item">
+        <i class="fas fa-code"></i> Web Dev
+      </button>
+      <button type="button" data-category="Tech and Gadgets" class="filter-item">
+        <i class="fas fa-mobile-alt"></i> Gadgets
+      </button>
+      <button type="button" data-category="Cybersecurity" class="filter-item">
+        <i class="fas fa-shield-alt"></i> Security
+      </button>
+    </div>
+  </div>
+</section>
 
-          <div class="post-meta">
-            <span>{{ post.date_posted.strftime('%B %d, %Y') }}</span>
-            <span>Category: <a href="#">{{ post.category }}</a></span>
+<!-- Blog Posts Grid -->
+<section class="blog-posts-section">
+  <div class="posts-container">
+    <div class="blog-grid">
+      {% for post in posts %}
+      <article class="blog-card" data-category="{{ post.category }}">
+        <div class="blog-card-image">
+          {% if post.image_url %}
+          <img src="{{ post.image_url }}" alt="{{ post.title }}">
+          {% endif %}
+          <div class="blog-card-category">{{ post.category }}</div>
+        </div>
+        <div class="blog-card-content">
+          <h3><a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h3>
+          <p>{{ post.excerpt }}</p>
+          <div class="blog-card-meta">
+            <span class="blog-date"><i class="far fa-calendar-alt"></i> {{ post.date_posted.strftime('%b %d, %Y')
+              }}</span>
+            <a href="{{ url_for('post', post_id=post.id) }}" class="blog-read-link">Read <i
+                class="fas fa-chevron-right"></i></a>
           </div>
         </div>
       </article>
@@ -51,4 +100,22 @@
     </div>
   </div>
 </section>
+
+<!-- Newsletter Section -->
+<section class="blog-newsletter">
+  <div class="newsletter-container">
+    <div class="newsletter-content">
+      <h2>Never Miss <span>An Update</span></h2>
+      <p>Subscribe to our newsletter to receive the latest articles and tech insights directly in your inbox.</p>
+      <form class="newsletter-form">
+        <input type="email" placeholder="Your email address" required>
+        <button type="submit">Subscribe <i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+
 {% endblock %}

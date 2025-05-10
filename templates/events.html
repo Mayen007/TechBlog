@@ -1,95 +1,287 @@
 {% extends "base.html" %}
 
-{% block title %}Event Hub - TechBlog{% endblock %}
+{% block title %}TechBlog - Tech Events{% endblock %}
 
 {% block content %}
-<section class="events-container">
-  <!-- <section class="featured-events">
-    <h2>Featured Events</h2>
+<!-- Hero Section -->
+<section class="events-hero">
+  <div class="hero-background">
+    <div class="hero-shape shape-1"></div>
+    <div class="hero-shape shape-2"></div>
+    <div class="hero-shape shape-3"></div>
+  </div>
+  <div class="hero-content">
+    <h1>Tech <span>Events</span></h1>
+    <p class="description">Connect with industry experts and expand your knowledge at our curated tech events</p>
+  </div>
+</section>
+
+<!-- Featured Event Section -->
+<section class="featured-event-section">
+  <div class="section-header">
+    <h2>Featured <span>Event</span></h2>
+    <p class="section-subtitle">Don't miss our highlighted event of the month</p>
+  </div>
+
+  {% if featured_events and featured_events|length > 0 %}
+  {% set featured = featured_events[0] %}
+  <div class="featured-event-container">
+    <div class="featured-event-card">
+      <div class="featured-event-image">
+        <img src="{{ url_for('static', filename=featured.image_url) }}" alt="{{ featured.title }}">
+        <div class="featured-event-tag">Featured</div>
+      </div>
+      <div class="featured-event-content">
+        <h3>{{ featured.title }}</h3>
+        <div class="event-details">
+          <div class="event-detail">
+            <i class="fas fa-calendar-alt"></i>
+            <span>{{ featured.date_posted.strftime('%B %d, %Y') }}</span>
+          </div>
+          <div class="event-detail">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>{{ featured.location }}</span>
+          </div>
+          <div class="event-detail">
+            <i class="fas fa-clock"></i>
+            <span>10:00 AM - 4:00 PM</span>
+          </div>
+        </div>
+        <p class="event-description">{{ featured.description }}</p>
+        <div class="event-cta">
+          <a href="{{ featured.link }}" class="primary-btn">Register Now</a>
+          <a href="#" class="secondary-btn">Add to Calendar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="no-events-message">
+    <i class="fas fa-calendar-times"></i>
+    <p>No featured events at this time. Check back soon!</p>
+  </div>
+  {% endif %}
+</section>
+
+<!-- Events Carousel Section -->
+<section class="events-carousel-section">
+  <div class="section-header">
+    <h2>Upcoming <span>Events</span></h2>
+    <p class="section-subtitle">Browse our upcoming tech gatherings and conferences</p>
+  </div>
+
+  {% if featured_events and featured_events|length > 0 %}
+  <div class="carousel-container">
     <div class="events-carousel">
       {% for event in featured_events %}
-      <div class="event">
-        <img src="{{ url_for('static', filename=event.image_url) }}" alt="{{ event.title }}" class="event-image">
-        <div class="event-info">
+      <div class="event-slide">
+        <div class="image-container">
+          <img src="{{ url_for('static', filename=event.image_url) }}" alt="{{ event.title }}" class="event-image">
+        </div>
+        <div class="event-content">
           <h3>{{ event.title }}</h3>
-          <p>Date: {{ event.date_posted.strftime('%B %d, %Y') }}</p>
-          <p>Location: {{ event.location }}</p>
-          <a href="{{ event.link }}" class="read-more">Learn More</a>
+          <div class="event-meta">
+            <p class="event-date">
+              <i class="fas fa-calendar-alt"></i>
+              {{ event.date_posted.strftime('%B %d, %Y') }}
+            </p>
+            <p class="event-location">
+              <i class="fas fa-map-marker-alt"></i>
+              {{ event.location }}
+            </p>
+          </div>
+          <a href="{{ event.link }}" class="event-btn">Learn More</a>
         </div>
       </div>
       {% endfor %}
     </div>
-  </section> -->
-  <!-- Updated Featured Events Section -->
-  <section class="featured-events">
-    <h2>Featured Events</h2>
-    <div class="carousel-container">
-      <div class="events-carousel">
-        {% for event in featured_events %}
-        <div class="event-slide">
-          <div class="image-container">
-            <img src="{{ url_for('static', filename=event.image_url) }}" alt="{{ event.title }}" class="event-image">
-          </div>
-          <div class="event-content">
-            <h3>{{ event.title }}</h3>
-            <div class="event-meta">
-              <p class="event-date">
-                <i class="fas fa-calendar-alt"></i>
-                {{ event.date_posted.strftime('%B %d, %Y') }}
-              </p>
-              <p class="event-location">
-                <i class="fas fa-map-marker-alt"></i>
-                {{ event.location }}
-              </p>
-            </div>
-            <a href="{{ event.link }}" class="cta-button">Learn More</a>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
 
-      <!-- Carousel Controls -->
-      <button class="carousel-control prev" aria-label="Previous slide">
-        <i class="fas fa-chevron-left"></i>
-      </button>
-      <button class="carousel-control next" aria-label="Next slide">
-        <i class="fas fa-chevron-right"></i>
-      </button>
+    <!-- Carousel Controls -->
+    <button class="carousel-control prev" aria-label="Previous slide">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="carousel-control next" aria-label="Next slide">
+      <i class="fas fa-chevron-right"></i>
+    </button>
 
-      <!-- Pagination Dots -->
-      <div class="pagination-dots">
-        {% for event in featured_events %}
-        <button class="dot{% if loop.first %} active{% endif %}" aria-label="Go to slide {{ loop.index }}"></button>
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-
-  <!-- Upcoming Events Calendar Section -->
-  <section class="events-calendar">
-    <h2>Upcoming Events Calendar</h2>
-    <div id="calendar"></div>
-  </section>
-
-
-  <!-- All Events List Section -->
-  <section class="events-list">
-    <h2>All Upcoming Events</h2>
-    <div class="event-grid">
-      {% if events %}
-      {% for event in events %}
-      <div class="event-item">
-        <h4>{{ event.title }}</h4>
-        <p>Date: {{ event.date_posted.strftime('%B %d, %Y') }} | Location: {{ event.location }}</p>
-        <p>{{ event.description }}</p>
-        <a href="{{ event.link }}" class="read-more">Register</a>
-      </div>
+    <!-- Pagination Dots -->
+    <div class="pagination-dots">
+      {% for event in featured_events %}
+      <button class="dot{% if loop.first %} active{% endif %}" aria-label="Go to slide {{ loop.index }}"></button>
       {% endfor %}
-      {% else %}
-      <p>No events available at this time. Check back later!</p>
-      {% endif %}
     </div>
-  </section>
-
+  </div>
+  {% else %}
+  <div class="no-events-message">
+    <i class="fas fa-calendar-times"></i>
+    <p>No events available at this time. Check back soon!</p>
+  </div>
+  {% endif %}
 </section>
+
+<!-- Calendar Section -->
+<section class="calendar-section">
+  <div class="section-header">
+    <h2>Events <span>Calendar</span></h2>
+    <p class="section-subtitle">Plan your schedule with our interactive events calendar</p>
+  </div>
+
+  <div class="calendar-container">
+    <div id="calendar"></div>
+  </div>
+</section>
+
+<!-- Events List Section -->
+<section class="events-list-section">
+  <div class="section-header">
+    <h2>All <span>Events</span></h2>
+    <p class="section-subtitle">Browse our complete lineup of upcoming events</p>
+  </div>
+
+  <div class="events-filter">
+    <button class="filter-btn active" data-category="all">All Events</button>
+    <button class="filter-btn" data-category="conference">Conferences</button>
+    <button class="filter-btn" data-category="workshop">Workshops</button>
+    <button class="filter-btn" data-category="webinar">Webinars</button>
+    <button class="filter-btn" data-category="hackathon">Hackathons</button>
+  </div>
+
+  <div class="events-grid">
+    {% if events %}
+    {% for event in events %}
+    <div class="event-card" data-category="{{ event.category|lower }}">
+      <div class="event-card-header">
+        <div class="event-card-date">
+          <span class="month">{{ event.date_posted.strftime('%b') }}</span>
+          <span class="day">{{ event.date_posted.strftime('%d') }}</span>
+        </div>
+        <div class="event-card-tag">{{ event.category }}</div>
+      </div>
+      <div class="event-card-body">
+        <h3>{{ event.title }}</h3>
+        <div class="event-card-details">
+          <div class="event-card-detail">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>{{ event.location }}</span>
+          </div>
+          <div class="event-card-detail">
+            <i class="fas fa-clock"></i>
+            <span>10:00 AM - 4:00 PM</span>
+          </div>
+        </div>
+        <p class="event-card-description">{{ event.description }}</p>
+      </div>
+      <div class="event-card-footer">
+        <a href="{{ event.link }}" class="event-register-btn">Register</a>
+        <button class="event-share-btn">
+          <i class="fas fa-share-alt" title="Share Event"></i>
+        </button>
+      </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="no-events-message">
+      <i class="fas fa-calendar-times"></i>
+      <p>No events available at this time. Check back soon!</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="events-cta-section">
+  <div class="cta-container">
+    <div class="cta-content">
+      <h2>Want to Host Your <span>Own Event</span>?</h2>
+      <p>Partner with us to organize tech events and reach our community of tech enthusiasts.</p>
+      <div class="cta-buttons">
+        <a href="{{ url_for('contact') }}" class="primary-btn">Contact Us</a>
+        <a href="#" class="secondary-btn">Learn More</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // Calendar initialization
+  let calendarEl = document.getElementById('calendar');
+  if (calendarEl) {
+    let calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      events: '/api/events',
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,listMonth'
+      },
+      themeSystem: 'bootstrap5'
+    });
+    calendar.render();
+  }
+
+  // Carousel functionality
+  const carousel = document.querySelector('.events-carousel');
+  const slides = document.querySelectorAll('.event-slide');
+  const dots = document.querySelectorAll('.dot');
+  const prevBtn = document.querySelector('.prev');
+  const nextBtn = document.querySelector('.next');
+
+  if (carousel && slides.length > 0) {
+    let currentIndex = 0;
+    let autoPlayInterval;
+
+    function updateCarousel() {
+      carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[currentIndex].classList.add('active');
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateCarousel();
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      updateCarousel();
+    }
+
+    function startAutoPlay() {
+      autoPlayInterval = setInterval(nextSlide, 5000);
+    }
+
+    function stopAutoPlay() {
+      clearInterval(autoPlayInterval);
+    }
+
+    // Event listeners
+    prevBtn.addEventListener('click', function () {
+      prevSlide();
+      stopAutoPlay();
+      startAutoPlay();
+    });
+
+    nextBtn.addEventListener('click', function () {
+      nextSlide();
+      stopAutoPlay();
+      startAutoPlay();
+    });
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', function () {
+        currentIndex = index;
+        updateCarousel();
+        stopAutoPlay();
+        startAutoPlay();
+      });
+    });
+
+    carousel.addEventListener('mouseenter', stopAutoPlay);
+    carousel.addEventListener('mouseleave', startAutoPlay);
+
+    startAutoPlay();
+  }
+</script>
 {% endblock %}

@@ -35,6 +35,7 @@ class Event(db.Model):
                           default='default_event.jpg')
     link = db.Column(db.String(200), nullable=False)
     is_featured = db.Column(db.Boolean, default=False)
+    category = db.Column(db.String(50), default='Conference')
 
     def __repr__(self):
         return f"Event('{self.title}', '{self.event_date}', '{self.location}')"

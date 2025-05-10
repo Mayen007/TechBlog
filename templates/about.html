@@ -3,31 +3,56 @@
 {% block title %}TechBlog - About Us{% endblock %}
 
 {% block content %}
-<!-- About Section -->
-<section class="about-section">
-  <h2>About Us</h2>
-  <p class="about-intro">We are passionate about technology and dedicated to sharing insights, tips, and resources
-    that empower individuals and businesses to thrive in the digital world.</p>
+<!-- Hero Section -->
+<section class="about-hero">
+  <div class="hero-background">
+    <div class="hero-shape shape-1"></div>
+    <div class="hero-shape shape-2"></div>
+    <div class="hero-shape shape-3"></div>
+  </div>
+  <div class="hero-content">
+    <h1>Our <span>Story</span></h1>
+    <p class="description">We're passionate tech enthusiasts on a mission to make complex technology accessible and
+      empower the next generation of innovators.</p>
+  </div>
+</section>
 
-  <div class="about-values">
-    <div class="value-item">
-      <i class="fas fa-lightbulb"></i>
+<!-- Values Section -->
+<section class="values-section">
+  <div class="section-header">
+    <h2>Our <span>Values</span></h2>
+    <p class="section-subtitle">The principles that guide everything we do</p>
+  </div>
+
+  <div class="values-container">
+    <div class="value-card">
+      <div class="value-icon">
+        <i class="fas fa-lightbulb"></i>
+      </div>
       <h3>Innovation</h3>
       <p>We believe in embracing new ideas and technologies to create impactful solutions.</p>
     </div>
-    <div class="value-item">
-      <i class="fas fa-users"></i>
+
+    <div class="value-card">
+      <div class="value-icon">
+        <i class="fas fa-users"></i>
+      </div>
       <h3>Community</h3>
       <p>Building a supportive community where knowledge is shared and everyone can grow.</p>
     </div>
-    <div class="value-item">
-      <i class="fas fa-shield-alt"></i>
+
+    <div class="value-card">
+      <div class="value-icon">
+        <i class="fas fa-shield-alt"></i>
+      </div>
       <h3>Integrity</h3>
       <p>We prioritize transparency and honesty in everything we do.</p>
     </div>
-    <!-- New Value Item -->
-    <div class="value-item">
-      <i class="fas fa-globe"></i>
+
+    <div class="value-card">
+      <div class="value-icon">
+        <i class="fas fa-globe"></i>
+      </div>
       <h3>Global Reach</h3>
       <p>We aim to make a global impact by sharing knowledge and connecting people across borders.</p>
     </div>
@@ -36,159 +61,177 @@
 
 <!-- Mission Section -->
 <section class="mission-section">
-  <div class="mission-content">
-    <h2>Our Mission</h2>
-    <p class="mission-statement">We aim to inspire and empower tech enthusiasts worldwide by delivering cutting-edge
-      insights, tutorials, and resources.</p>
-    <a href="#" class="mission-cta">Join the Community</a>
+  <div class="mission-container">
+    <div class="mission-visual">
+      <img src="{{url_for('static', filename='img/mission-bg.jpg')}}" alt="Our Mission">
+      <div class="mission-overlay"></div>
+    </div>
+
+    <div class="mission-content">
+      <div class="section-header">
+        <h2>Our <span>Mission</span></h2>
+        <p class="section-subtitle">Why we do what we do</p>
+      </div>
+
+      <p class="mission-statement">We aim to inspire and empower tech enthusiasts worldwide by delivering cutting-edge
+        insights, tutorials, and resources that make complex technology accessible to everyone.</p>
+
+      <ul class="mission-points">
+        <li><i class="fas fa-check-circle"></i> Create insightful content that drives innovation</li>
+        <li><i class="fas fa-check-circle"></i> Build a global community of tech enthusiasts</li>
+        <li><i class="fas fa-check-circle"></i> Democratize access to technology knowledge</li>
+      </ul>
+
+      <a href="#" class="primary-btn">Join the Community</a>
+    </div>
   </div>
 </section>
 
-
-<!-- Meet Our Team Section -->
+<!-- Team Section -->
 <section class="team-section">
-  <h2>Meet Our Team</h2>
-  <div class="team-grid">
+  <div class="section-header">
+    <h2>Meet Our <span>Team</span></h2>
+    <p class="section-subtitle">The passionate people behind TechBlog</p>
+  </div>
+
+  <div class="team-container">
     <!-- Team Member 1 -->
     <div class="team-card">
-      <div class="team-card-left">
-        <div class="team-image">
-          <img src="{{url_for('static', filename='img/team2.jpg')}}" alt="John Doe">
+      <div class="team-photo">
+        <img src="{{url_for('static', filename='img/team2.jpg')}}" alt="John Doe">
+        <div class="team-social">
+          <a href="#" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="#" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
         </div>
       </div>
-      <div class="team-card-right">
-        <div class="team-info">
-          <h3>John Doe</h3>
-          <p class="team-role">Chief Technology Officer</p>
-          <p class="team-bio">John has over 15 years of experience in AI, Cloud Architecture, and emerging tech
-            trends.</p>
-          <div class="team-social">
-            <a href="#" class="social-link" title="twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="social-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="#" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
-          </div>
-        </div>
+      <div class="team-info">
+        <h3>John Doe</h3>
+        <p class="team-role">Chief Technology Officer</p>
+        <p class="team-bio">John has over 15 years of experience in AI, Cloud Architecture, and emerging tech trends.
+        </p>
       </div>
     </div>
 
     <!-- Team Member 2 -->
     <div class="team-card">
-      <div class="team-card-left">
-        <div class="team-image">
-          <img src="{{url_for('static', filename='img/team1.jpg')}}" alt="Jane Smith">
+      <div class="team-photo">
+        <img src="{{url_for('static', filename='img/team1.jpg')}}" alt="Jane Smith">
+        <div class="team-social">
+          <a href="#" class="social-link" title="Behance"><i class="fab fa-behance"></i></a>
+          <a href="#" class="social-link" title="Dribbble"><i class="fab fa-dribbble"></i></a>
+          <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
       </div>
-      <div class="team-card-right">
-        <div class="team-info">
-          <h3>Jane Smith</h3>
-          <p class="team-role">Lead Designer</p>
-          <p class="team-bio">A creative designer specializing in UI/UX with a passion for creating
-            user-centered products.</p>
-          <div class="team-social">
-            <a href="#" class="social-link"><i class="fab fa-behance" title="Behance"></i></a>
-            <a href="#" class="social-link" title="Dribble"><i class="fab fa-dribbble"></i></a>
-            <a href="#" title="Instagram" class="social-link"><i class="fab fa-instagram"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Journey Section with Timeline -->
-<section class="about-journey">
-  <h2>Our Journey</h2>
-  <div class="timeline">
-    <!-- Timeline Event 1 -->
-    <div class="timeline-event left">
-      <div class="timeline-icon">
-        <i class="fas fa-rocket"></i> <!-- Icon for the event -->
-      </div>
-      <div class="timeline-content">
-        <h3>2024 - Launch</h3>
-        <p>TechBlog launched with a mission to provide the latest in technology news and innovation insights.</p>
-      </div>
-    </div>
-    <!-- Timeline Event 2 -->
-    <div class="timeline-event right">
-      <div class="timeline-icon">
-        <i class="fas fa-award"></i> <!-- Icon for achievement -->
-      </div>
-      <div class="timeline-content">
-        <h3>2025 - First Milestone</h3>
-        <p>Reached 100,000 monthly readers and established our presence as a trusted tech source.</p>
-      </div>
-    </div>
-    <!-- Timeline Event 3 -->
-    <div class="timeline-event left">
-      <div class="timeline-icon">
-        <i class="fas fa-handshake"></i> <!-- Icon for partnership -->
-      </div>
-      <div class="timeline-content">
-        <h3>2026 - Key Partnership</h3>
-        <p>Partnered with industry leaders to bring exclusive tech insights and early product reviews.</p>
-      </div>
-    </div>
-    <!-- Timeline Event 4 -->
-    <div class="timeline-event right">
-      <div class="timeline-icon">
-        <i class="fas fa-globe"></i> <!-- Icon for global expansion -->
-      </div>
-      <div class="timeline-content">
-        <h3>2027 - Global Expansion</h3>
-        <p>TechBlog expanded its reach globally, offering localized content and expanding its community across
-          multiple continents.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Achievements and Partnerships Section -->
-<section class="achievements-partnerships">
-  <h2>Achievements & Partnerships</h2>
-  <div class="achievements-grid">
-    <!-- Achievement 1 -->
-    <div class="achievement-card">
-      <div class="achievement-icon">
-        <i class="fas fa-trophy"></i> <!-- Icon for achievement -->
-      </div>
-      <div class="achievement-content">
-        <h3>100,000 Monthly Readers</h3>
-        <p>We’ve reached a significant milestone of 100,000 monthly readers, thanks to our dedicated tech community.
-        </p>
-      </div>
-    </div>
-
-    <!-- Achievement 2 -->
-    <div class="achievement-card">
-      <div class="achievement-icon">
-        <i class="fas fa-handshake"></i> <!-- Icon for partnership -->
-      </div>
-      <div class="achievement-content">
-        <h3>Partnership with XYZ Corp</h3>
-        <p>In 2023, we partnered with XYZ Corporation to deliver exclusive tech insights and early access to new
+      <div class="team-info">
+        <h3>Jane Smith</h3>
+        <p class="team-role">Lead Designer</p>
+        <p class="team-bio">A creative designer specializing in UI/UX with a passion for creating user-centered
           products.</p>
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- Achievement 3 -->
-    <div class="achievement-card">
-      <div class="achievement-icon">
-        <i class="fas fa-award"></i> <!-- Icon for award -->
+<!-- Journey Section -->
+<section class="journey-section">
+  <div class="section-header">
+    <h2>Our <span>Journey</span></h2>
+    <p class="section-subtitle">The story of our growth and evolution</p>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot">
+        <i class="fas fa-rocket"></i>
       </div>
-      <div class="achievement-content">
-        <h3>Best Tech Blog Award 2024</h3>
-        <p>We are proud to have been recognized as the Best Tech Blog of 2024 for our commitment to quality content.
-        </p>
+      <div class="timeline-content">
+        <div class="timeline-date">2024</div>
+        <h3>Launch</h3>
+        <p>TechBlog launched with a mission to provide the latest in technology news and innovation insights.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot">
+        <i class="fas fa-award"></i>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-date">2025</div>
+        <h3>First Milestone</h3>
+        <p>Reached 100,000 monthly readers and established our presence as a trusted tech source.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot">
+        <i class="fas fa-handshake"></i>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-date">2026</div>
+        <h3>Key Partnership</h3>
+        <p>Partnered with industry leaders to bring exclusive tech insights and early product reviews.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot">
+        <i class="fas fa-globe"></i>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-date">2027</div>
+        <h3>Global Expansion</h3>
+        <p>TechBlog expanded its reach globally, offering localized content and expanding its community across multiple
+          continents.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- Achievements Section -->
+<section class="achievements-section">
+  <div class="section-header">
+    <h2>Our <span>Achievements</span></h2>
+    <p class="section-subtitle">Milestones we're proud of</p>
+  </div>
 
-<!-- Call to Action -->
-<section class="about-cta">
-  <h2>Want to Get In Touch?</h2>
-  <a href="{{ url_for('contact') }}" class="cta-btn">Contact Us</a>
+  <div class="achievements-container">
+    <div class="achievement-card">
+      <div class="achievement-icon">
+        <i class="fas fa-trophy"></i>
+      </div>
+      <h3>100,000+ Monthly Readers</h3>
+      <p>We've reached a significant milestone of 100,000 monthly readers, thanks to our dedicated tech community.</p>
+    </div>
+
+    <div class="achievement-card">
+      <div class="achievement-icon">
+        <i class="fas fa-handshake"></i>
+      </div>
+      <h3>Partnership with XYZ Corp</h3>
+      <p>In 2023, we partnered with XYZ Corporation to deliver exclusive tech insights and early access to new products.
+      </p>
+    </div>
+
+    <div class="achievement-card">
+      <div class="achievement-icon">
+        <i class="fas fa-award"></i>
+      </div>
+      <h3>Best Tech Blog Award 2024</h3>
+      <p>We are proud to have been recognized as the Best Tech Blog of 2024 for our commitment to quality content.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+  <div class="cta-container">
+    <h2>Want to Join Our Journey?</h2>
+    <p>Reach out to us with questions, partnership opportunities, or just to say hello!</p>
+    <div class="cta-buttons">
+      <a href="{{ url_for('contact') }}" class="primary-btn">Contact Us</a>
+      <a href="#" class="secondary-btn">Learn More</a>
+    </div>
+  </div>
 </section>
 {% endblock %}

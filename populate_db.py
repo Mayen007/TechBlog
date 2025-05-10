@@ -228,7 +228,8 @@ def populate_database():
             event_date=datetime(2025, 3, 15),
             image_url='img/tech_innovations.jpg',
             link='https://techconference2025.com',
-            is_featured=True
+            is_featured=True,
+            category='Conference'
         )
 
         event2 = Event(
@@ -238,7 +239,8 @@ def populate_database():
             event_date=datetime(2025, 4, 10),
             image_url='img/ai_ml_summit.jpg',
             link='https://aimlsummit.com',
-            is_featured=True
+            is_featured=True,
+            category='Webinar'
         )
 
         event3 = Event(
@@ -248,7 +250,8 @@ def populate_database():
             event_date=datetime(2025, 6, 20),
             image_url='events/cybersecurity_forum.jpg',
             link='https://cybersecurityforum.com',
-            is_featured=False
+            is_featured=False,
+            category='Workshop'
         )
 
         event4 = Event(
@@ -258,7 +261,8 @@ def populate_database():
             event_date=datetime(2025, 7, 5),
             image_url='img/web_devcon.jpg',
             link='https://webdevcon.com',
-            is_featured=True
+            is_featured=True,
+            category='Hackathon'
         )
 
         event5 = Event(
@@ -268,7 +272,8 @@ def populate_database():
             event_date=datetime(2025, 9, 12),
             image_url='events/cloud_expo.jpg',
             link='https://cloudexpo.com',
-            is_featured=False
+            is_featured=False,
+            category='Webinar'
         )
 
         event6 = Event(
@@ -278,7 +283,8 @@ def populate_database():
             event_date=datetime(2025, 10, 18),
             image_url='events/blockchain_summit.jpg',
             link='https://blockchainsummit.com',
-            is_featured=True
+            is_featured=True,
+            category='Workshop'
         )
 
         event7 = Event(
@@ -288,7 +294,8 @@ def populate_database():
             event_date=datetime(2025, 11, 8),
             image_url='events/robotics_expo.jpg',
             link='https://roboticsexpo.com',
-            is_featured=False
+            is_featured=False,
+            category='Conference'
         )
 
         event8 = Event(
@@ -298,7 +305,8 @@ def populate_database():
             event_date=datetime(2025, 12, 2),
             image_url='events/startup_pitch.jpg',
             link='https://startuppitchnight.com',
-            is_featured=True
+            is_featured=True,
+            category='Hackathon'
         )
         events = [event1, event2, event3, event4,
                   event5, event6, event7, event8]

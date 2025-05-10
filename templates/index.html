@@ -4,94 +4,237 @@
 
 {% block content %}
 <section id="home" class="hero">
+  <div class="hero-background">
+    <div class="hero-shape shape-1"></div>
+    <div class="hero-shape shape-2"></div>
+    <div class="hero-shape shape-3"></div>
+  </div>
   <div class="hero-content">
-    <h1>Welcome to <span>TechBlog</span></h1>
-    <p class="description">Stay updated with the latest tech trends and tutorials.</p>
-    <a href="#blog" class="cta-btn">Read the Blog</a>
+    <h1>Explore the <span>Digital Frontier</span></h1>
+    <p class="description">Where technology meets insight — stay ahead of tomorrow's innovations.</p>
+    <div class="hero-cta">
+      <a href="#blog" class="primary-btn">Discover Articles</a>
+      <a href="{{ url_for('about') }}" class="secondary-btn">Our Mission</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number">2K+</span>
+        <span class="stat-label">Monthly Readers</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">200+</span>
+        <span class="stat-label">Articles</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">24</span>
+        <span class="stat-label">Tech Experts</span>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <div class="mouse">
+      <div class="wheel"></div>
+    </div>
+    <div class="arrow">
+      <span></span>
+      <span></span>
+    </div>
   </div>
 </section>
-<section class="header-down-arrow">
-  <img src="{{ url_for('static', filename='img/downarrow.png') }}" alt="down arrow" title="Pull Up" width="50">
-</section>
-
 <!-- Featured Articles -->
 <section id="blog" class="featured-articles">
-  <h2>Featured Articles</h2>
-  <div class="article-grid">
-    <article class="article-card">
-      <img src="{{url_for('static', filename='img/web-dev.jpg')}}" alt="Article 1" loading="lazy">
-      <h3>Latest in Web Development</h3>
-      <p>A deep dive into the modern web development landscape.</p>
-      <a href="{{ url_for('post', post_id=2) }}" class="read-more">Read More</a>
-    </article>
-    <article class="article-card">
-      <img src="{{url_for('static', filename='img/ai-ml.jpg')}}" alt="Article 2" loading="lazy">
-      <h3>AI and Machine Learning</h3>
-      <p>Exploring the potential of AI in everyday applications.</p>
-      <a href="{{ url_for('post', post_id=1) }}" class="read-more">Read More</a>
-    </article>
-    <article class="article-card">
-      <img src="{{url_for('static', filename='img/tech-gadget.jpg')}}" alt="Article 3" loading="lazy">
-      <h3>Tech Gadgets of {{ year }}</h3>
-      <p>Reviewing the hottest gadgets on the market this year.</p>
-      <a href="{{ url_for('post', post_id=3) }}" class="read-more">Read More</a>
-    </article>
-    <article class="article-card">
-      <img src="{{ url_for('static', filename='img/cybersecurity.jpg') }}" alt="Cybersecurity Trends 2024"
-        loading="lazy">
+  <div class="section-header">
+    <h2>Featured <span>Insights</span></h2>
+    <p class="section-subtitle">Curated tech knowledge from our experts</p>
+  </div>
 
-      <h3>Cybersecurity Trends for {{ year }}</h3>
-      <p>Discover the top cybersecurity challenges and trends shaping the tech world in 2024.</p>
-      <a href="{{ url_for('post', post_id=5) }}" class="read-more">Read More</a>
-    </article>
+  <div class="article-showcase">
+    <div class="article-main">
+      <article class="article-card featured">
+        <div class="article-image">
+          <img src="{{url_for('static', filename='img/web-dev.jpg')}}" alt="Latest Web Development Trends"
+            loading="lazy">
+          <div class="article-tag">Trending</div>
+        </div>
+        <div class="article-content">
+          <span class="article-category">Web Development</span>
+          <h3>The Evolution of Web Architecture in {{ year }}</h3>
+          <p>Exploring how modern frameworks and serverless computing are reshaping the digital landscape.</p>
+          <div class="article-meta">
+            <span class="article-date">May 5, {{ year }}</span>
+            <span class="article-read-time">8 min read</span>
+          </div>
+          <a href="{{ url_for('post', post_id=2) }}" class="read-more">
+            Read Article <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </article>
+    </div>
+
+    <div class="article-grid">
+      <article class="article-card">
+        <div class="article-image">
+          <img src="{{url_for('static', filename='img/ai-ml.jpg')}}" alt="AI and Machine Learning" loading="lazy">
+          <div class="article-tag">Hot Topic</div>
+        </div>
+        <div class="article-content">
+          <span class="article-category">Artificial Intelligence</span>
+          <h3>AI Beyond the Hype: Practical Applications</h3>
+          <p>How businesses are implementing AI solutions that deliver real value.</p>
+          <div class="article-meta">
+            <span class="article-date">April 28, {{ year }}</span>
+            <span class="article-read-time">6 min read</span>
+          </div>
+          <a href="{{ url_for('post', post_id=1) }}" class="read-more">Read Article <i
+              class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <div class="articles-navigator">
+    <a href="{{ url_for('blogs') }}" class="view-all-btn">View All Articles <i class="fas fa-chevron-right"></i></a>
   </div>
 </section>
+<section class="categories-showcase">
+  <div class="section-header">
+    <h2>Explore <span>Topics</span></h2>
+    <p class="section-subtitle">Dive into our specialized content areas</p>
+  </div>
 
-<!-- Popular Categories -->
-<!-- <section id="categories" class="categories-section">
-  <h2>Popular Categories</h2>
-  <div class="categories-grid">
+  <div class="categories-container">
     <div class="category-card">
-      <i class="fas fa-code"></i> 
+      <div class="category-icon-wrapper">
+        <i class="fas fa-code"></i>
+      </div>
       <h3>Web Development</h3>
+      <p>Frontend, backend, and everything in between</p>
+      <div class="category-stats">
+        <span>42 articles</span>
+      </div>
+      <a href="#" class="category-link">Explore <i class="fas fa-arrow-right"></i></a>
     </div>
+
     <div class="category-card">
-      <i class="fas fa-robot"></i> 
+      <div class="category-icon-wrapper">
+        <i class="fas fa-robot"></i>
+      </div>
       <h3>AI & Machine Learning</h3>
+      <p>The future of intelligent systems</p>
+      <div class="category-stats">
+        <span>38 articles</span>
+      </div>
+      <a href="#" class="category-link">Explore <i class="fas fa-arrow-right"></i></a>
     </div>
+
     <div class="category-card">
-      <i class="fas fa-star"></i> 
-      <h3>Tech Reviews</h3>
-    </div>
-    <div class="category-card">
-      <i class="fas fa-shield-alt"></i> 
+      <div class="category-icon-wrapper">
+        <i class="fas fa-shield-alt"></i>
+      </div>
       <h3>Cybersecurity</h3>
+      <p>Protecting digital assets in an evolving landscape</p>
+      <div class="category-stats">
+        <span>29 articles</span>
+      </div>
+      <a href="#" class="category-link">Explore <i class="fas fa-arrow-right"></i></a>
     </div>
-  </div>
-</section> -->
-<!-- Event Hub Teaser Section -->
-<section class="event-teaser">
-  <div class="teaser-content">
-    <h2>Discover Tech Events</h2>
-    <p>Stay ahead with the latest tech conferences, meetups, and webinars. Explore events tailored for tech enthusiasts!
-    </p>
-    <a href="{{ url_for('events') }}" class="btn">Explore Events</a>
-  </div>
-  <div class="teaser-image">
-    <img src="{{url_for('static', filename='img/events.jpg')}}" alt="Upcoming tech events" />
+
+    <div class="category-card">
+      <div class="category-icon-wrapper">
+        <i class="fas fa-microchip"></i>
+      </div>
+      <h3>Emerging Tech</h3>
+      <p>Quantum computing, AR/VR, and beyond</p>
+      <div class="category-stats">
+        <span>24 articles</span>
+      </div>
+      <a href="#" class="category-link">Explore <i class="fas fa-arrow-right"></i></a>
+    </div>
   </div>
 </section>
+<section class="events-showcase">
+  <div class="events-background"></div>
 
+  <div class="events-content">
+    <div class="section-header light">
+      <h2>Tech <span>Events</span></h2>
+      <p class="section-subtitle">Connect, learn, and grow with the community</p>
+    </div>
 
+    <div class="featured-event">
+      <div class="event-date">
+        <span class="month">JUN</span>
+        <span class="day">15</span>
+      </div>
+
+      <div class="event-details">
+        <h3>TechSummit {{ year }}</h3>
+        <p class="event-description">Join industry leaders for a day of insights, networking, and hands-on workshops on
+          cutting-edge technologies.</p>
+
+        <div class="event-meta">
+          <span><i class="fas fa-map-marker-alt"></i> San Francisco, CA</span>
+          <span><i class="fas fa-users"></i> 500+ Attendees</span>
+          <span><i class="fas fa-tag"></i> In-person & Virtual</span>
+        </div>
+
+        <a href="{{ url_for('events') }}" class="event-cta">Register Now <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="events-preview">
+      <div class="upcoming-events-counter">
+        <span class="counter">12</span>
+        <span class="label">Upcoming Events</span>
+      </div>
+
+      <a href="{{ url_for('events') }}" class="view-all-events">
+        View All Events <i class="fas fa-calendar-alt"></i>
+      </a>
+    </div>
+  </div>
+</section>
 <section id="subscribe" class="subscribe-section">
-  <div class="subscribe-content">
-    <h2 class="section-title">Join Our Tech Community</h2>
-    <p>Subscribe to our newsletter and never miss an update on the latest tech trends.</p>
-    <form class="subscribe-form" id="subscribe-form">
-      <input type="email" id="email" name="email" class="email-input" placeholder="Enter your email" required
-        aria-label="Email Address" />
-      <button type="submit" class="subscribe-btn">Subscribe</button>
-    </form>
+  <div class="subscribe-container">
+    <div class="subscribe-visual">
+      <div class="device-mockup">
+        <div class="device-screen">
+          <div class="newsletter-preview">
+            <div class="newsletter-header"></div>
+            <div class="newsletter-content">
+              <div class="content-line"></div>
+              <div class="content-line"></div>
+              <div class="content-line"></div>
+            </div>
+            <div class="newsletter-image"></div>
+          </div>
+        </div>
+        <div class="device-notch"></div>
+      </div>
+    </div>
+
+    <div class="subscribe-content">
+      <div class="section-header">
+        <h2>Stay <span>Informed</span></h2>
+        <p class="section-subtitle">Get weekly insights delivered to your inbox</p>
+      </div>
+
+      <ul class="subscribe-benefits">
+        <li><i class="fas fa-check-circle"></i> Exclusive tech insights</li>
+        <li><i class="fas fa-check-circle"></i> Early access to events</li>
+        <li><i class="fas fa-check-circle"></i> Free resources & guides</li>
+      </ul>
+
+      <form class="subscribe-form" id="subscribe-form">
+        <div class="form-group">
+          <input type="email" id="email" name="email" placeholder="Your email address" required>
+          <button type="submit" class="subscribe-btn">
+            Subscribe <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+        <p class="privacy-note">We respect your privacy. Unsubscribe at any time.</p>
+      </form>
+    </div>
   </div>
 </section>
 </main>

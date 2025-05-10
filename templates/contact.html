@@ -2,57 +2,236 @@
 
 {% block title %}TechBlog - Contact{% endblock %}
 
+
 {% block content %}
-<!-- Contact Page -->
+<!-- Hero Section -->
 <section class="contact-hero">
-  <h1>Contact Us</h1>
-  <p>We'd love to hear from you! Whether it's a question, feedback, or just a hello, feel free to reach out.</p>
+  <div class="hero-background">
+    <div class="hero-shape shape-1"></div>
+    <div class="hero-shape shape-2"></div>
+    <div class="hero-shape shape-3"></div>
+  </div>
+  <div class="hero-content">
+    <h1>Get in <span>Touch</span></h1>
+    <p class="description">Have questions or feedback? We'd love to hear from you!</p>
+  </div>
 </section>
 
-<section class="contact-section">
-  <div class="contact-container">
-    <!-- Contact Form -->
-    <div class="contact-form">
-      <h2>Send Us a Message</h2>
-      <form>
-        <div class="form-group">
-          <label for="name">Your Name</label>
-          <input type="text" id="name" placeholder="Enter your name" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Your Email</label>
-          <input type="email" id="email" placeholder="Enter your email" required>
-        </div>
-        <div class="form-group">
-          <label for="message">Your Message</label>
-          <textarea id="message" placeholder="Write your message" required></textarea>
-        </div>
-        <button type="submit" class="submit-btn">Send Message</button>
-      </form>
+<!-- Contact Cards Section -->
+<section class="contact-options">
+  <div class="section-header">
+    <h2>Contact <span>Options</span></h2>
+    <p class="section-subtitle">Choose the way that works best for you</p>
+  </div>
+
+  <div class="contact-cards">
+    <div class="contact-card">
+      <div class="contact-card-icon">
+        <i class="fas fa-envelope"></i>
+      </div>
+      <h3>Email Us</h3>
+      <p>Send us a message and we'll respond within 24 hours</p>
+      <a href="mailto:info@techblog.com" class="contact-link">info@techblog.com</a>
     </div>
 
-    <!-- Contact Info -->
-    <div class="contact-info">
-      <h2>Get in Touch</h2>
-      <p><i class="fas fa-envelope"></i> info@techblog.com</p>
-      <p><i class="fas fa-phone"></i> +123 456 7890</p>
-      <div class="social-icons">
-        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <div class="contact-card">
+      <div class="contact-card-icon">
+        <i class="fas fa-phone-alt"></i>
+      </div>
+      <h3>Call Us</h3>
+      <p>We're available Monday-Friday, 9am-5pm ET</p>
+      <a href="tel:+12345678901" class="contact-link">+1 (234) 567-8901</a>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-card-icon">
+        <i class="fas fa-comments"></i>
+      </div>
+      <h3>Live Chat</h3>
+      <p>Get real-time assistance from our support team</p>
+      <button class="chat-btn">Start Chat</button>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Form Section -->
+<section class="contact-form-section">
+  <div class="contact-container">
+    <div class="form-visual">
+      <div class="form-decoration">
+        <div class="decoration-circle circle-1"></div>
+        <div class="decoration-circle circle-2"></div>
+        <div class="decoration-circle circle-3"></div>
+      </div>
+      <div class="contact-illustration">
+        <img src="{{ url_for('static', filename='img/contact-illustration.svg') }}" alt="Contact us illustration">
+      </div>
+    </div>
+
+    <div class="contact-form-wrapper">
+      <div class="section-header">
+        <h2>Send a <span>Message</span></h2>
+        <p class="section-subtitle">We'll get back to you as soon as possible</p>
+      </div>
+
+      <form id="contact-form" class="contact-form">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <div class="input-with-icon">
+            <i class="fas fa-user"></i>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <div class="input-with-icon">
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="email" name="email" placeholder="Your email" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <div class="input-with-icon">
+            <i class="fas fa-tag"></i>
+            <select id="subject" name="subject" required>
+              <option value="" disabled selected>Select a subject</option>
+              <option value="general">General Inquiry</option>
+              <option value="support">Technical Support</option>
+              <option value="partnership">Partnership Opportunity</option>
+              <option value="feedback">Feedback</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <div class="input-with-icon textarea-icon">
+            <i class="fas fa-comment-alt"></i>
+            <textarea id="message" name="message" placeholder="Your message" rows="5" required></textarea>
+          </div>
+        </div>
+
+        <div class="form-footer">
+          <button type="submit" class="primary-btn">
+            Send Message <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Map Section -->
+<section class="map-section">
+  <div class="section-header">
+    <h2>Visit <span>Us</span></h2>
+    <p class="section-subtitle">Our office is located in the heart of the tech district</p>
+  </div>
+
+  <div class="map-container">
+    <div class="map-card">
+      <div class="map-info">
+        <div class="address-info">
+          <h3>Office Address</h3>
+          <p><i class="fas fa-map-marker-alt"></i> 123 Tech Avenue, Suite 456</p>
+          <p>San Francisco, CA 94107</p>
+          <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="directions-link">
+            Get Directions <i class="fas fa-external-link-alt"></i>
+          </a>
+        </div>
+
+        <div class="office-hours">
+          <h3>Office Hours</h3>
+          <p><i class="fas fa-clock"></i> Monday-Friday: 9am-5pm</p>
+          <p>Saturday-Sunday: Closed</p>
+        </div>
+      </div>
+
+      <div class="map-embed">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63821.19007307667!2d36.814740079101554!3d-1.2789404999999932!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f16b4d057054f%3A0xc99646f4266c5959!2sCity%20Tech%20Technologies!5e0!3m2!1sen!2ske!4v1736538115767!5m2!1sen!2ske"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Google Map -->
-<section class="map-section">
-  <h2>Our Location</h2>
-  <div class="map-container">
-    <!-- Embed Google Map -->
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63821.19007307667!2d36.814740079101554!3d-1.2789404999999932!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f16b4d057054f%3A0xc99646f4266c5959!2sCity%20Tech%20Technologies!5e0!3m2!1sen!2ske!4v1736538115767!5m2!1sen!2ske"
-      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" aria-label="Location"></iframe>
+<!-- Social Connect Section -->
+<section class="social-connect-section">
+  <div class="section-header light">
+    <h2>Connect <span>With Us</span></h2>
+    <p class="section-subtitle">Join our community on social media</p>
+  </div>
+
+  <div class="social-links-container">
+    <a href="#" class="social-connect-link" aria-label="Twitter">
+      <i class="fab fa-twitter"></i>
+      <span>Twitter</span>
+    </a>
+    <a href="#" class="social-connect-link" aria-label="LinkedIn">
+      <i class="fab fa-linkedin-in"></i>
+      <span>LinkedIn</span>
+    </a>
+    <a href="#" class="social-connect-link" aria-label="GitHub">
+      <i class="fab fa-github"></i>
+      <span>GitHub</span>
+    </a>
+    <a href="#" class="social-connect-link" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+      <span>Instagram</span>
+    </a>
+    <a href="#" class="social-connect-link" aria-label="YouTube">
+      <i class="fab fa-youtube"></i>
+      <span>YouTube</span>
+    </a>
   </div>
 </section>
+
+<!-- Thank You Modal -->
+<div id="thank-you-modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div class="success-icon">
+      <i class="fas fa-check-circle"></i>
+    </div>
+    <h2>Thank You!</h2>
+    <p>Your message has been sent successfully. We'll get back to you soon.</p>
+    <button class="primary-btn close-modal-btn">Close</button>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const contactForm = document.getElementById('contact-form');
+    const modal = document.getElementById('thank-you-modal');
+    const closeBtn = document.querySelector('.close');
+    const closeModalBtn = document.querySelector('.close-modal-btn');
+
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      // Here you would normally send the form data to your server
+      // For demo purposes, we'll just show the thank you modal
+      modal.style.display = 'flex';
+      contactForm.reset();
+    });
+
+    closeBtn.addEventListener('click', function () {
+      modal.style.display = 'none';
+    });
+
+    closeModalBtn.addEventListener('click', function () {
+      modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', function (e) {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  });
+</script>
 {% endblock %}

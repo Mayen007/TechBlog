@@ -3,45 +3,223 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
-<article class="blog-post">
-  <h1>{{ post.title }}</h1>
-  <p class="post-meta">
-    <span>Category: {{ post.category }} |</span>
-    <span>Posted on: {{ post.date_posted.strftime('%B %d, %Y') }}</span>
-  </p>
-  <!-- {% if post.image_url %}
-  <img src="{{ post.image_url }}" alt="Image for {{ post.title }}" class="post-image">
-  {% endif %} -->
-  <img src="{{ post.image_url }}" alt="Image for {{ post.title }}" class="post-image">
-
-
-  <div class="post-content">
-    {{ post.content|safe }}
-  </div>
-</article>
-<section id="comments" class="comments-section">
-  <h2>Leave a Comment</h2>
-  <form id="comment-form" method="POST" action="/add_comment/{{ post.id }}">
-    <input type="text" name="username" class="comment-input" placeholder="Your name" required>
-    <textarea name="content" class="comment-input" placeholder="Write your comment here..." required></textarea>
-    <button type="submit" class="submit-comment-btn">Post Comment</button>
-  </form>
-
-  <div id="comment-list" class="comment-list">
-    {% if comments %}
-    {% for comment in comments %}
-    <div class="comment">
-      <div class="comment-header">
-        <div class="avatar">{{ comment.username[0] | upper }}</div>
-        <h3>{{ comment.username }}</h3>
-      </div>
-      <p class="comment-content">{{ comment.body }}</p>
-      <p class="comment-date">Posted on: {{ comment.date_posted.strftime('%B %d, %Y at %I:%M %p') }}</p>
+<!-- Hero Section with post image as background -->
+<section class="post-hero"
+  style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('{{ post.image_url }}');">
+  <div class="hero-content">
+    <span class="post-category">{{ post.category }}</span>
+    <h1>{{ post.title }}</h1>
+    <div class="post-meta">
+      <span><i class="far fa-calendar-alt"></i> {{ post.date_posted.strftime('%B %d, %Y') }}</span>
+      <span><i class="far fa-clock"></i> 8 min read</span>
     </div>
-    {% endfor %}
-    {% else %}
-    <p class="no-comments">Be the first to comment!</p>
-    {% endif %}
+  </div>
+</section>
+
+<!-- Article Content Section -->
+<section class="post-container">
+  <article class="post-content-wrapper">
+    <!-- Author info -->
+    <div class="post-author">
+      <div class="author-image">
+        <img src="{{ url_for('static', filename='img/author-avatar.jpg') }}" alt="Author">
+      </div>
+      <div class="author-info">
+        <h3>John Doe</h3>
+        <p>Tech Writer & Developer</p>
+      </div>
+      <div class="post-share">
+        <span>Share:</span>
+        <a href="#" aria-label="Share on Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+    <!-- Actual post content -->
+    <div class="post-content">
+      {{ post.content|safe }}
+    </div>
+
+    <!-- Tags -->
+    <div class="post-tags">
+      <span>Tags:</span>
+      <a href="#">{{ post.category }}</a>
+      <a href="#">Technology</a>
+      <a href="#">Innovation</a>
+    </div>
+
+    <!-- Post navigation -->
+    <div class="post-navigation">
+      <a href="#" class="prev-post">
+        <span><i class="fas fa-arrow-left"></i> Previous Post</span>
+        <h4>Getting Started with JavaScript</h4>
+      </a>
+      <a href="#" class="next-post">
+        <span>Next Post <i class="fas fa-arrow-right"></i></span>
+        <h4>Future of Cloud Computing</h4>
+      </a>
+    </div>
+  </article>
+
+  <!-- Sidebar -->
+  <aside class="post-sidebar">
+    <!-- Author bio card -->
+    <div class="sidebar-widget author-card">
+      <div class="author-card-header">
+        <img src="{{ url_for('static', filename='img/author-avatar.jpg') }}" alt="Author">
+        <h3>John Doe</h3>
+        <p>Tech Writer & Developer</p>
+      </div>
+      <p class="author-bio">John is a seasoned tech enthusiast with over 10 years of experience in software development
+        and emerging technologies.</p>
+      <div class="author-social">
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+
+    <!-- Related posts widget -->
+    <div class="sidebar-widget">
+      <h3>Related Articles</h3>
+      <div class="widget-content related-posts">
+        <div class="related-post">
+          <img src="{{ url_for('static', filename='img/ai-ml.jpg') }}" alt="AI and Machine Learning">
+          <div>
+            <h4><a href="#">The Future of AI in 2025</a></h4>
+            <span>May 15, {{ year }}</span>
+          </div>
+        </div>
+        <div class="related-post">
+          <img src="{{ url_for('static', filename='img/web-dev.jpg') }}" alt="Web Development">
+          <div>
+            <h4><a href="#">Modern CSS Frameworks</a></h4>
+            <span>April 28, {{ year }}</span>
+          </div>
+        </div>
+        <div class="related-post">
+          <img src="{{ url_for('static', filename='img/cybersecurity.jpg') }}" alt="Cybersecurity">
+          <div>
+            <h4><a href="#">Cybersecurity Best Practices</a></h4>
+            <span>April 10, {{ year }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Newsletter subscription -->
+    <div class="sidebar-widget newsletter-widget">
+      <h3>Subscribe to Our Newsletter</h3>
+      <p>Get the latest articles and tech insights right in your inbox.</p>
+      <form class="sidebar-form">
+        <input type="email" placeholder="Your email address" required>
+        <button type="submit"><i class="fas fa-paper-plane" title="Send"></i></button>
+      </form>
+    </div>
+  </aside>
+</section>
+
+<!-- Comments Section -->
+<section class="comments-section">
+  <div class="comments-container">
+    <h2><span>Comments</span> ({{ comments|length if comments else 0 }})</h2>
+
+    <!-- Leave a comment form -->
+    <div class="comment-form-container">
+      <h3>Leave a Comment</h3>
+      <form id="comment-form" method="POST" action="/add_comment/{{ post.id }}">
+        <div class="form-group">
+          <div class="input-with-icon">
+            <i class="fas fa-user"></i>
+            <input type="text" name="username" placeholder="Your name" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-with-icon textarea-icon">
+            <i class="fas fa-comment-alt"></i>
+            <textarea name="content" placeholder="Write your comment here..." rows="4" required></textarea>
+          </div>
+        </div>
+        <button type="submit" class="primary-btn">
+          Post Comment <i class="fas fa-paper-plane"></i>
+        </button>
+      </form>
+    </div>
+
+    <!-- Comments list -->
+    <div id="comment-list" class="comment-list">
+      {% if comments %}
+      {% for comment in comments %}
+      <div class="comment">
+        <div class="comment-avatar">{{ comment.username[0] | upper }}</div>
+        <div class="comment-body">
+          <div class="comment-header">
+            <h4>{{ comment.username }}</h4>
+            <span class="comment-date">{{ comment.date_posted.strftime('%B %d, %Y at %I:%M %p') }}</span>
+          </div>
+          <div class="comment-text">
+            <p>{{ comment.body }}</p>
+          </div>
+          <button class="reply-btn"><i class="fas fa-reply"></i> Reply</button>
+        </div>
+      </div>
+      {% endfor %}
+      {% else %}
+      <div class="no-comments">
+        <i class="far fa-comment-dots"></i>
+        <p>Be the first to share your thoughts!</p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- Related Articles Section -->
+<section class="related-articles-section">
+  <div class="section-header">
+    <h2>You Might Also <span>Enjoy</span></h2>
+    <p class="section-subtitle">More articles from this category</p>
+  </div>
+
+  <div class="related-articles-container">
+    <article class="related-article-card">
+      <div class="article-image">
+        <img src="{{ url_for('static', filename='img/ai-ml.jpg') }}" alt="AI and Machine Learning">
+        <div class="article-tag">Popular</div>
+      </div>
+      <div class="article-content">
+        <span class="article-category">{{ post.category }}</span>
+        <h3>Machine Learning Explained Simply</h3>
+        <p>A beginner's guide to understanding how machines learn patterns from data.</p>
+        <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </article>
+
+    <article class="related-article-card">
+      <div class="article-image">
+        <img src="{{ url_for('static', filename='img/web-dev.jpg') }}" alt="Web Development">
+        <div class="article-tag">New</div>
+      </div>
+      <div class="article-content">
+        <span class="article-category">{{ post.category }}</span>
+        <h3>Understanding Web Architecture</h3>
+        <p>Learn how modern web applications are structured and deployed.</p>
+        <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </article>
+
+    <article class="related-article-card">
+      <div class="article-image">
+        <img src="{{ url_for('static', filename='img/cybersecurity.jpg') }}" alt="Cybersecurity">
+      </div>
+      <div class="article-content">
+        <span class="article-category">{{ post.category }}</span>
+        <h3>Essential Security Practices</h3>
+        <p>Protect your digital assets with these proven security methods.</p>
+        <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </article>
   </div>
 </section>
 
