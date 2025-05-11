@@ -6,6 +6,7 @@ from models import Post, Comment, Event
 from datetime import datetime
 
 
+
 def create_app():
     app = Flask(__name__)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
@@ -47,10 +48,10 @@ def create_app():
 
     @app.route('/events')
     def events():
-        featured_events = Event.query.filter_by(is_featured=True).order_by(
-            Event.event_date.asc()).limit(3).all()
-        events = Event.query.order_by(Event.event_date.asc()).all()
-        return render_template('events.html', featured_events=featured_events, events=events)
+        featured_events = Event.query.filter_by(
+            is_featured=True).order_by(Event.event_date).all()
+        all_events = Event.query.order_by(Event.event_date).all()
+        return render_template('events.html', featured_events=featured_events, events=all_events)
 
     @app.route("/blogs")
     def blogs():
