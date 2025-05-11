@@ -16,6 +16,7 @@ def create_app():
     db.init_app(app)
     migrate = Migrate(app, db)
 
+    # Initialize the database if needed
     with app.app_context():
         try:
             # Try to query the database
@@ -39,16 +40,19 @@ def create_app():
 
     @app.route('/api/events')
     def get_events():
-        events = Event.query.all()
-        events_data = [
-            {
-                "title": event.title,
-                "start": event.event_date.strftime('%Y-%m-%d'),
-                "url": event.link
-            }
-            for event in events
-        ]
-        return jsonify(events_data)
+        try:
+            events = Event.query.all()
+            events_data = [
+                {
+                    "title": event.title,
+                    "start": event.event_date.strftime('%Y-%m-%d'),
+                    "url": event.link
+                }
+                for event in events
+            ]
+            return jsonify(events_data)
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
 
     @app.route('/')
     def home():
@@ -66,7 +70,7 @@ def create_app():
     @app.route("/blogs")
     def blogs():
         posts = Post.query.all()
-        featured_post = random.choice(posts)
+        featured_post = random.choice(posts) if posts else None
         return render_template("blogs.html", posts=posts, featured_post=featured_post)
 
     @app.route("/post/<int:post_id>")
@@ -80,8 +84,14 @@ def create_app():
         next_post = Post.query.filter(
             Post.id > post_id).order_by(Post.id.asc()).first()
 
+        related_posts = Post.query.filter(
+            Post.category == post.category,
+            Post.id != post.id
+        ).order_by(Post.date_posted.desc()).limit(3).all()
+
         return render_template("post.html", post=post, comments=comments,
-                               prev_post=prev_post, next_post=next_post, posts=Post.query.all())
+                               prev_post=prev_post, next_post=next_post,
+                               related_posts=related_posts)
 
     @app.route('/add_comment/<int:post_id>', methods=['POST'])
     def add_comment(post_id):
