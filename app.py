@@ -4,15 +4,26 @@ from extensions import db
 from flask_migrate import Migrate
 from models import Post, Comment, Event
 from datetime import datetime
+import os
 
 
 def create_app():
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
+        'DATABASE_URL', 'sqlite:///site.db')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.init_app(app)
     migrate = Migrate(app, db)
+
+    with app.app_context():
+        try:
+            # Try to query the database
+            Event.query.first()
+        except Exception as e:
+            print(f"Database initialization needed: {e}")
+            db.create_all()
+            print("Database tables created successfully!")
 
     @app.context_processor
     def inject_year():
@@ -94,5 +105,6 @@ def create_app():
 
 
 app = create_app()
+
 if __name__ == "__main__":
     app.run(debug=True)

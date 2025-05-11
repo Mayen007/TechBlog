@@ -8,11 +8,29 @@ def populate_database():
     app = create_app()
 
     with app.app_context():
+        # Check if tables exist, create them if they don't
+        try:
+            event_count = Event.query.count()
+            post_count = Post.query.count()
+
+            # If we already have data, ask before overwriting
+            if event_count > 0 or post_count > 0:
+                print(
+                    f"Database already contains {event_count} events and {post_count} posts.")
+                choice = input(
+                    "Do you want to clear existing data and repopulate? (y/n): ")
+                if choice.lower() != 'y':
+                    print("Database population canceled.")
+                    return
+        except Exception as e:
+            print(f"Creating database tables: {e}")
+            db.create_all()
+
         # Clear existing data
+        print("Clearing existing data...")
         Comment.query.delete()
         Post.query.delete()
-
-        # Sample posts
+        Event.query.delete()
 
         post1 = Post(
             title="The Future of Artificial Intelligence",
