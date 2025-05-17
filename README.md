@@ -6,7 +6,7 @@ TechBlog is a modern, sleek tech-focused website designed to keep users updated 
 
 Check out the live site here:
 
-- [TechBlog on Vercel](https://techblog-opal.vercel.app)
+- [TechBlog on Vercel](https://techblog-coral.vercel.app)
 - [TechBlog on Render](https://tech-blog-t04y.onrender.com)
 
 ## Table of Contents
