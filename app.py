@@ -84,10 +84,13 @@ def create_app():
         next_post = Post.query.filter(
             Post.id > post_id).order_by(Post.id.asc()).first()
 
-        related_posts = Post.query.filter(
-            Post.category == post.category,
-            Post.id != post.id
-        ).order_by(Post.date_posted.desc()).limit(3).all()
+        # Get related posts (same category, excluding current post)
+        related_posts = []
+        if post.category:
+            related_posts = Post.query.filter(
+                Post.category == post.category,
+                Post.id != post.id
+            ).order_by(Post.date_posted.desc()).limit(3).all()
 
         return render_template("post.html", post=post, comments=comments,
                                prev_post=prev_post, next_post=next_post,
@@ -117,4 +120,7 @@ def create_app():
 app = create_app()
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    from werkzeug.middleware.proxy_fix import ProxyFix
+
+    app.wsgi_app = ProxyFix(app.wsgi_app)
+    app.run(host="0.0.0.0", port=5000)

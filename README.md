@@ -1,10 +1,13 @@
 # TechBlog
 
-TechBlog is a modern, sleek tech-focused website designed to keep users updated on the latest trends, news, and insights in the world of technology. Built with Flask, HTML, CSS, and JavaScript, this site provides a seamless user experience with features like a featured articles section and a responsive layout.
+TechBlog is a modern, sleek tech-focused website designed to keep users updated on the latest trends, news, and insights in the world of technology. Built with Flask, HTML, CSS, and JavaScript, this site provides a seamless user experience with features like a dynamic event calendar, category filtering, and a responsive layout optimized for all devices.
 
 ## Live Demo
 
-Check out the live site here: [TechBlog on Render](https://tech-blog-t04y.onrender.com/post/4)
+Check out the live site here:
+
+- [TechBlog on Vercel](https://techblog-b0bw0y966-mayens-projects.vercel.app)
+- [TechBlog on Render](https://tech-blog-t04y.onrender.com)
 
 ## Table of Contents
 
@@ -19,11 +22,13 @@ Check out the live site here: [TechBlog on Render](https://tech-blog-t04y.onrend
 
 ## Features
 
-- **Responsive Design**: Optimized for all screen sizes, including desktops, tablets, and smartphones.
-- **Homepage with Featured Articles**: Displays popular articles in a modern grid layout.
-- **About Page with Timeline Animation**: Our journey presented with smooth scroll animations.
-- **Contact Page**: Allows users to reach out via a modern form.
-- **Category Filters**: Browse articles by category on the blog page.
+- **Responsive Design**: Fully optimized for all screen sizes, including desktops, tablets, and smartphones.
+- **Dark/Light Theme Toggle**: User-controlled theme preference that persists across sessions.
+- **Dynamic Event Calendar**: Browse and filter tech events by category (Conferences, Workshops, Webinars, Hackathons).
+- **Blog Post Filtering**: Find articles by category with interactive filtering.
+- **Related Articles**: Smart suggestions for related content based on the current post's category.
+- **Post Navigation**: Easy navigation between previous and next posts.
+- **Comment System**: Leave comments on blog posts with real-time submission.
 - **Sleek Navigation**: Sticky header with a navigation bar that collapses into a mobile-friendly menu.
 
 ## Installation
@@ -56,6 +61,12 @@ source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 pip install -r requirements.txt
 ```
 
+### Initialize the Database
+
+```bash
+python populate_db.py
+```
+
 ### Run the Application
 
 ```bash
@@ -64,13 +75,33 @@ flask run
 
 The application will be available at `http://127.0.0.1:5000/`.
 
+### Deployment
+
+#### Deploy to Vercel:
+
+```bash
+vercel login
+vercel
+```
+
+#### Deploy to Render:
+
+Create a new Web Service on Render, connect your GitHub repository, and set:
+
+- Build Command: `pip install -r requirements.txt`
+- Start Command: `gunicorn app:app`
+
 ## Tech Stack
 
-- **Flask** - Backend framework.
+- **Flask** - Backend web framework.
+- **SQLAlchemy** - ORM for database management.
+- **Flask-Migrate** - Database migrations.
 - **HTML5** - For structuring content.
-- **CSS3** - Styled with modern CSS techniques.
-- **JavaScript (ES6+)** - Interactive features.
+- **CSS3** - Styled with modern CSS techniques including CSS variables for theming.
+- **JavaScript (ES6+)** - For interactive features like filtering and theme toggling.
 - **FontAwesome** - Icons used throughout the site.
+- **Gunicorn** - WSGI HTTP Server for deployment.
+- **Vercel & Render** - Hosting platforms for deployment.
 
 ## Contributing
 
@@ -121,3 +152,28 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - Special thanks to the open-source community for providing inspiration and code snippets.
 - Icons provided by FontAwesome.
 - High-quality images sourced from [Freepik](https://www.freepik.com) and [Unsplash](https://unsplash.com).
+- Deployed on [Vercel](https://vercel.com) and [Render](https://render.com) platforms.
+
+## Project Structure
+
+```
+TechBlog/
+├── app.py                # Main application file
+├── extensions.py         # Flask extensions
+├── models.py             # Database models
+├── populate_db.py        # Database initialization
+├── requirements.txt      # Dependencies
+├── vercel.json           # Vercel deployment configuration
+├── static/               # Static assets
+│   ├── css/              # Stylesheets
+│   ├── img/              # Images
+│   └── js/               # JavaScript files
+└── templates/            # HTML templates
+    ├── base.html         # Base template
+    ├── index.html        # Homepage
+    ├── blogs.html        # Blog listing
+    ├── post.html         # Single blog post
+    ├── events.html       # Events listing
+    ├── about.html        # About page
+    └── contact.html      # Contact page
+```
