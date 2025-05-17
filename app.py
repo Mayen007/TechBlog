@@ -4,6 +4,7 @@ from extensions import db
 from flask_migrate import Migrate
 from models import Post, Comment, Event
 from datetime import datetime
+from sqlalchemy import func
 import os
 
 
@@ -30,6 +31,10 @@ def create_app():
     def inject_year():
         return {'year': datetime.utcnow().year}
 
+    @app.route('/')
+    def home():
+        return render_template('index.html')
+
     @app.route('/about')
     def about():
         return render_template('about.html')
@@ -54,12 +59,6 @@ def create_app():
         except Exception as e:
             return jsonify({"error": str(e)}), 500
 
-    @app.route('/')
-    def home():
-        teaser_events = Event.query.filter_by(is_featured=True).order_by(
-            Event.event_date.asc()).limit(2).all()
-        return render_template('index.html', teaser_events=teaser_events)
-
     @app.route('/events')
     def events():
         featured_events = Event.query.filter_by(
@@ -78,13 +77,11 @@ def create_app():
         post = Post.query.get_or_404(post_id)
         comments = Comment.query.filter_by(post_id=post.id).all()
 
-        # Get previous and next posts for navigation
         prev_post = Post.query.filter(
             Post.id < post_id).order_by(Post.id.desc()).first()
         next_post = Post.query.filter(
             Post.id > post_id).order_by(Post.id.asc()).first()
 
-        # Get related posts (same category, excluding current post)
         related_posts = []
         if post.category:
             related_posts = Post.query.filter(
@@ -92,9 +89,22 @@ def create_app():
                 Post.id != post.id
             ).order_by(Post.date_posted.desc()).limit(3).all()
 
+        recommended_posts = []
+        if post.category:
+            recommended_posts = Post.query.filter(
+                Post.category != post.category,
+                Post.id != post.id
+            ).order_by(func.random()).limit(3).all()
+
+        if not recommended_posts:
+            recommended_posts = Post.query.filter(
+                Post.id != post.id
+            ).order_by(func.random()).limit(3).all()
+
         return render_template("post.html", post=post, comments=comments,
                                prev_post=prev_post, next_post=next_post,
-                               related_posts=related_posts)
+                               related_posts=related_posts,
+                               recommended_posts=recommended_posts)
 
     @app.route('/add_comment/<int:post_id>', methods=['POST'])
     def add_comment(post_id):
@@ -111,7 +121,6 @@ def create_app():
         db.session.add(comment)
         db.session.commit()
 
-        # Redirect to the post page
         return redirect(url_for('post', post_id=post_id))
 
     return app

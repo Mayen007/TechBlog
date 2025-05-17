@@ -57,7 +57,7 @@ def populate_database():
         """,
             category="Artificial Intelligence",
             date_posted=datetime.utcnow(),
-            image_url="./static/img/ai-ml.jpg"
+            image_url="img/ai-ml.jpg"
         )
 
         post2 = Post(
@@ -100,7 +100,7 @@ def populate_database():
             """,
             category="Web Development",
             date_posted=datetime.utcnow(),
-            image_url="./static/img/web-dev.jpg"
+            image_url="img/web-dev.jpg"
         )
 
         post3 = Post(
@@ -130,7 +130,7 @@ def populate_database():
         """,
             category="Tech and Gadgets",
             date_posted=datetime.utcnow(),
-            image_url="./static/img/tech-gadget.jpg"
+            image_url="img/tech-gadget.jpg"
         )
 
         post4 = Post(
@@ -161,7 +161,7 @@ def populate_database():
         """,
             category="Technology",
             date_posted=datetime.utcnow(),
-            image_url="./static/img/5g.jpg"
+            image_url="img/5g.jpg"
         )
 
         post5 = Post(
@@ -202,7 +202,7 @@ def populate_database():
             """,
             category="Cybersecurity",
             date_posted=datetime.utcnow(),
-            image_url="./static/img/cybersecurity.jpg"
+            image_url="img/cybersecurity.jpg"
         )
 
         post6 = Post(
@@ -242,7 +242,7 @@ def populate_database():
             """,
             category="Technology",
             date_posted=datetime.utcnow(),
-            image_url="./static/img/quantum-computing.jpg"
+            image_url="img/quantum-computing.jpg"
         )
 
         db.session.add_all([post1, post2, post3, post4, post5, post6])
@@ -275,7 +275,7 @@ def populate_database():
             description='A deep dive into the latest cybersecurity trends and best practices.',
             location='London, UK',
             event_date=datetime(2025, 6, 20),
-            image_url='events/cybersecurity_forum.jpg',
+            image_url='img/cybersecurity_forum.jpg',
             link='https://cybersecurityforum.com',
             is_featured=False,
             category='Workshop'
@@ -297,7 +297,7 @@ def populate_database():
             description='Discover how cloud technology is transforming industries worldwide.',
             location='Singapore',
             event_date=datetime(2025, 9, 12),
-            image_url='events/cloud_expo.jpg',
+            image_url='img/cloud_expo.jpg',
             link='https://cloudexpo.com',
             is_featured=False,
             category='Webinar'
@@ -319,7 +319,7 @@ def populate_database():
             description='Showcasing cutting-edge robotics and automation advancements.',
             location='Tokyo, Japan',
             event_date=datetime(2025, 11, 8),
-            image_url='events/robotics_expo.jpg',
+            image_url='img/robotics_expo.jpg',
             link='https://roboticsexpo.com',
             is_featured=False,
             category='Conference'

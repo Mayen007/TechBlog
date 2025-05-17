@@ -31,7 +31,7 @@
         <img src="{{ url_for('static', filename='img/author-avatar.jpg') }}" alt="Author">
       </div>
       <div class="author-info">
-        <h3>John Doe</h3>
+        <h3>Mayen Akech</h3>
         <p>Tech Writer & Developer</p>
       </div>
       <div class="post-share">
@@ -93,10 +93,10 @@
     <div class="sidebar-widget author-card">
       <div class="author-card-header">
         <img src="{{ url_for('static', filename='img/author-avatar.jpg') }}" alt="Author">
-        <h3>John Doe</h3>
+        <h3>Mayen Akech</h3>
         <p>Tech Writer & Developer</p>
       </div>
-      <p class="author-bio">John is a seasoned tech enthusiast with over 10 years of experience in software development
+      <p class="author-bio">Mayen is a seasoned tech enthusiast with over 10 years of experience in software development
         and emerging technologies.</p>
       <div class="author-social">
         <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
@@ -199,12 +199,12 @@
 <section class="related-articles-section">
   <div class="section-header">
     <h2>You Might Also <span>Enjoy</span></h2>
-    <p class="section-subtitle">More articles from this category</p>
+    <p class="section-subtitle">Discover more tech insights</p>
   </div>
 
   <div class="related-articles-container">
-    {% if related_posts %}
-    {% for related in related_posts %}
+    {% if recommended_posts %}
+    {% for related in recommended_posts %}
     <article class="related-article-card">
       <div class="article-image">
         <img
@@ -227,7 +227,7 @@
     {% endfor %}
     {% else %}
     <div class="no-related">
-      <p>No related articles available at this time.</p>
+      <p>No recommended articles available at this time.</p>
     </div>
     {% endif %}
   </div>
