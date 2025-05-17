@@ -299,7 +299,7 @@ def populate_database():
             description='Explore the future of blockchain technology and digital assets.',
             location='Dubai, UAE',
             event_date=datetime(2025, 10, 18),
-            image_url='events/blockchain_summit.jpg',
+            image_url='img/blockchain_summit.jpg',
             link='https://blockchainsummit.com',
             is_featured=True,
             category='Workshop'
@@ -321,7 +321,7 @@ def populate_database():
             description='Where the hottest startups present their innovations to investors.',
             location='Silicon Valley, CA',
             event_date=datetime(2025, 12, 2),
-            image_url='events/startup_pitch.jpg',
+            image_url='img/techstartup.jpg',
             link='https://startuppitchnight.com',
             is_featured=True,
             category='Hackathon'
