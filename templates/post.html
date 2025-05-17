@@ -109,27 +109,23 @@
     <div class="sidebar-widget">
       <h3>Related Articles</h3>
       <div class="widget-content related-posts">
+        {% if related_posts %}
+        {% for related in related_posts %}
         <div class="related-post">
-          <img src="{{ url_for('static', filename='img/ai-ml.jpg') }}" alt="AI and Machine Learning">
+          <img
+            src="{{ url_for('static', filename=related.image_url) if related.image_url else url_for('static', filename='img/default-post-bg.jpg') }}"
+            alt="{{ related.title }}">
           <div>
-            <h4><a href="{{ url_for('post', post_id=posts[post.id - 1].id) }}">{{ posts[post.id - 1].title }}</a></h4>
-            <span>May 15, {{ year }}</span>
+            <h4><a href="{{ url_for('post', post_id=related.id) }}">{{ related.title }}</a></h4>
+            <span>{{ related.date_posted.strftime('%b %d, %Y') }}</span>
           </div>
         </div>
-        <div class="related-post">
-          <img src="{{ url_for('static', filename='img/web-dev.jpg') }}" alt="Web Development">
-          <div>
-            <h4><a href="{{ url_for('post', post_id=posts[post.id - 1].id) }}">{{ posts[post.id - 1].title }}</a></h4>
-            <span>April 28, {{ year }}</span>
-          </div>
+        {% endfor %}
+        {% else %}
+        <div class="no-related-posts">
+          <p>No related articles available at this time.</p>
         </div>
-        <div class="related-post">
-          <img src="{{ url_for('static', filename='img/cybersecurity.jpg') }}" alt="Cybersecurity">
-          <div>
-            <h4><a href="{{ url_for('post', post_id=posts[post.id - 1].id) }}">{{ posts[post.id - 1].title }}</a></h4>
-            <span>April 10, {{ year }}</span>
-          </div>
-        </div>
+        {% endif %}
       </div>
     </div>
 
@@ -207,43 +203,33 @@
   </div>
 
   <div class="related-articles-container">
+    {% if related_posts %}
+    {% for related in related_posts %}
     <article class="related-article-card">
       <div class="article-image">
-        <img src="{{ url_for('static', filename='img/ai-ml.jpg') }}" alt="AI and Machine Learning">
+        <img
+          src="{{ url_for('static', filename=related.image_url) if related.image_url else url_for('static', filename='img/default-post-bg.jpg') }}"
+          alt="{{ related.title }}">
+        {% if loop.first %}
         <div class="article-tag">Popular</div>
-      </div>
-      <div class="article-content">
-        <span class="article-category">{{ post.category }}</span>
-        <h3>Machine Learning Explained Simply</h3>
-        <p>A beginner's guide to understanding how machines learn patterns from data.</p>
-        <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
-      </div>
-    </article>
-
-    <article class="related-article-card">
-      <div class="article-image">
-        <img src="{{ url_for('static', filename='img/web-dev.jpg') }}" alt="Web Development">
+        {% elif loop.index == 2 %}
         <div class="article-tag">New</div>
+        {% endif %}
       </div>
       <div class="article-content">
-        <span class="article-category">{{ post.category }}</span>
-        <h3>Understanding Web Architecture</h3>
-        <p>Learn how modern web applications are structured and deployed.</p>
-        <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+        <span class="article-category">{{ related.category }}</span>
+        <h3>{{ related.title }}</h3>
+        <p>{{ related.excerpt }}</p>
+        <a href="{{ url_for('post', post_id=related.id) }}" class="read-more">Read Article <i
+            class="fas fa-arrow-right"></i></a>
       </div>
     </article>
-
-    <article class="related-article-card">
-      <div class="article-image">
-        <img src="{{ url_for('static', filename='img/cybersecurity.jpg') }}" alt="Cybersecurity">
-      </div>
-      <div class="article-content">
-        <span class="article-category">{{ post.category }}</span>
-        <h3>Essential Security Practices</h3>
-        <p>Protect your digital assets with these proven security methods.</p>
-        <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
-      </div>
-    </article>
+    {% endfor %}
+    {% else %}
+    <div class="no-related">
+      <p>No related articles available at this time.</p>
+    </div>
+    {% endif %}
   </div>
 </section>
 

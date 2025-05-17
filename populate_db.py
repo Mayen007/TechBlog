@@ -2,26 +2,35 @@ from app import create_app
 from extensions import db
 from models import Post, Comment, Event
 from datetime import datetime
+import sys
+
+is_production = "--production" in sys.argv
 
 
 def populate_database():
     app = create_app()
 
     with app.app_context():
-        # Check if tables exist, create them if they don't
         try:
+            # Check if database already has content
             event_count = Event.query.count()
             post_count = Post.query.count()
 
-            # If we already have data, ask before overwriting
             if event_count > 0 or post_count > 0:
-                print(
-                    f"Database already contains {event_count} events and {post_count} posts.")
-                choice = input(
-                    "Do you want to clear existing data and repopulate? (y/n): ")
-                if choice.lower() != 'y':
-                    print("Database population canceled.")
+                # In production mode, skip repopulation if data exists
+                if is_production:
+                    print(
+                        "Database already has content. Skipping population in production mode.")
                     return
+                # In development mode, ask for confirmation
+                else:
+                    print(
+                        f"Database already contains {event_count} events and {post_count} posts.")
+                    choice = input(
+                        "Do you want to clear existing data and repopulate? (y/n): ")
+                    if choice.lower() != 'y':
+                        print("Database population canceled.")
+                        return
         except Exception as e:
             print(f"Creating database tables: {e}")
             db.create_all()
