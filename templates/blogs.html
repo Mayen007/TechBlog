@@ -27,7 +27,7 @@
     <article class="featured-post-card">
       <div class="featured-post-image">
         <img
-          src="{{ url_for('static', filename=featured_post.image_url) if featured_post.image_url else url_for('static', filename='img/default-post-bg.jpg') }}"
+          src="{{ url_for('static', filename=featured_post.image_url) if featured_post.image_url else url_for('static', filename='img/default-img.jpg') }}"
           alt="{{ featured_post.title }}">
         <div class="featured-post-tag">Featured</div>
       </div>
@@ -84,7 +84,7 @@
         <div class="blog-card-image">
           {% if post.image_url %}
           <img
-            src="{{ url_for('static', filename=post.image_url) if post.image_url else url_for('static', filename='img/default-post-bg.jpg') }}"
+            src="{{ url_for('static', filename=post.image_url) if post.image_url else url_for('static', filename='img/default-img.jpg') }}"
             alt="{{ post.title }}">
           {% endif %}
           <div class="blog-card-category">{{ post.category }}</div>
