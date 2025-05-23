@@ -20,21 +20,21 @@
   <header>
     <nav class="navbar">
       <div class="nav-container">
-        <a href="{{ url_for('home') }}" class="logo">TechBlog</a>
         <div class="hamburger" id="hamburger">
           <i class="fas fa-bars"></i>
         </div>
+        <a href="{{ url_for('home') }}" class="logo">TechBlog</a>
         <ul class="nav-links">
           <li><a href="{{ url_for('about') }}">About</a></li>
           <li><a href="{{ url_for('blogs') }}">Blogs</a></li>
           <li><a href="{{ url_for('contact') }}">Contact</a></li>
           <li><a href="{{ url_for('events') }}">Events</a></li>
-          <li>
-            <button class="theme-toggle" title="Toggle Theme" id="theme-toggle">
+        </ul>
+        <div>
+           <button class="theme-toggle" title="Toggle Theme" id="theme-toggle">
               <i class="fas fa-moon"></i>
             </button>
-          </li>
-        </ul>
+        </div>
       </div>
     </nav>
   </header>
