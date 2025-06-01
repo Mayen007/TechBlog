@@ -340,13 +340,6 @@ def populate_database():
         db.session.add_all(events)
         db.session.commit()
 
-        comment1 = Comment(
-            username="Alice", body="Great article!", post_id=post1.id)
-        comment2 = Comment(
-            username="Bob", body="Very insightful!", post_id=post2.id)
-        db.session.add_all([comment1, comment2])
-        db.session.commit()
-
     print("Database populated successfully!")
 
 
