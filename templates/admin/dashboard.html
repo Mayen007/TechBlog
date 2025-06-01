@@ -1,0 +1,112 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}TechBlog Admin - Dashboard{% endblock %}
+
+{% block content %}
+<div class="admin-header">
+    <h1>Dashboard</h1>
+</div>
+
+<div class="admin-stats">
+    <div class="admin-stat-card">
+        <div class="stat-icon">
+            <i class="fas fa-newspaper"></i>
+        </div>
+        <div class="stat-number">{{ posts_count }}</div>
+        <div class="stat-label">Blog Posts</div>
+    </div>
+    
+    <div class="admin-stat-card">
+        <div class="stat-icon">
+            <i class="fas fa-calendar-alt"></i>
+        </div>
+        <div class="stat-number">{{ events_count }}</div>
+        <div class="stat-label">Events</div>
+    </div>
+    
+    <div class="admin-stat-card">
+        <div class="stat-icon">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="stat-number">{{ comments_count }}</div>
+        <div class="stat-label">Comments</div>
+    </div>
+</div>
+
+<div class="admin-recent">
+    <div class="card">
+        <h2>Recent Posts</h2>
+        {% if recent_posts %}
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in recent_posts %}
+                <tr>
+                    <td>{{ post.title }}</td>
+                    <td>{{ post.category }}</td>
+                    <td>{{ post.date_posted.strftime('%B %d, %Y') }}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <a href="{{ url_for('admin.edit_post', post_id=post.id) }}" class="edit-btn">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="{{ url_for('post', post_id=post.id) }}" target="_blank" class="view-btn">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No posts yet.</p>
+        {% endif %}
+        <div style="text-align:right; margin-top:1rem;">
+            <a href="{{ url_for('admin.posts') }}" class="secondary-btn">View All Posts</a>
+        </div>
+    </div>
+    
+    <div class="card" style="margin-top:2rem;">
+        <h2>Recent Comments</h2>
+        {% if recent_comments %}
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Comment</th>
+                    <th>Post</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for comment in recent_comments %}
+                <tr>
+                    <td>{{ comment.username }}</td>
+                    <td>{{ comment.body|truncate(50) }}</td>
+                    <td>
+                        <a href="{{ url_for('post', post_id=comment.post_id) }}" target="_blank">
+                            {{ comment.post.title|truncate(30) }}
+                        </a>
+                    </td>
+                    <td>{{ comment.date_posted.strftime('%B %d, %Y') }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No comments yet.</p>
+        {% endif %}
+        <div style="text-align:right; margin-top:1rem;">
+            <a href="{{ url_for('admin.comments') }}" class="secondary-btn">View All Comments</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

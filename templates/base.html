@@ -60,6 +60,11 @@
         <a href="{{ url_for('blogs') }}">Blog</a>
         <a href="{{ url_for('contact') }}">Contact</a>
         <a href="{{ url_for('events') }}">Events</a>
+        {% if session.get('admin_logged_in') %}
+        <a href="{{ url_for('admin.dashboard') }}">Admin</a>
+        {% else %}
+        <a href="{{ url_for('admin.login') }}">Admin</a>
+        {% endif %}
       </div>
       <div class="social-links">
         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>

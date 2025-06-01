@@ -1,0 +1,91 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}
+    {% if event %}Edit Event{% else %}New Event{% endif %} - TechBlog Admin
+{% endblock %}
+
+{% block content %}
+<div class="admin-header">
+    <h1>{% if event %}Edit Event{% else %}New Event{% endif %}</h1>
+    <div>
+        <a href="{{ url_for('admin.events') }}" class="secondary-btn">
+            <i class="fas fa-arrow-left"></i> Back to Events
+        </a>
+    </div>
+</div>
+
+<form method="POST" class="admin-form">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <div class="input-with-icon">
+            <i class="fas fa-heading"></i>
+            <input type="text" id="title" name="title" value="{{ event.title if event else '' }}" required>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="description">Description</label>
+        <div class="input-with-icon textarea-icon">
+            <i class="fas fa-align-left"></i>
+            <textarea id="description" name="description" rows="4" required>{{ event.description if event else '' }}</textarea>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="location">Location</label>
+        <div class="input-with-icon">
+            <i class="fas fa-map-marker-alt"></i>
+            <input type="text" id="location" name="location" value="{{ event.location if event else '' }}" required>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="event_date">Event Date</label>
+        <div class="input-with-icon">
+            <i class="fas fa-calendar"></i>
+            <input type="date" id="event_date" name="event_date" value="{{ event.event_date.strftime('%Y-%m-%d') if event else '' }}" required>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="category">Category</label>
+        <div class="input-with-icon">
+            <i class="fas fa-tag"></i>
+            <select id="category" name="category">
+                <option value="Conference" {% if event and event.category == 'Conference' %}selected{% endif %}>Conference</option>
+                <option value="Workshop" {% if event and event.category == 'Workshop' %}selected{% endif %}>Workshop</option>
+                <option value="Webinar" {% if event and event.category == 'Webinar' %}selected{% endif %}>Webinar</option>
+                <option value="Hackathon" {% if event and event.category == 'Hackathon' %}selected{% endif %}>Hackathon</option>
+            </select>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="image_url">Image URL</label>
+        <div class="input-with-icon">
+            <i class="fas fa-image"></i>
+            <input type="text" id="image_url" name="image_url" value="{{ event.image_url if event else '' }}">
+        </div>
+        <small style="color: var(--text-secondary);">Enter image path (e.g. img/events/your-image.jpg)</small>
+    </div>
+    
+    <div class="form-group">
+        <label for="link">Registration Link</label>
+        <div class="input-with-icon">
+            <i class="fas fa-link"></i>
+            <input type="url" id="link" name="link" value="{{ event.link if event else '' }}" required>
+        </div>
+    </div>
+    
+    <div class="form-group" style="display: flex; align-items: center; gap: 0.5rem;">
+        <input type="checkbox" id="is_featured" name="is_featured" {% if event and event.is_featured %}checked{% endif %}>
+        <label for="is_featured" style="margin-bottom: 0;">Feature this event</label>
+    </div>
+    
+    <div style="margin-top: 2rem;">
+        <button type="submit" class="primary-btn">
+            <i class="fas fa-save"></i> {% if event %}Update{% else %}Add{% endif %} Event
+        </button>
+    </div>
+</form>
+{% endblock %}

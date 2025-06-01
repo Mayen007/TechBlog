@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechBlog Admin - Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&family=Fira+Code&display=swap"
+    rel="stylesheet">
+  <link rel="shortcut icon" href="{{url_for('static', filename='img/TechBlog_logo.png')}}" type="image/x-icon">
+  <style>
+    .admin-login-container {
+      max-width: 500px;
+      margin: 100px auto;
+      padding: 2rem;
+      background: var(--background-light);
+      border-radius: 16px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+
+    .admin-login-logo {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .admin-login-logo img {
+      max-width: 120px;
+    }
+
+    .flash {
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 8px;
+    }
+
+    .flash.success {
+      background: rgba(52, 168, 83, 0.2);
+      color: #34A853;
+    }
+
+    .flash.danger {
+      background: rgba(234, 67, 53, 0.2);
+      color: var(--accent-color);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="admin-login-container">
+    <div class="admin-login-logo">
+      <img src="{{url_for('static', filename='img/TechBlog_logo.png')}}" alt="TechBlog">
+      <h1>Admin Login</h1>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flash-messages">
+      {% for category, message in messages %}
+      <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('admin.login') }}">
+      <div class="form-group">
+        <div class="input-with-icon">
+          <i class="fas fa-user"></i>
+          <input type="text" name="username" placeholder="Username" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-with-icon">
+          <i class="fas fa-lock"></i>
+          <input type="password" name="password" placeholder="Password" required>
+        </div>
+      </div>
+      <button type="submit" class="primary-btn submit-comment-btn" style="width:100%">Login <i
+          class="fas fa-sign-in-alt"></i></button>
+    </form>
+
+    <div style="text-align: center; margin-top: 1rem;">
+      <a href="{{ url_for('home') }}" class="secondary-btn">Back to Site</a>
+    </div>
+  </div>
+</body>
+
+</html>
