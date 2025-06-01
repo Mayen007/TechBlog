@@ -1113,6 +1113,7 @@ footer {
   justify-content: center;
   gap: var(--space-md);
   margin-bottom: var(--space-md);
+  flex-wrap: wrap;
 }
 
 .footer-nav a {
