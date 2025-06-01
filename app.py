@@ -6,6 +6,7 @@ from models import Post, Comment, Event
 from datetime import datetime
 from sqlalchemy import func
 import os
+import secrets
 
 
 def create_app():
@@ -13,6 +14,8 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
         'DATABASE_URL', 'sqlite:///site.db')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+    app.config['SECRET_KEY'] = secrets.token_hex(16)
 
     db.init_app(app)
     migrate = Migrate(app, db)
@@ -26,6 +29,10 @@ def create_app():
             print(f"Database initialization needed: {e}")
             db.create_all()
             print("Database tables created successfully!")
+
+    # Import and register admin blueprint
+    from admin import admin
+    app.register_blueprint(admin)
 
     @app.context_processor
     def inject_year():

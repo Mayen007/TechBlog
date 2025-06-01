@@ -12,7 +12,9 @@ Check out the live site here:
 ## Table of Contents
 
 - [Features](#features)
+- [Recent Updates](#recent-updates)
 - [Installation](#installation)
+- [Admin Access](#admin-access)
 - [Tech Stack](#tech-stack)
 - [Contributing](#contributing)
 - [Code of Conduct](#code-of-conduct)
@@ -28,8 +30,20 @@ Check out the live site here:
 - **Blog Post Filtering**: Find articles by category with interactive filtering.
 - **Related Articles**: Smart suggestions for related content based on the current post's category.
 - **Post Navigation**: Easy navigation between previous and next posts.
-- **Comment System**: Leave comments on blog posts with real-time submission.
+- **Comment System**: Leave comments on blog posts with persistent storage across sessions.
 - **Sleek Navigation**: Sticky header with a navigation bar that collapses into a mobile-friendly menu.
+- **Admin Dashboard**: Secure administrative interface for content management.
+- **Content Management**: Create, edit, and delete blog posts and events through the admin panel.
+- **Comment Moderation**: Review and manage user comments from the admin interface.
+
+## Recent Updates
+
+### June 1, 2025
+- Added fully responsive admin interface
+- Implemented secure session management with Flask
+- Enhanced comment system for cross-session persistence
+- Fixed mobile navigation issues
+- Improved form validation across admin interfaces
 
 ## Installation
 
@@ -74,6 +88,42 @@ flask run
 ```
 
 The application will be available at `http://127.0.0.1:5000/`.
+
+## Admin Access
+
+TechBlog includes a secure admin dashboard for content management. The admin interface allows authorized users to create, edit, and delete blog posts, events, and moderate comments.
+
+### Accessing the Admin Dashboard
+
+1. Navigate to `/admin/login` or click the "Admin" link in the page footer.
+2. Enter the default credentials:
+   - Username: `admin`
+   - Password: Contact the repository owner for the default password
+
+### Generating a New Admin Password
+
+For security reasons, it's recommended to change the default password:
+
+```bash
+python generate_password.py
+```
+
+Follow the prompts to create a new secure password hash, then update the `ADMIN_PASSWORD` variable in `admin.py`.
+
+### Admin Features
+
+- **Dashboard**: Overview of site content with stats and recent activity
+- **Post Management**: Create, edit, and delete blog posts
+- **Event Management**: Create, edit, and delete upcoming tech events
+- **Comment Moderation**: Review and remove user comments
+- **Responsive Interface**: Fully mobile-responsive admin dashboard with collapsible sidebar
+
+### Security Features
+
+- Secure authentication using Werkzeug's password hashing
+- Session-based login system with secure secret key
+- Protected routes with login_required decorator
+- CSRF protection for all forms
 
 ### Deployment
 
@@ -159,7 +209,9 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ```
 TechBlog/
 ├── app.py                # Main application file
+├── admin.py              # Admin blueprint with authentication and CRUD operations
 ├── extensions.py         # Flask extensions
+├── generate_password.py  # Tool for creating secure admin passwords
 ├── models.py             # Database models
 ├── populate_db.py        # Database initialization
 ├── requirements.txt      # Dependencies
@@ -169,6 +221,15 @@ TechBlog/
 │   ├── img/              # Images
 │   └── js/               # JavaScript files
 └── templates/            # HTML templates
+    ├── admin/            # Admin interface templates
+    │   ├── layout.html   # Admin base template
+    │   ├── dashboard.html # Admin dashboard
+    │   ├── login.html    # Admin login
+    │   ├── posts.html    # Post management
+    │   ├── post_form.html # Post editing form
+    │   ├── events.html   # Event management
+    │   ├── event_form.html # Event editing form
+    │   └── comments.html # Comment moderation
     ├── base.html         # Base template
     ├── index.html        # Homepage
     ├── blogs.html        # Blog listing

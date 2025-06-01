@@ -1,0 +1,62 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}TechBlog Admin - Events{% endblock %}
+
+{% block content %}
+<div class="admin-header">
+    <h1>Events</h1>
+    <div>
+        <a href="{{ url_for('admin.new_event') }}" class="primary-btn">
+            <i class="fas fa-plus"></i> New Event
+        </a>
+    </div>
+</div>
+
+{% if events %}
+<table class="admin-table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Location</th>
+            <th>Event Date</th>
+            <th>Featured</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for event in events %}
+        <tr>
+            <td>{{ event.title }}</td>
+            <td>{{ event.category }}</td>
+            <td>{{ event.location }}</td>
+            <td>{{ event.event_date.strftime('%B %d, %Y') }}</td>
+            <td>{% if event.is_featured %}<i class="fas fa-star" style="color: gold;"></i>{% else %}-{% endif %}</td>
+            <td>
+                <div class="action-buttons">
+                    <a href="{{ url_for('admin.edit_event', event_id=event.id) }}" class="edit-btn">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="{{ event.link }}" target="_blank" class="view-btn">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <form method="POST" action="{{ url_for('admin.delete_event', event_id=event.id) }}" 
+                          onsubmit="return confirm('Are you sure you want to delete this event?');" style="display:inline;">
+                        <button type="submit" class="delete-btn">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="admin-empty-state">
+    <i class="fas fa-calendar-alt"></i>
+    <p>No events yet. Create your first event!</p>
+    <a href="{{ url_for('admin.new_event') }}" class="primary-btn">Add New Event</a>
+</div>
+{% endif %}
+{% endblock %}
