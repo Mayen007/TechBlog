@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request, session
+from urllib.parse import urlparse
 from functools import wraps
 from werkzeug.security import check_password_hash, generate_password_hash
 from extensions import db
@@ -32,7 +33,12 @@ def login():
             session['admin_logged_in'] = True
             flash('Login successful!', 'success')
             next_page = request.args.get('next', url_for('admin.dashboard'))
-            return redirect(next_page)
+            next_page_stripped = next_page.replace('\\', '')
+            parsed = urlparse(next_page_stripped)
+            if not parsed.scheme and not parsed.netloc:
+                return redirect(next_page_stripped)
+            else:
+                return redirect(url_for('admin.dashboard'))
         else:
             flash('Invalid credentials', 'danger')
 
