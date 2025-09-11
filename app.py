@@ -1,12 +1,11 @@
 from flask import Flask, render_template, url_for, request, redirect, jsonify
-import random
+import secrets
 from extensions import db
 from flask_migrate import Migrate
 from models import Post, Comment, Event
 from datetime import datetime
 from sqlalchemy import func
 import os
-import secrets
 
 
 def create_app():
@@ -15,7 +14,12 @@ def create_app():
         'DATABASE_URL', 'sqlite:///site.db')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-    app.config['SECRET_KEY'] = secrets.token_hex(16)
+    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', secrets.token_hex(16))
+    
+    # Security configurations
+    app.config['SESSION_COOKIE_SECURE'] = os.environ.get('FLASK_ENV') == 'production'
+    app.config['SESSION_COOKIE_HTTPONLY'] = True
+    app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 
     db.init_app(app)
     migrate = Migrate(app, db)
@@ -76,7 +80,7 @@ def create_app():
     @app.route("/blogs")
     def blogs():
         posts = Post.query.all()
-        featured_post = random.choice(posts) if posts else None
+        featured_post = secrets.choice(posts) if posts else None
         return render_template("blogs.html", posts=posts, featured_post=featured_post)
 
     @app.route("/post/<int:post_id>")
@@ -139,4 +143,7 @@ if __name__ == "__main__":
     from werkzeug.middleware.proxy_fix import ProxyFix
 
     app.wsgi_app = ProxyFix(app.wsgi_app)
-    app.run(host="0.0.0.0", port=5000)
+    # Use environment variables for host and port configuration
+    host = os.environ.get('FLASK_HOST', '127.0.0.1')
+    port = int(os.environ.get('FLASK_PORT', 5000))
+    app.run(host=host, port=port)

@@ -8,8 +8,9 @@ from datetime import datetime
 admin = Blueprint('admin', __name__, url_prefix='/admin')
 
 # Admin authentication
-ADMIN_USERNAME = "admin"
-ADMIN_PASSWORD = "scrypt:32768:8:1$bVjUmtulXN3MH0Rx$dd27850fe2c50e94a2c465e39027b4c91547314694795c84421afc7d9ddcdd97588f6f701e026386f52055365eea0f10db511c2063df1c256c56bca4f6096f5e"
+import os
+ADMIN_USERNAME = os.environ.get('ADMIN_USERNAME', 'admin')
+ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'scrypt:32768:8:1$bVjUmtulXN3MH0Rx$dd27850fe2c50e94a2c465e39027b4c91547314694795c84421afc7d9ddcdd97588f6f701e026386f52055365eea0f10db511c2063df1c256c56bca4f6096f5e')
 
 
 def login_required(f):
