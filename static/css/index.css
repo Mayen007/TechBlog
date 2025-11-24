@@ -1905,12 +1905,12 @@ footer {
 .contact-illustration {
   position: relative;
   z-index: 1;
-  width: 80%;
+  width: 100%;
 }
 
 .contact-illustration img {
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 .contact-form-wrapper {
