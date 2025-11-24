@@ -6,8 +6,7 @@ TechBlog is a modern, sleek tech-focused website designed to keep users updated 
 
 Check out the live site here:
 
-- [TechBlog on Vercel](https://techblog-coral.vercel.app)
-- [TechBlog on Render](https://tech-blog-t04y.onrender.com)
+- [TechBlog on Render](https://techblog-zqhv.onrender.com)
 
 ## Table of Contents
 
@@ -39,6 +38,7 @@ Check out the live site here:
 ## Recent Updates
 
 ### June 1, 2025
+
 - Added fully responsive admin interface
 - Implemented secure session management with Flask
 - Enhanced comment system for cross-session persistence
@@ -108,7 +108,14 @@ For security reasons, it's recommended to change the default password:
 python generate_password.py
 ```
 
-Follow the prompts to create a new secure password hash, then update the `ADMIN_PASSWORD` variable in `admin.py`.
+Follow the prompts to create a new secure password hash. Instead of editing `admin.py`, create a `.env` file in the project root (you can copy `.env.example`) and add the following:
+
+```
+ADMIN_USERNAME=your_admin_username
+ADMIN_PASSWORD=<paste-the-generated-hash-here>
+```
+
+The app loads environment variables from `.env` automatically (via `python-dotenv`). Do NOT commit your `.env` file to source control.
 
 ### Admin Features
 

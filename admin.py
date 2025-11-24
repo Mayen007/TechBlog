@@ -1,3 +1,5 @@
+from dotenv import load_dotenv
+import os
 from flask import Blueprint, render_template, redirect, url_for, flash, request, session
 from urllib.parse import urlparse
 from functools import wraps
@@ -9,9 +11,15 @@ from datetime import datetime
 admin = Blueprint('admin', __name__, url_prefix='/admin')
 
 # Admin authentication
-import os
+
+# Load environment variables from a .env file (if present)
+load_dotenv()
+
+# Admin credentials
+# `ADMIN_PASSWORD` should be a hashed password (use `generate_password.py` to create one).
 ADMIN_USERNAME = os.environ.get('ADMIN_USERNAME', 'admin')
-ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'scrypt:32768:8:1$bVjUmtulXN3MH0Rx$dd27850fe2c50e94a2c465e39027b4c91547314694795c84421afc7d9ddcdd97588f6f701e026386f52055365eea0f10db511c2063df1c256c56bca4f6096f5e')
+# expected to be a hashed password
+ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD')
 
 
 def login_required(f):
@@ -28,6 +36,11 @@ def login():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
+        # If ADMIN_PASSWORD is not configured, prevent login and notify.
+        if not ADMIN_PASSWORD:
+            flash(
+                'Admin password not configured. Set `ADMIN_PASSWORD` in your environment.', 'danger')
+            return render_template('admin/login.html')
 
         if username == ADMIN_USERNAME and check_password_hash(ADMIN_PASSWORD, password):
             session['admin_logged_in'] = True
